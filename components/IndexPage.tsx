@@ -1,6 +1,7 @@
 import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
 import IndexPageHead from 'components/IndexPageHead'
+import MoreStories from 'components/MoreStories'
 import YoutubeVideos from 'components/YoutubeVideos'
 import { BlogGrid } from 'components/ui/blog-posts'
 import * as demo from 'lib/demo.data'
@@ -44,6 +45,7 @@ export default function IndexPage(props: IndexPageProps) {
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
           <BlogHeader title="100% SKATE" description={description} level={1} />
           <BlogGrid posts={gridPosts} />
+          <YoutubeVideos />
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </div>
         <Suspense />
