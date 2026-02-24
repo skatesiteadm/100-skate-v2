@@ -1,7 +1,7 @@
 import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
 import IndexPageHead from 'components/IndexPageHead'
-import MoreStories from 'components/MoreStories'
+import YoutubeVideos from 'components/YoutubeVideos'
 import { BlogGrid } from 'components/ui/blog-posts'
 import * as demo from 'lib/demo.data'
 import { getClient } from 'lib/sanity.client'
