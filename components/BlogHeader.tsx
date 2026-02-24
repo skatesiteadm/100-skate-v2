@@ -15,11 +15,11 @@ export default function BlogHeader({
       return (
         <header className="mb-10 mt-16 flex flex-col items-center md:mb-12 md:flex-row md:justify-between">
           <Link href="/">
-            <img 
-              src="/logoskate.svg" 
-              alt="CEMPORCENTOSKATE" 
-              className="h-16 md:h-24 w-auto hover:opacity-80 transition-opacity" 
-            />
+           <img 
+  src="/logoskate.svg" 
+  alt="CEMPORCENTOSKATE" 
+  style={{ height: '80px', width: 'auto' }}
+/>
           </Link>
         </header>
       )
