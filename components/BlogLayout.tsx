@@ -1,4 +1,5 @@
 import AlertBanner from 'components/AlertBanner'
+import Footer from 'components/Footer'
 
 export default function BlogLayout({
   preview,
@@ -10,9 +11,10 @@ export default function BlogLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <AlertBanner preview={preview} loading={loading} />
-      <main>{children}</main>
+      <main className="flex-1">{children}</main>
+      <Footer />
     </div>
   )
 }
