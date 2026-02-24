@@ -4,8 +4,16 @@ import IndexPageHead from 'components/IndexPageHead'
 import MoreStories from 'components/MoreStories'
 import { BlogGrid } from 'components/ui/blog-posts'
 import * as demo from 'lib/demo.data'
+import { sanityClient } from 'lib/sanity.client'
 import type { Post, Settings } from 'lib/sanity.queries'
+import imageUrlBuilder from '@sanity/image-url'
 import { Suspense } from 'react'
+
+const builder = imageUrlBuilder(sanityClient)
+
+function urlFor(source: any) {
+  return builder.image(source).width(800).url()
+}
 
 export interface IndexPageProps {
   preview?: boolean
@@ -21,7 +29,7 @@ export default function IndexPage(props: IndexPageProps) {
   const gridPosts = posts.slice(0, 3).map((post) => ({
     id: post._id,
     title: post.title,
-    imageUrl: post.coverImage?.url || '',
+    imageUrl: post.coverImage ? urlFor(post.coverImage) : '',
     slug: post.slug,
     author: post.author?.name,
     category: 'Skate',
