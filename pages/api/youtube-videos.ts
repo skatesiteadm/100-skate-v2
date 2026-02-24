@@ -7,7 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     // Busca os 10 mais recentes para ter margem para filtrar shorts
     const searchRes = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&order=date&maxResults=10&type=video`
+      `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&order=date&maxResults=25&type=video`
     )
     const searchData = await searchRes.json()
     const ids = searchData.items?.map((i: any) => i.id.videoId).join(',')
