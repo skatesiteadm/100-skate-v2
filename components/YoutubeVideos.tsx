@@ -20,7 +20,6 @@ export default function YoutubeVideos() {
 
   return (
     <>
-      {/* Modal player */}
       {activeVideo && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
@@ -33,10 +32,11 @@ export default function YoutubeVideos() {
             >
               ✕
             </button>
-            <div className="aspect-video w-full">
+            <div style={{ paddingTop: '56.25%', position: 'relative' }}>
               <iframe
                 src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1`}
-                className="w-full h-full rounded-xl"
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+                className="rounded-xl"
                 allow="autoplay; encrypted-media"
                 allowFullScreen
               />
@@ -56,13 +56,14 @@ export default function YoutubeVideos() {
               onClick={() => setActiveVideo(video.id)}
               className="group flex flex-col gap-2 text-left"
             >
-              <div className="relative overflow-hidden rounded-xl aspect-video">
+              <div style={{ paddingTop: '56.25%', position: 'relative' }} className="overflow-hidden rounded-xl w-full">
                 <img
                   src={video.thumbnail}
                   alt={video.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                  className="transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div style={{ position: 'absolute', inset: 0 }} className="flex items-center justify-center">
                   <div className="bg-red-600 rounded-full w-12 h-12 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-opacity">
                     <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5 ml-1">
                       <path d="M8 5v14l11-7z" />
