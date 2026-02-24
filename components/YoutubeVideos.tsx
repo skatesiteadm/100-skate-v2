@@ -25,7 +25,7 @@ export default function YoutubeVideos() {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {videos.slice(0, 3).map((video) => (
-          <a key={video.id} href={video.url} target="_blank" rel="noopener noreferrer" className="group flex flex-col gap-2">
+      <a key={video.id} href={video.url} target="_blank" rel="noopener noreferrer" className="group flex flex-col gap-2">
             <div className="relative overflow-hidden rounded-xl aspect-video">
               <img
                 src={video.thumbnail}
