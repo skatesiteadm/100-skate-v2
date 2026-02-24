@@ -1,82 +1,44 @@
-import { useEffect, useState } from 'react'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
-interface Video {
-  id: string
-  title: string
-  thumbnail: string
-}
+const CHANNEL_ID = 'UCP3_207yNHXuUOcfDnf6aEQ'
+const API_KEY = process.env.YOUTUBE_API_KEY
 
-export default function YoutubeVideos() {
-  const [videos, setVideos] = useState<Video[]>([])
-  const [activeVideo, setActiveVideo] = useState<string | null>(null)
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    // Busca os 10 mais recentes para ter margem para filtrar shorts
+    const searchRes = await fetch(
+      `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&order=date&maxResults=10&type=video`
+    )
+    const searchData = await searchRes.json()
+    const ids = searchData.items?.map((i: any) => i.id.videoId).join(',')
 
-  useEffect(() => {
-    fetch('/api/youtube-videos')
-      .then((res) => res.json())
-      .then((data) => setVideos(data.videos || []))
-  }, [])
+    // Busca detalhes para pegar duração
+    const detailRes = await fetch(
+      `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${ids}&part=contentDetails,snippet`
+    )
+    const detailData = await detailRes.json()
 
-  if (videos.length === 0) return null
+    const videos = detailData.items
+      ?.filter((item: any) => {
+        const duration = item.contentDetails.duration
+        // Filtra shorts — duração menor que PT1M (1 minuto)
+        const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
+        const hours = parseInt(match?.[1] || '0')
+        const minutes = parseInt(match?.[2] || '0')
+        const seconds = parseInt(match?.[3] || '0')
+        const total = hours * 3600 + minutes * 60 + seconds
+        return total > 60
+      })
+      .slice(0, 3)
+      .map((item: any) => ({
+        id: item.id,
+        title: item.snippet.title,
+        thumbnail: item.snippet.thumbnails.high.url,
+      })) || []
 
-  return (
-    <>
-      {/* Modal player */}
-      {activeVideo && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
-          onClick={() => setActiveVideo(null)}
-        >
-          <div className="relative w-full max-w-4xl px-4" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setActiveVideo(null)}
-              className="absolute -top-10 right-4 text-white text-2xl font-bold hover:text-gray-300"
-            >
-              ✕
-            </button>
-            <div className="aspect-video w-full">
-              <iframe
-                src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1`}
-                className="w-full h-full rounded-xl"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </div>
-      )}
-
-      <section className="mb-12">
-        <h2 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest">
-          Vídeos
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {videos.slice(0, 3).map((video) => (
-            <button
-              key={video.id}
-              onClick={() => setActiveVideo(video.id)}
-              className="group flex flex-col gap-2 text-left"
-            >
-              <div className="relative overflow-hidden rounded-xl aspect-video">
-                <img
-                  src={video.thumbnail}
-                  alt={video.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-red-600 rounded-full w-12 h-12 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-opacity">
-                    <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5 ml-1">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <h3 className="text-sm font-bold uppercase leading-tight group-hover:underline">
-                {video.title}
-              </h3>
-            </button>
-          ))}
-        </div>
-      </section>
-    </>
-  )
+    res.setHeader('Cache-Control', 's-maxage=3600')
+    res.status(200).json({ videos })
+  } catch (error) {
+    res.status(500).json({ videos: [] })
+  }
 }
