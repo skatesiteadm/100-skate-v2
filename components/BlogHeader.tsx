@@ -14,38 +14,38 @@ export default function BlogHeader({
       return (
         <>
           {/* Barra preta do topo */}
-          <div className="w-full bg-black text-white text-xs flex justify-between items-center px-6 py-2">
-            <div className="flex gap-4">
-              <Link href="/loja" className="hover:text-gray-300">LOJA</Link>
-              <Link href="/anuncie" className="hover:text-gray-300">ANUNCIE</Link>
-              <Link href="/contato" className="hover:text-gray-300">CONTATO</Link>
+          <div className="w-full bg-black text-white text-xs flex justify-between items-center px-4 md:px-8 py-2">
+            <div className="flex gap-3 md:gap-5">
+              <Link href="/loja" className="hover:text-gray-300 tracking-widest">LOJA</Link>
+              <Link href="/anuncie" className="hover:text-gray-300 tracking-widest">ANUNCIE</Link>
+              <Link href="/contato" className="hover:text-gray-300 tracking-widest hidden md:block">CONTATO</Link>
             </div>
-            <div className="flex gap-3">
-              <span>🔍</span>
-              <span>Instagram</span>
-              <span>YouTube</span>
+            <div className="flex gap-3 items-center text-xs">
+              <span className="hidden md:block">🔍</span>
+              <a href="https://instagram.com/cemporcentoskate" target="_blank" className="hover:text-gray-300">IG</a>
+              <a href="https://youtube.com" target="_blank" className="hover:text-gray-300">YT</a>
             </div>
           </div>
 
           {/* Logo centralizado */}
-          <header className="flex justify-center items-center py-6 border-b border-gray-200">
-            <Link href="/">
+          <header className="flex justify-center items-center py-6 border-b border-gray-200 w-full">
+            <Link href="/" className="flex justify-center">
               <img
                 src="/logoskate.svg"
                 alt="CEMPORCENTOSKATE"
-                style={{ height: '100px', width: 'auto' }}
+                style={{ height: '80px', width: 'auto', maxWidth: '280px' }}
               />
             </Link>
           </header>
 
           {/* Menu de categorias */}
-          <nav className="w-full border-b border-gray-200 mb-8">
-            <ul className="flex gap-6 px-6 py-3 text-sm font-bold uppercase">
-              <li><Link href="/" className="hover:text-red-600">Fiksperto</Link></li>
-              <li><Link href="/" className="hover:text-red-600">Vídeos</Link></li>
-              <li><Link href="/" className="hover:text-red-600">Campeonatos</Link></li>
-              <li><Link href="/" className="hover:text-red-600">Eventos</Link></li>
-              <li><Link href="/" className="hover:text-red-600">Revista</Link></li>
+          <nav className="w-full border-b border-gray-200 mb-8 overflow-x-auto">
+            <ul className="flex gap-4 md:gap-8 px-4 md:px-8 py-3 text-xs md:text-sm font-bold uppercase whitespace-nowrap justify-center">
+              <li><Link href="/" className="hover:text-red-600 transition-colors">Fiksperto</Link></li>
+              <li><Link href="/" className="hover:text-red-600 transition-colors">Vídeos</Link></li>
+              <li><Link href="/" className="hover:text-red-600 transition-colors">Campeonatos</Link></li>
+              <li><Link href="/" className="hover:text-red-600 transition-colors">Eventos</Link></li>
+              <li><Link href="/" className="hover:text-red-600 transition-colors">Revista</Link></li>
             </ul>
           </nav>
         </>
@@ -53,12 +53,12 @@ export default function BlogHeader({
 
     case 2:
       return (
-        <header className="flex justify-start items-center py-4 border-b border-gray-200 mb-8">
+        <header className="flex justify-center items-center py-4 border-b border-gray-200 mb-8 w-full">
           <Link href="/">
             <img
               src="/logoskate.svg"
               alt="CEMPORCENTOSKATE"
-              style={{ height: '50px', width: 'auto' }}
+              style={{ height: '50px', width: 'auto', maxWidth: '180px' }}
             />
           </Link>
         </header>
@@ -71,4 +71,5 @@ export default function BlogHeader({
         }, only 1 or 2 are allowed`,
       )
   }
+}
 }
