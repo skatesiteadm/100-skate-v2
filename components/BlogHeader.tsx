@@ -28,19 +28,19 @@ export default function BlogHeader({
           </div>
 
           {/* Logo centralizado */}
-          <header className="flex justify-center items-center py-8 w-full">
+          <header className="flex justify-center items-center py-6 w-full">
             <Link href="/" className="flex justify-center">
               <img
                 src="/logoskate.svg"
                 alt="CEMPORCENTOSKATE"
-                style={{ height: '120px', width: 'auto' }}
+                style={{ height: '220px', width: 'auto' }}
               />
             </Link>
           </header>
 
           {/* Menu de categorias */}
           <nav className="w-full border-y border-gray-200 mb-8 overflow-x-auto">
-            <ul className="flex gap-4 md:gap-8 px-4 md:px-8 py-3 text-xs md:text-sm font-bold uppercase whitespace-nowrap justify-center">
+            <ul className="flex gap-4 md:gap-8 px-4 md:px-8 py-6 text-xs md:text-sm font-bold uppercase whitespace-nowrap justify-center">
               <li><Link href="/" className="hover:text-red-600 transition-colors">Fiksperto</Link></li>
               <li><Link href="/" className="hover:text-red-600 transition-colors">Vídeos</Link></li>
               <li><Link href="/" className="hover:text-red-600 transition-colors">Campeonatos</Link></li>
