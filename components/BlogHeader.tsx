@@ -13,12 +13,12 @@ export default function BlogHeader({
     case 1:
       // Layout da Home (Logo maior)
       return (
-        <header className="mb-10 mt-16 flex flex-col items-center md:mb-12 md:flex-row md:justify-between">
+        <header className="mb-10 mt-16 flex flex-col items-center md:mb-12 md:flex-row md:justify-center">
           <Link href="/">
            <img 
   src="/logoskate.svg" 
   alt="CEMPORCENTOSKATE" 
-  style={{ height: '80px', width: 'auto' }}
+  style={{ height: '120px', width: 'auto', margin: '0 auto', display: 'block' }}
 />
           </Link>
         </header>
