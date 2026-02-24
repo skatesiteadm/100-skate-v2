@@ -1,7 +1,4 @@
 import Link from 'next/link'
-import { PortableText } from 'next-sanity'
-
-import styles from './BlogHeader.module.css'
 
 export default function BlogHeader({
   title,
@@ -14,27 +11,32 @@ export default function BlogHeader({
 }) {
   switch (level) {
     case 1:
+      // Layout da Home (Logo maior)
       return (
-        <header className="mb-10 mt-16 flex flex-col items-center md:mb-12 md:flex-row md:justify-between text-pretty">
-          <h1 className="text-6xl font-bold leading-tight tracking-tighter md:pr-8 md:text-8xl">
-            {title}
-          </h1>
-          <h4
-            className={`mt-5 text-center text-lg md:pl-8 md:text-left ${styles.portableText}`}
-          >
-            <PortableText value={description} />
-          </h4>
+        <header className="mb-10 mt-16 flex flex-col items-center md:mb-12 md:flex-row md:justify-between">
+          <Link href="/">
+            <img 
+              src="/logoskate.svg" 
+              alt="CEMPORCENTOSKATE" 
+              className="h-16 md:h-24 w-auto hover:opacity-80 transition-opacity" 
+            />
+          </Link>
         </header>
       )
 
     case 2:
+      // Layout de dentro da matéria (Logo menorzinho no topo)
       return (
         <header>
-          <h2 className="mb-20 mt-8 text-2xl font-bold leading-tight tracking-tight md:text-4xl md:tracking-tighter text-pretty">
-            <Link href="/" className="hover:underline">
-              {title}
+          <div className="mb-20 mt-8">
+            <Link href="/" className="hover:opacity-80 transition-opacity inline-block">
+              <img 
+                src="/logoskate.svg" 
+                alt="CEMPORCENTOSKATE" 
+                className="h-10 md:h-12 w-auto" 
+              />
             </Link>
-          </h2>
+          </div>
         </header>
       )
 
@@ -44,5 +46,7 @@ export default function BlogHeader({
           JSON.stringify(level) || typeof level
         }, only 1 or 2 are allowed`,
       )
+  }
+}
   }
 }
