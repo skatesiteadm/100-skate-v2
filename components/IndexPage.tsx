@@ -45,6 +45,12 @@ export default function IndexPage(props: IndexPageProps) {
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
           <BlogHeader title="100% SKATE" description={description} level={1} />
           <BlogGrid posts={gridPosts} />
+
+          {/* Banner anunciante */}
+          <div className="w-full my-8 flex items-center justify-center bg-gray-100 border border-dashed border-gray-300 rounded-xl" style={{ height: '120px' }}>
+            <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Espaço Publicitário — 970×90</span>
+          </div>
+
           <YoutubeVideos />
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </div>
