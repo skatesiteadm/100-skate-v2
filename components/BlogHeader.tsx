@@ -39,7 +39,7 @@ export default function BlogHeader({
           </header>
 
           {/* Menu de categorias */}
-          <nav className="w-full border-y border-gray-200 mb-12 overflow-x-auto">
+          <nav className="w-full border-y border-gray-200 mb-14 overflow-x-auto">
             <ul className="flex gap-4 md:gap-8 px-4 md:px-8 py-6 text-xs md:text-sm font-bold uppercase whitespace-nowrap justify-center">
               <li><Link href="/" className="hover:text-red-600 transition-colors">Fiksperto</Link></li>
               <li><Link href="/" className="hover:text-red-600 transition-colors">Vídeos</Link></li>
