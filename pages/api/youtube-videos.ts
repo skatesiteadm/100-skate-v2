@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const minutes = parseInt(match?.[2] || '0')
         const seconds = parseInt(match?.[3] || '0')
         const total = hours * 3600 + minutes * 60 + seconds
-        return total > 60
+        return total > 90
       })
       .slice(0, 3)
       .map((item: any) => ({
