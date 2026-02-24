@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-const CHANNEL_ID = 'UCu7Y6jbGBMgEtFvOoSEqeuA'
+const CHANNEL_ID = 'UCP3_207yNHXuUOcfDnf6aEQ'
 const API_KEY = process.env.YOUTUBE_API_KEY
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
