@@ -33,7 +33,7 @@ export default function BlogHeader({
               <img
                 src="/logoskate.svg"
                 alt="CEMPORCENTOSKATE"
-                style={{ height: '80px', width: 'auto', maxWidth: '280px' }}
+                style={{ height: '220px', width: 'auto', maxWidth: 'auto' }}
               />
             </Link>
           </header>
