@@ -1,10 +1,8 @@
-import Container from 'components/BlogContainer'
 import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
-import HeroPost from 'components/HeroPost'
 import IndexPageHead from 'components/IndexPageHead'
 import MoreStories from 'components/MoreStories'
-import IntroTemplate from 'intro-template'
+import { BlogGrid } from 'components/ui/blog-posts'
 import * as demo from 'lib/demo.data'
 import type { Post, Settings } from 'lib/sanity.queries'
 import { Suspense } from 'react'
@@ -18,30 +16,29 @@ export interface IndexPageProps {
 
 export default function IndexPage(props: IndexPageProps) {
   const { preview, loading, posts, settings } = props
-  const [heroPost, ...morePosts] = posts || []
-  const { title = demo.title, description = demo.description } = settings || {}
+  const { description = demo.description } = settings || {}
+
+  const gridPosts = posts.slice(0, 3).map((post) => ({
+    id: post._id,
+    title: post.title,
+    imageUrl: post.coverImage?.url || '',
+    slug: post.slug,
+    author: post.author?.name,
+    category: 'Skate',
+  }))
+
+  const morePosts = posts.slice(3)
 
   return (
     <>
       <IndexPageHead settings={settings} />
-
       <Layout preview={preview} loading={loading}>
-        <Container>
+        <div className="px-4 md:px-8 max-w-7xl mx-auto">
           <BlogHeader title="100% SKATE" description={description} level={1} />
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
+          <BlogGrid posts={gridPosts} />
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-        </Container>
-        <Suspense>
-        </Suspense>
+        </div>
+        <Suspense />
       </Layout>
     </>
   )
