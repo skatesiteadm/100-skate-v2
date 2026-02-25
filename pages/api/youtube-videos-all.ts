@@ -5,12 +5,25 @@ const API_KEY = process.env.YOUTUBE_API_KEY
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const searchRes = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&order=date&maxResults=50&type=video`
+    // Pega o uploads playlist ID do canal
+    const channelRes = await fetch(
+      `https://www.googleapis.com/youtube/v3/channels?key=${API_KEY}&id=${CHANNEL_ID}&part=contentDetails`
     )
-    const searchData = await searchRes.json()
-    const ids = searchData.items?.map((i: any) => i.id.videoId).join(',')
+    const channelData = await channelRes.json()
+    const uploadsPlaylistId = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads
 
+    if (!uploadsPlaylistId) {
+      return res.status(500).json({ videos: [] })
+    }
+
+    // Busca os vídeos da playlist de uploads
+    const playlistRes = await fetch(
+      `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${uploadsPlaylistId}&part=snippet&maxResults=30&order=date`
+    )
+    const playlistData = await playlistRes.json()
+    const ids = playlistData.items?.map((i: any) => i.snippet.resourceId.videoId).join(',')
+
+    // Busca detalhes com duração
     const detailRes = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${ids}&part=contentDetails,snippet`
     )
@@ -20,18 +33,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ?.filter((item: any) => {
         const duration = item.contentDetails.duration
         const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
-        const hours = parseInt(match?.[1] || '0')
-        const minutes = parseInt(match?.[2] || '0')
-        const seconds = parseInt(match?.[3] || '0')
-        const total = hours * 3600 + minutes * 60 + seconds
-        return total > 90
+        const h = parseInt(match?.[1] || '0')
+        const m = parseInt(match?.[2] || '0')
+        const s = parseInt(match?.[3] || '0')
+        const total = h * 3600 + m * 60 + s
+        return total > 62
       })
-      .slice(0, 13)
-      .map((item: any) => ({
-        id: item.id,
-        title: item.snippet.title,
-        thumbnail: item.snippet.thumbnails.high.url,
-      })) || []
+      .slice(0, 14)
+      .map((item: any) => {
+        const match = item.contentDetails.duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
+        const h = parseInt(match?.[1] || '0')
+        const m = parseInt(match?.[2] || '0')
+        const s = parseInt(match?.[3] || '0')
+        return {
+          id: item.id,
+          title: item.snippet.title,
+          thumbnail: item.snippet.thumbnails.high.url,
+          duration: h * 3600 + m * 60 + s,
+        }
+      }) || []
 
     res.setHeader('Cache-Control', 's-maxage=3600')
     res.status(200).json({ videos })
