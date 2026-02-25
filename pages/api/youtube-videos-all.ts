@@ -5,7 +5,6 @@ const API_KEY = process.env.YOUTUBE_API_KEY
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    // Pega o uploads playlist ID do canal
     const channelRes = await fetch(
       `https://www.googleapis.com/youtube/v3/channels?key=${API_KEY}&id=${CHANNEL_ID}&part=contentDetails`
     )
@@ -16,14 +15,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({ videos: [] })
     }
 
-    // Busca os vídeos da playlist de uploads
+    // Busca 50 itens da playlist
     const playlistRes = await fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${uploadsPlaylistId}&part=snippet&maxResults=30&order=date`
+      `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${uploadsPlaylistId}&part=snippet&maxResults=50`
     )
     const playlistData = await playlistRes.json()
     const ids = playlistData.items?.map((i: any) => i.snippet.resourceId.videoId).join(',')
 
-    // Busca detalhes com duração
+    // Busca detalhes com duração de todos os 50
     const detailRes = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${ids}&part=contentDetails,snippet`
     )
@@ -59,3 +58,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(500).json({ videos: [] })
   }
 }
+```
+
+Faz o Commit, depois testa direto:
+```
+https://100-skate-v2-yrmc.vercel.app/api/youtube-videos-all
