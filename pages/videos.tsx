@@ -35,7 +35,6 @@ export default function VideosPage() {
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
           <BlogHeader title="100% SKATE" description={[]} level={1} />
 
-          {/* Player destaque */}
           {activeVideo && (
             <div className="w-full mb-4" style={{ paddingTop: '56.25%', position: 'relative' }}>
               <iframe
@@ -48,17 +47,16 @@ export default function VideosPage() {
             </div>
           )}
 
-          {/* Título do vídeo em destaque */}
           {activeTitle && (
             <h2 className="text-xl font-black uppercase mb-8 leading-tight">
               {activeTitle}
             </h2>
           )}
 
-          {/* Grid dos outros vídeos */}
           <h3 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest">
             Mais Vídeos
           </h3>
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {gridVideos.slice(0, 12).map((video) => (
               <button
@@ -91,17 +89,13 @@ export default function VideosPage() {
             ))}
           </div>
 
-          {/* Botão ver mais */}
           <div className="flex justify-center mb-16">
             
               href="https://www.youtube.com/@CemporcentoSKATE_"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-red-600 hover:bg-red-700 text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest transition-colors flex items-center gap-3"
+              className="bg-red-600 hover:bg-red-700 text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest transition-colors"
             >
-              <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5">
-                <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/>
-              </svg>
               Ver Canal no YouTube
             </a>
           </div>
