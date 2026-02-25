@@ -90,15 +90,13 @@ export default function VideosPage() {
           </div>
 
           <div className="flex justify-center mb-16">
-            
-              href="https://www.youtube.com/@CemporcentoSKATE_"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-red-600 hover:bg-red-700 text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest transition-colors"
-            >
-              Ver Canal no YouTube
-            </a>
-          </div>
+  <button
+    onClick={() => window.open('https://www.youtube.com/@CemporcentoSKATE_', '_blank')}
+    className="bg-red-600 hover:bg-red-700 text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest transition-colors"
+  >
+    Ver Canal no YouTube
+  </button>
+</div>
 
         </div>
       </Layout>
