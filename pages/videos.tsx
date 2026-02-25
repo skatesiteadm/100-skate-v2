@@ -35,8 +35,16 @@ export default function VideosPage() {
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
           <BlogHeader title="100% SKATE" description={[]} level={1} />
 
+          {/* Título acima do player */}
+          {activeTitle && (
+            <h2 className="text-xl font-black uppercase mb-4 leading-tight">
+              {activeTitle}
+            </h2>
+          )}
+
+          {/* Player destaque */}
           {activeVideo && (
-            <div className="w-full mb-4" style={{ paddingTop: '56.25%', position: 'relative' }}>
+            <div className="w-full mb-8" style={{ paddingTop: '56.25%', position: 'relative' }}>
               <iframe
                 src={`https://www.youtube.com/embed/${activeVideo}?autoplay=0`}
                 style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
@@ -47,12 +55,7 @@ export default function VideosPage() {
             </div>
           )}
 
-          {activeTitle && (
-            <h2 className="text-xl font-black uppercase mb-8 leading-tight">
-              {activeTitle}
-            </h2>
-          )}
-
+          {/* Grid 12 vídeos menores */}
           <h3 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest">
             Mais Vídeos
           </h3>
@@ -90,13 +93,13 @@ export default function VideosPage() {
           </div>
 
           <div className="flex justify-center mb-16">
-  <button
-    onClick={() => window.open('https://www.youtube.com/@CemporcentoSKATE_', '_blank')}
-    className="bg-red-600 hover:bg-red-700 text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest transition-colors"
-  >
-    Ver Canal no YouTube
-  </button>
-</div>
+            <button
+              onClick={() => window.open('https://www.youtube.com/@CemporcentoSKATE_', '_blank')}
+              className="bg-red-600 hover:bg-red-700 text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest transition-colors"
+            >
+              Ver Canal no YouTube
+            </button>
+          </div>
 
         </div>
       </Layout>
