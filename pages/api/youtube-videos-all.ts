@@ -38,7 +38,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const total = h * 3600 + m * 60 + s
         return total > 62
       })
-      .slice(0, 17)
+      .slice(0, 21)
       .map((item: any) => {
         const match = item.contentDetails.duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
         const h = parseInt(match?.[1] || '0')
