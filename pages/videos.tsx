@@ -35,14 +35,12 @@ export default function VideosPage() {
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
           <BlogHeader title="100% SKATE" description={[]} level={1} />
 
-          {/* Título acima do player */}
           {activeTitle && (
             <h2 className="text-xl font-black uppercase mb-4 leading-tight">
               {activeTitle}
             </h2>
           )}
 
-          {/* Player destaque */}
           {activeVideo && (
             <div className="w-full mb-8" style={{ paddingTop: '56.25%', position: 'relative' }}>
               <iframe
@@ -55,13 +53,12 @@ export default function VideosPage() {
             </div>
           )}
 
-          {/* Grid 12 vídeos menores */}
           <h3 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest">
             Mais Vídeos
           </h3>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            {gridVideos.slice(0, 12).map((video) => (
+            {gridVideos.slice(0, 15).map((video) => (
               <button
                 key={video.id}
                 onClick={() => {
@@ -93,12 +90,13 @@ export default function VideosPage() {
           </div>
 
           <div className="flex justify-center mb-16">
-            <button
-              onClick={() => window.open('https://www.youtube.com/@CemporcentoSKATE_', '_blank')}
-              className="bg-red-600 hover:bg-red-700 text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest transition-colors"
+            
+              href="https://youtube.com/@CemporcentoSKATE_"
+              target="_blank"
+              className="bg-black hover:bg-gray-800 text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest transition-colors"
             >
-              Ver Canal no YouTube
-            </button>
+              Ver Mais Vídeos
+            </a>
           </div>
 
         </div>
