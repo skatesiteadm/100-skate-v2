@@ -36,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const m = parseInt(match?.[2] || '0')
         const s = parseInt(match?.[3] || '0')
         const total = h * 3600 + m * 60 + s
-        return total > 62
+        return total > 60
       })
       .slice(0, 21)
       .map((item: any) => {
