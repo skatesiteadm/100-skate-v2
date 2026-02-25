@@ -27,6 +27,11 @@ export default function VideosPage() {
 
   const activeTitle = videos.find((v) => v.id === activeVideo)?.title
   const gridVideos = videos.filter((v) => v.id !== activeVideo)
+  
+  // Garante múltiplo de 4 para não ter linha incompleta no desktop
+  const cols = 4
+  const trimmed = Math.floor(gridVideos.length / cols) * cols
+  const displayVideos = gridVideos.slice(0, trimmed)
 
   return (
     <>
@@ -58,7 +63,7 @@ export default function VideosPage() {
           </h3>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            {gridVideos.slice(0, 20).map((video) => (
+            {displayVideos.map((video) => (
               <button
                 key={video.id}
                 onClick={() => {
