@@ -58,8 +58,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(500).json({ videos: [] })
   }
 }
-```
-
-Faz o Commit, depois testa direto:
-```
-https://100-skate-v2-yrmc.vercel.app/api/youtube-videos-all
