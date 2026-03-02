@@ -49,7 +49,7 @@ export default function VideosPage() {
           {activeVideo && (
             <div className="w-full mb-8" style={{ paddingTop: '56.25%', position: 'relative' }}>
               <iframe
-                src={`https://www.youtube.com/embed/${activeVideo}?autoplay=0`}
+                src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1`}
                 style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
                 className="rounded-xl"
                 allow="autoplay; encrypted-media"
