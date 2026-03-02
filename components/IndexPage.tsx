@@ -82,7 +82,7 @@ export default function IndexPage(props: IndexPageProps) {
           <span className="text-xs font-black uppercase tracking-widest text-gray-400 border border-gray-700 px-3 py-1 rounded-full">
             Edição {revista.edicao}
           </span>
-          <span className="text-xs font-bold uppercase tracking-widest text-red-500">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#ff44cc]">
             Revista
           </span>
         </div>
@@ -109,7 +109,7 @@ export default function IndexPage(props: IndexPageProps) {
         {revista.linkCompra ? (
           <button
             onClick={() => window.open(revista.linkCompra, '_blank')}
-            className="bg-red-600 hover:bg-red-700 text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest transition-colors w-fit"
+            className="bg-[#ff44cc] hover:bg-[#ff44cc]/80 text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest transition-colors w-fit"
           >
             Comprar Revista
           </button>
