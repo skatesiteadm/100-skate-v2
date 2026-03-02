@@ -13,6 +13,7 @@ interface Video {
 export default function VideosPage() {
   const [videos, setVideos] = useState<Video[]>([])
   const [activeVideo, setActiveVideo] = useState<string | null>(null)
+  const [autoplay, setAutoplay] = useState(false)
 
   useEffect(() => {
     fetch('/api/youtube-videos-all')
@@ -27,8 +28,7 @@ export default function VideosPage() {
 
   const activeTitle = videos.find((v) => v.id === activeVideo)?.title
   const gridVideos = videos.filter((v) => v.id !== activeVideo)
-  
-  // Garante múltiplo de 4 para não ter linha incompleta no desktop
+
   const cols = 4
   const trimmed = Math.floor(gridVideos.length / cols) * cols
   const displayVideos = gridVideos.slice(0, trimmed)
@@ -49,7 +49,7 @@ export default function VideosPage() {
           {activeVideo && (
             <div className="w-full mb-8" style={{ paddingTop: '56.25%', position: 'relative' }}>
               <iframe
-                src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1`}
+                src={`https://www.youtube.com/embed/${activeVideo}?autoplay=${autoplay ? 1 : 0}`}
                 style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
                 className="rounded-xl"
                 allow="autoplay; encrypted-media"
@@ -67,6 +67,7 @@ export default function VideosPage() {
               <button
                 key={video.id}
                 onClick={() => {
+                  setAutoplay(true)
                   setActiveVideo(video.id)
                   window.scrollTo({ top: 0, behavior: 'smooth' })
                 }}
