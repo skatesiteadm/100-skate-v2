@@ -67,7 +67,7 @@ export default function YoutubeVideos() {
                   className="transition-transform duration-500 group-hover:scale-105"
                 />
                 <div style={{ position: 'absolute', inset: 0 }} className="flex items-center justify-center">
-                  <div className="bg-red-600 rounded-full w-12 h-12 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-opacity">
+                  <div className="bg-[#ff44cc] rounded-full w-12 h-12 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-opacity">
                     <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5 ml-1">
                       <path d="M8 5v14l11-7z" />
                     </svg>
