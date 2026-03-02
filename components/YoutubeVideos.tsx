@@ -46,9 +46,11 @@ export default function YoutubeVideos() {
       )}
 
       <section className="mb-12">
-        <h2 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest">
-          Vídeos
-        </h2>
+     <Link href="/videos" className="block hover:opacity-70 transition-opacity">
+  <h2 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest cursor-pointer">
+    Vídeos →
+  </h2>
+</Link>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {videos.slice(0, 3).map((video) => (
             <button
