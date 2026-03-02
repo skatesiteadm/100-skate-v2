@@ -81,7 +81,7 @@ export default function VideosPage() {
                     className="transition-transform duration-500 group-hover:scale-105"
                   />
                   <div style={{ position: 'absolute', inset: 0 }} className="flex items-center justify-center">
-                    <div className="bg-red-600 rounded-full w-8 h-8 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div className="bg-[#ff44cc] rounded-full w-8 h-8 flex items-center justify-center opacity-80 group-hover:bg-[#ff44cc]/80">
                       <svg viewBox="0 0 24 24" fill="white" className="w-4 h-4 ml-0.5">
                         <path d="M8 5v14l11-7z" />
                       </svg>
