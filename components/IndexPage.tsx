@@ -118,7 +118,7 @@ export default function IndexPage(props: IndexPageProps) {
             disabled
             className="bg-gray-800 text-gray-500 font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest w-fit cursor-not-allowed"
           >
-            Em Breve
+            Compre Em Breve
           </button>
         )}
       </div>
