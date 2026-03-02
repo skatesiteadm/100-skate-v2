@@ -55,69 +55,76 @@ export default function IndexPage(props: IndexPageProps) {
 
           <YoutubeVideos />
 
-          {/* Seção Revista */}
-          {revista && (
-            <section className="my-12">
-              <h2 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest">
-                Revista
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                {/* Capa */}
-                <div className="flex justify-center">
-                  {revista.capa && (
-                    <img
-                      src={urlFor(revista.capa)}
-                      alt={revista.titulo}
-                      className="rounded-xl shadow-2xl max-h-96 w-auto object-contain"
-                    />
-                  )}
-                </div>
+         {/* Seção Revista */}
+{revista && (
+  <section className="my-12 bg-black text-white rounded-2xl overflow-hidden">
+    <div className="grid grid-cols-1 md:grid-cols-2">
+      {/* Capa */}
+      <div className="relative flex justify-center items-center p-8 md:p-12 bg-gradient-to-br from-gray-900 to-black">
+        {revista.capa && (
+          <div className="relative">
+            <span className="absolute -top-3 -right-3 bg-red-600 text-white text-xs font-black uppercase px-3 py-1 rounded-full z-10 tracking-widest">
+              Nova Edição
+            </span>
+            <img
+              src={urlFor(revista.capa)}
+              alt={revista.titulo}
+              className="rounded-lg shadow-2xl max-h-80 w-auto object-contain"
+              style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.8))' }}
+            />
+          </div>
+        )}
+      </div>
 
-                {/* Info */}
-                <div className="flex flex-col gap-4">
-                  <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
-                    Edição {revista.edicao}
-                  </span>
-                  <h3 className="text-3xl font-black uppercase leading-tight">
-                    {revista.titulo}
-                  </h3>
-                  {revista.descricao && (
-                    <p className="text-gray-600 leading-relaxed">{revista.descricao}</p>
-                  )}
+      {/* Info */}
+      <div className="flex flex-col justify-center gap-5 p-8 md:p-12">
+        <div className="flex items-center gap-3">
+          <span className="text-xs font-black uppercase tracking-widest text-gray-400 border border-gray-700 px-3 py-1 rounded-full">
+            Edição {revista.edicao}
+          </span>
+          <span className="text-xs font-bold uppercase tracking-widest text-red-500">
+            Revista
+          </span>
+        </div>
 
-                  {/* Matéria de capa */}
-                  {revista.materiaDestaque && (
-                    <div className="border-t pt-4">
-                      <span className="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-2">
-                        Matéria de Capa
-                      </span>
-                      <Link href={`/posts/${revista.materiaDestaque.slug}`} className="font-black uppercase text-lg hover:underline">
-                        {revista.materiaDestaque.title}
-                      </Link>
-                    </div>
-                  )}
+        <h3 className="text-3xl md:text-4xl font-black uppercase leading-tight">
+          {revista.titulo}
+        </h3>
 
-                  {/* Botão compra */}
-                  {revista.linkCompra ? (
-                    <button
-                      onClick={() => window.open(revista.linkCompra, '_blank')}
-                      className="bg-black text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest hover:bg-gray-800 transition-colors w-fit mt-2"
-                    >
-                      Comprar Revista
-                    </button>
-                  ) : (
-                    <button
-                      disabled
-                      className="bg-gray-200 text-gray-400 font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest w-fit mt-2 cursor-not-allowed"
-                    >
-                      Em Breve
-                    </button>
-                  )}
-                </div>
-              </div>
-            </section>
-          )}
+        {revista.descricao && (
+          <p className="text-gray-400 leading-relaxed text-sm">{revista.descricao}</p>
+        )}
 
+        {revista.materiaDestaque && (
+          <div className="border-t border-gray-800 pt-5">
+            <span className="text-xs font-black uppercase tracking-widest text-gray-500 block mb-2">
+              Matéria de Capa
+            </span>
+            <Link href={`/posts/${revista.materiaDestaque.slug}`} className="font-black uppercase text-lg hover:text-red-500 transition-colors">
+              {revista.materiaDestaque.title}
+            </Link>
+          </div>
+        )}
+
+        {revista.linkCompra ? (
+          <button
+            onClick={() => window.open(revista.linkCompra, '_blank')}
+            className="bg-red-600 hover:bg-red-700 text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest transition-colors w-fit"
+          >
+            Comprar Revista
+          </button>
+        ) : (
+          <button
+            disabled
+            className="bg-gray-800 text-gray-500 font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest w-fit cursor-not-allowed"
+          >
+            Em Breve
+          </button>
+        )}
+      </div>
+    </div>
+  </section>
+)}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </div>
         <Suspense />
