@@ -40,6 +40,20 @@ export const postBySlugQuery = groq`
 }
 `
 
+export const revistaQuery = groq`
+*[_type == "revista" && ativa == true][0] {
+  _id,
+  titulo,
+  edicao,
+  capa,
+  descricao,
+  linkCompra,
+  "materiaDestaque": materiaDestaque->{
+    ${postFields}
+  }
+}
+`
+
 export interface Author {
   name?: string
   picture?: any
@@ -55,6 +69,16 @@ export interface Post {
   author?: Author
   slug?: string
   content?: any
+}
+
+export interface Revista {
+  _id: string
+  titulo?: string
+  edicao?: string
+  capa?: any
+  descricao?: string
+  linkCompra?: string
+  materiaDestaque?: Post
 }
 
 export interface Settings {
