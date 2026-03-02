@@ -1,5 +1,4 @@
 import Link from 'next/link'
-
 export default function BlogHeader({
   title,
   description,
@@ -16,17 +15,16 @@ export default function BlogHeader({
           {/* Barra preta do topo */}
           <div className="w-full bg-black text-white text-xs flex justify-between items-center px-4 md:px-8 py-2">
             <div className="flex gap-3 md:gap-5">
-              <Link href="/loja" className="hover:text-gray-300 tracking-widest">LOJA</Link>
-              <Link href="/anuncie" className="hover:text-gray-300 tracking-widest">ANUNCIE</Link>
-              <Link href="/contato" className="hover:text-gray-300 tracking-widest hidden md:block">CONTATO</Link>
+              <Link href="/loja" style={{}} className="hover:text-pink-400 tracking-widest transition-colors">LOJA</Link>
+              <Link href="/anuncie" className="hover:text-pink-400 tracking-widest transition-colors">ANUNCIE</Link>
+              <Link href="/contato" className="hover:text-pink-400 tracking-widest hidden md:block transition-colors">CONTATO</Link>
             </div>
             <div className="flex gap-3 items-center text-xs">
               <span className="hidden md:block">🔍</span>
-              <a href="https://instagram.com/cemporcentoskate" target="_blank" className="hover:text-gray-300">IG</a>
-              <a href="https://youtube.com" target="_blank" className="hover:text-gray-300">YT</a>
+              <a href="https://instagram.com/cemporcentoskate" target="_blank" className="hover:text-pink-400 transition-colors">IG</a>
+              <a href="https://youtube.com" target="_blank" className="hover:text-pink-400 transition-colors">YT</a>
             </div>
           </div>
-
           {/* Logo centralizado */}
           <header className="flex justify-center items-center pt-6 pb-0 w-full">
             <Link href="/" className="flex justify-center">
@@ -37,20 +35,18 @@ export default function BlogHeader({
               />
             </Link>
           </header>
-
           {/* Menu de categorias */}
           <nav className="w-full border-y border-gray-200 mb-14 overflow-x-auto">
             <ul className="flex gap-4 md:gap-8 px-4 md:px-8 py-6 text-xs md:text-sm font-bold uppercase whitespace-nowrap justify-center">
-              <li><Link href="/" className="hover:text-red-600 transition-colors">Fiksperto</Link></li>
-              <li><Link href="/videos" className="hover:text-red-600 transition-colors">Vídeos</Link></li>
-              <li><Link href="/" className="hover:text-red-600 transition-colors">Campeonatos</Link></li>
-              <li><Link href="/" className="hover:text-red-600 transition-colors">Eventos</Link></li>
-              <li><Link href="/" className="hover:text-red-600 transition-colors">Revista</Link></li>
+              <li><Link href="/" className="transition-colors" style={{}} onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Fiksperto</Link></li>
+              <li><Link href="/videos" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Vídeos</Link></li>
+              <li><Link href="/" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Eventos</Link></li>
+              <li><Link href="/" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Revista</Link></li>
+              <li><Link href="/loja" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Loja</Link></li>
             </ul>
           </nav>
         </>
       )
-
     case 2:
       return (
         <header className="flex justify-center items-center py-4 border-b border-gray-200 mb-8 w-full">
@@ -63,7 +59,6 @@ export default function BlogHeader({
           </Link>
         </header>
       )
-
     default:
       throw new Error(
         `Invalid level: ${
