@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const total = hours * 3600 + minutes * 60 + seconds
         return total > 60
       })
-      .slice(0, 3)
+      .slice(0, 6)
       .map((item: any) => ({
         id: item.id,
         title: item.snippet.title,
