@@ -39,7 +39,7 @@ export default function BlogHeader({
           {/* Menu de categorias */}
           <nav className="w-full border-y border-gray-200 mb-14 overflow-x-auto">
             <ul className="flex gap-4 md:gap-8 px-4 md:px-8 py-6 text-xs md:text-sm font-bold uppercase whitespace-nowrap justify-center">
-              <li><Link href="/" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Fiksperto</Link></li>
+              <li><Link href="/fiksperto" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Fiksperto</Link></li>
               <li><Link href="/videos" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Vídeos</Link></li>
               <li><Link href="/" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Eventos</Link></li>
               <li><Link href="/" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Revista</Link></li>
