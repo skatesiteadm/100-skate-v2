@@ -27,7 +27,7 @@ export default function BlogHeader({
             </div>
           </div>
           {/* Logo centralizado */}
-          <header className="flex justify-center items-center pt-3 pb-0 w-full">
+          <header className="flex justify-center items-center pt-1 pb-0 w-full">
             <Link href="/" className="flex justify-center">
               <img
                 src="/logoskate.svg"
