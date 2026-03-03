@@ -67,12 +67,13 @@ export default function LojaPreview() {
 
   return (
     <section className="my-12">
-      <div className="flex items-center justify-between border-b-2 border-black pb-2 mb-8">
-        <h2 className="text-xl font-black uppercase tracking-widest">Loja</h2>
-        <Link href="/loja" className="text-xs font-black uppercase tracking-widest hover:text-[#ff44cc] transition-colors">
-          Ver tudo
-        </Link>
-      </div>
+      <div className="border-b-2 border-black pb-2 mb-8">
+  <Link href="/loja" className="block hover:opacity-70 transition-opacity">
+    <h2 className="text-xl font-black uppercase tracking-widest cursor-pointer">
+      Loja →
+    </h2>
+  </Link>
+</div>
 
       {/* Carrossel com setas laterais */}
       <div className="relative">
