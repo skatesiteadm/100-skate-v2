@@ -49,6 +49,11 @@ export default function Footer() {
                   YouTube
                 </a>
               </li>
+              <li>
+  <a href="https://tiktok.com/@cemporcentoskate" target="_blank" className="hover:text-white transition-colors">
+    TikTok
+  </a>
+</li>
             </ul>
           </div>
 
