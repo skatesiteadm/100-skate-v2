@@ -69,35 +69,46 @@ export default function LojaPreview() {
     <section className="my-12">
       <div className="flex items-center justify-between border-b-2 border-black pb-2 mb-8">
         <h2 className="text-xl font-black uppercase tracking-widest">Loja</h2>
-        <div className="flex items-center gap-4">
-          <button onClick={scrollPrev} className="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors font-black">
-            ‹
-          </button>
-          <button onClick={scrollNext} className="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors font-black">
-            ›
-          </button>
-          <Link href="/loja" className="text-xs font-black uppercase tracking-widest hover:text-[#ff44cc] transition-colors">
-            Ver tudo
-          </Link>
-        </div>
+        <Link href="/loja" className="text-xs font-black uppercase tracking-widest hover:text-[#ff44cc] transition-colors">
+          Ver tudo
+        </Link>
       </div>
 
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-4">
-          {produtos.map((produto) => (
-            <div key={produto.id} className="flex-none w-[calc(50%-8px)] md:w-[calc(25%-12px)]">
-              <ProductCard
-                name={produto.name}
-                tagline={produto.tagline}
-                price={produto.price}
-                originalPrice={produto.originalPrice}
-                imageUrl={produto.imageUrl}
-                badge={produto.badge}
-                buyUrl={produto.buyUrl}
-              />
-            </div>
-          ))}
+      {/* Carrossel com setas laterais */}
+      <div className="relative">
+        {/* Seta esquerda */}
+        <button
+          onClick={scrollPrev}
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 rounded-full bg-black text-white flex items-center justify-center text-2xl font-black hover:bg-[#ff44cc] transition-colors shadow-lg"
+        >
+          ‹
+        </button>
+
+        <div className="overflow-hidden mx-4" ref={emblaRef}>
+          <div className="flex gap-4">
+            {produtos.map((produto) => (
+              <div key={produto.id} className="flex-none w-[calc(50%-8px)] md:w-[calc(25%-12px)]">
+                <ProductCard
+                  name={produto.name}
+                  tagline={produto.tagline}
+                  price={produto.price}
+                  originalPrice={produto.originalPrice}
+                  imageUrl={produto.imageUrl}
+                  badge={produto.badge}
+                  buyUrl={produto.buyUrl}
+                />
+              </div>
+            ))}
+          </div>
         </div>
+
+        {/* Seta direita */}
+        <button
+          onClick={scrollNext}
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 rounded-full bg-black text-white flex items-center justify-center text-2xl font-black hover:bg-[#ff44cc] transition-colors shadow-lg"
+        >
+          ›
+        </button>
       </div>
     </section>
   )
