@@ -13,7 +13,7 @@ export default function BlogHeader({
       return (
         <>
           {/* Barra preta do topo */}
-          <div className="w-full bg-black text-white text-xs flex justify-between items-center px-4 md:px-8 py-2">
+          <div className="w-full bg-black text-white text-xs flex justify-between items-center px-4 md:px-8 py-2 rounded-b-xl">
             <div className="flex gap-3 md:gap-5">
               <Link href="/loja" className="hover:text-pink-400 tracking-widest transition-colors">LOJA</Link>
               <Link href="/anuncie" className="hover:text-pink-400 tracking-widest transition-colors">ANUNCIE</Link>
