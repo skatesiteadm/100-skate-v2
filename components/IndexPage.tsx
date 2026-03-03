@@ -53,13 +53,10 @@ export default function IndexPage(props: IndexPageProps) {
             <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Espaço Publicitário — 970×90</span>
           </div>
 
-          <YoutubeVideos />
-
           {/* Seção Revista */}
           {revista && (
             <section className="my-12 bg-black text-white rounded-2xl overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2">
-                {/* Capa */}
                 <div className="relative flex justify-center items-center p-8 md:p-12 bg-gradient-to-br from-gray-900 to-black">
                   {revista.capa && (
                     <div className="relative">
@@ -76,7 +73,6 @@ export default function IndexPage(props: IndexPageProps) {
                   )}
                 </div>
 
-                {/* Info */}
                 <div className="flex flex-col justify-center gap-5 p-8 md:p-12">
                   <div className="flex items-center gap-3">
                     <span className="text-xs font-black uppercase tracking-widest text-gray-400 border border-gray-700 px-3 py-1 rounded-full">
@@ -127,10 +123,14 @@ export default function IndexPage(props: IndexPageProps) {
             </section>
           )}
 
+          <YoutubeVideos />
+
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </div>
         <Suspense />
       </Layout>
     </>
+  )
+}
   )
 }
