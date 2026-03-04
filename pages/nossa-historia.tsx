@@ -106,7 +106,7 @@ export default function NossaHistoriaPage() {
                     <div className="w-4 h-4 rounded-full bg-[#ff44cc] mt-1 shrink-0" />
                     {i < 6 && <div className="w-0.5 bg-gray-200 flex-1 my-1" style={{ minHeight: '80px' }} />}
                   </div>
-                  <div className={`pb-10 flex-1 ${item.destaque ? 'bg-gray-900 text-white rounded-2xl p-6 mb-4' : ''}`}>
+             <div className={`pb-10 flex-1 ${item.destaque ? 'bg-black text-white rounded-2xl p-6 mb-4' : ''}`}>
                     <span className="text-[#ff44cc] text-xs font-black uppercase tracking-widest">{item.ano}</span>
                     <h3 className={`text-xl font-black uppercase mt-1 mb-2 ${item.destaque ? 'text-white' : ''}`}>{item.titulo}</h3>
                     <p className={`leading-relaxed max-w-2xl ${item.destaque ? 'text-gray-400' : 'text-gray-600'}`}>{item.texto}</p>
