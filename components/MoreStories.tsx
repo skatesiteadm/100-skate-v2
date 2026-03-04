@@ -40,5 +40,4 @@ function PostCard({ post }: { post: Post }) {
     </article>
   )
 }
-  )
-}
+  
