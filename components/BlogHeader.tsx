@@ -1,4 +1,5 @@
 import Link from 'next/link'
+
 export default function BlogHeader({
   title,
   description,
@@ -16,7 +17,7 @@ export default function BlogHeader({
           <div className="w-full bg-black text-white text-xs flex justify-between items-center px-4 md:px-8 py-2 rounded-b-xl">
             <div className="flex gap-3 md:gap-5">
               <Link href="/loja" className="hover:text-pink-400 tracking-widest transition-colors">LOJA</Link>
-              <Link href="/anuncie" className="hover:text-pink-400 tracking-widest transition-colors">ANUNCIE</Link>
+              <Link href="/nossa-historia" className="hover:text-pink-400 tracking-widest transition-colors">NOSSA HISTÓRIA</Link>
               <Link href="/contato" className="hover:text-pink-400 tracking-widest hidden md:block transition-colors">CONTATO</Link>
             </div>
             <div className="flex gap-3 items-center text-xs">
@@ -41,8 +42,8 @@ export default function BlogHeader({
             <ul className="flex gap-4 md:gap-8 px-4 md:px-8 py-6 text-xs md:text-sm font-bold uppercase whitespace-nowrap justify-center">
               <li><Link href="/fiksperto" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Fiksperto</Link></li>
               <li><Link href="/videos" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Vídeos</Link></li>
-              <li><Link href="/" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Eventos</Link></li>
-              <li><Link href="/" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Revista</Link></li>
+              <li><Link href="/eventos" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Eventos</Link></li>
+              <li><Link href="/revista" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Revista</Link></li>
               <li><Link href="/loja" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Loja</Link></li>
             </ul>
           </nav>
@@ -66,5 +67,7 @@ export default function BlogHeader({
           JSON.stringify(level) || typeof level
         }, only 1 or 2 are allowed`,
       )
+  }
+}
   }
 }
