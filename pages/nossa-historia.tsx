@@ -11,7 +11,7 @@ export default function NossaHistoriaPage() {
           <BlogHeader title="100% SKATE" description={[]} level={1} />
 
           {/* Hero */}
-          <section className="bg-black text-white rounded-2xl overflow-hidden mb-12">
+          <section className="bg-black text-white rounded-2xl overflow-hidden mb-8">
             <div className="grid grid-cols-1 md:grid-cols-2 items-center">
               <div className="p-8 md:p-16">
                 <span className="text-[#ff44cc] text-xs font-black uppercase tracking-widest block mb-4">
@@ -22,12 +22,6 @@ export default function NossaHistoriaPage() {
                 </h1>
                 <p className="text-gray-400 text-lg leading-relaxed">
                   Um marco. Em 1995 nascia uma revista que representa os anseios e o talento da golden era do skateboard. Na capa, Bob Burnquist, o cara que não tinha medo de inovar com o switchstance e misturava as sessões de vertical da Prestige com o street de rua do Vale do Anhangabaú.
-                </p>
-                <p className="text-gray-400 text-lg leading-relaxed mt-4">
-                  Os anos 1990 foram diferenciados, mágicos e espontâneos. Aprendemos com as gerações mais antigas e botamos a mão na massa para traduzir como os skatistas dessa década viam e queriam ver o skate.
-                </p>
-                <p className="text-gray-400 text-sm leading-relaxed mt-4 font-bold">
-                  A única revista impressa de skate em produção no Brasil.
                 </p>
               </div>
               <div className="flex flex-col items-center justify-center p-8 bg-gray-900">
@@ -44,18 +38,14 @@ export default function NossaHistoriaPage() {
             </div>
           </section>
 
-          {/* Números */}
-          <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-            {[
-              { numero: '+100M', label: 'Visualizações nos últimos 3 anos' },
-              { numero: '+227', label: 'Edições impressas' },
-              { numero: '30', label: 'Anos de história' },
-            ].map((item) => (
-              <div key={item.numero} className="bg-black text-white rounded-2xl p-8 text-center">
-                <span className="text-5xl font-black text-[#ff44cc] block">{item.numero}</span>
-                <span className="text-gray-400 text-xs uppercase tracking-widest mt-2 block">{item.label}</span>
-              </div>
-            ))}
+          {/* Citação Marco Cruz */}
+          <section className="bg-black text-white rounded-2xl p-8 md:p-12 mb-12">
+            <blockquote className="text-xl md:text-2xl font-black uppercase leading-tight max-w-3xl">
+              "Era um grupo de amigos descontentes com o que tinha de mídia no Brasil. Fizemos um zine. E a gente vem documentando o skate brasileiro há 30 anos."
+            </blockquote>
+            <cite className="text-[#ff44cc] text-xs font-black uppercase tracking-widest block mt-6 not-italic">
+              Marco Cruz, Diretor da CemporcentoSKATE
+            </cite>
           </section>
 
           {/* Timeline */}
@@ -72,7 +62,7 @@ export default function NossaHistoriaPage() {
                 },
                 {
                   ano: '2000',
-                  titulo: 'Mensal e site',
+                  titulo: 'Mensal',
                   texto: 'A consolidação como referência do skate nacional fez a revista dar um passo decisivo: de bimestral para mensal. A internet chegava e a 100% SKATE já estava lá. O portal virou braço direito da revista na construção do skate brasileiro.',
                 },
                 {
@@ -114,16 +104,6 @@ export default function NossaHistoriaPage() {
                 </div>
               ))}
             </div>
-          </section>
-
-          {/* Citação Marco Cruz */}
-          <section className="bg-black text-white rounded-2xl p-8 md:p-12 mb-12">
-            <blockquote className="text-xl md:text-2xl font-black uppercase leading-tight max-w-3xl">
-              "Era um grupo de amigos descontentes com o que tinha de mídia no Brasil. Fizemos um zine. E a gente vem documentando o skate brasileiro há 30 anos."
-            </blockquote>
-            <cite className="text-[#ff44cc] text-xs font-black uppercase tracking-widest block mt-6 not-italic">
-              Marco Cruz, Diretor da CemporcentoSKATE
-            </cite>
           </section>
 
           {/* Mais que uma revista */}
