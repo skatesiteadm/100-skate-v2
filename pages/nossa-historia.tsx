@@ -44,8 +44,8 @@ export default function NossaHistoriaPage() {
                   </span>
                 </div>
                 <div className="mt-6 text-center">
-                  <span className="text-gray-500 text-xs uppercase tracking-widest block">Agosto 1995</span>
-                  <span className="text-gray-600 text-xs uppercase tracking-widest block mt-1">Bob Burnquist na capa</span>
+                <span className="text-gray-400 text-xs uppercase tracking-widest font-bold block">Agosto 1995</span>
+<span className="text-gray-400 text-xs uppercase tracking-widest font-bold block mt-1">Bob Burnquist na capa</span>
                 </div>
               </div>
             </div>
