@@ -56,7 +56,7 @@ export default function NossaHistoriaPage() {
                 },
                 {
                   ano: '2000',
-                  titulo: 'Mensal',
+                  titulo: 'Mensal + Site',
                   texto: 'A consolidação como referência do skate nacional fez a revista dar um passo decisivo: de bimestral para mensal. A internet chegava e a 100% SKATE já estava lá. O portal virou braço direito da revista na construção do skate brasileiro.',
                 },
                 {
