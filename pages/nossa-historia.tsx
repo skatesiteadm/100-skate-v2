@@ -134,7 +134,6 @@ export default function NossaHistoriaPage() {
             </p>
           </section>
 
-          {/* 2026 */}
          {/* 2026 */}
 <section className="relative bg-black text-white rounded-2xl overflow-hidden mb-16">
   <BorderBeam lightColor="#ff44cc" lightWidth={300} duration={20} borderWidth={2} />
