@@ -9,7 +9,7 @@ export default function MoreStories({ posts }: { posts: Post[] }) {
       <section>
         <Link href="/fiksperto" className="block hover:opacity-70 transition-opacity">
           <h2 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest cursor-pointer">
-            Mais Notícias →
+            Mais Matérias →
           </h2>
         </Link>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -38,5 +38,7 @@ function PostCard({ post }: { post: Post }) {
         <Date dateString={post.date} />
       </div>
     </article>
+  )
+}
   )
 }
