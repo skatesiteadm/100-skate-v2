@@ -11,36 +11,47 @@ export default function NossaHistoriaPage() {
           <BlogHeader title="100% SKATE" description={[]} level={1} />
 
           {/* Hero */}
-          <section className="bg-black text-white rounded-2xl overflow-hidden mb-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 items-center">
-              <div className="p-8 md:p-16">
-                <span className="text-[#ff44cc] text-xs font-black uppercase tracking-widest block mb-4">
-                  Desde 1995
-                </span>
-                <h1 className="text-4xl md:text-6xl font-black uppercase leading-tight mb-6">
-                  Mais de 30 anos de resistência.
-                </h1>
-                <blockquote className="text-gray-400 text-lg leading-relaxed mb-6">
-                  "Era um grupo de amigos descontentes com o que tinha de mídia no Brasil. Fizemos um zine. E a gente vem documentando o skate brasileiro há 30 anos."
-                </blockquote>
-                <cite className="not-italic">
-                  <span className="text-[#ff44cc] text-sm font-black uppercase tracking-widest">Marco Cruz</span>
-                  <span className="text-gray-500 text-xs uppercase tracking-widest block">Diretor da 100% SKATE</span>
-                </cite>
-              </div>
-              <div className="flex flex-col items-center justify-center p-8 bg-gray-900">
-                <img
-                  src="/capa-edicao-01.jpg"
-                  alt="100% SKATE Edição 01 - Bob Burnquist na capa"
-                  className="rounded-xl shadow-2xl max-h-80 w-auto object-contain"
-                  style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.8))' }}
-                />
-                <span className="text-gray-500 text-xs uppercase tracking-widest mt-4 text-center">
-                  Edição 01 · Agosto 1995 · Bob Burnquist na capa
-                </span>
-              </div>
-            </div>
-          </section>
+<section className="bg-black text-white rounded-2xl overflow-hidden mb-12">
+  <div className="grid grid-cols-1 md:grid-cols-2 items-center">
+    <div className="p-8 md:p-16">
+      <span className="text-[#ff44cc] text-xs font-black uppercase tracking-widest block mb-4">
+        Desde 1995
+      </span>
+      <h1 className="text-4xl md:text-6xl font-black uppercase leading-tight mb-6">
+        Mais de 30 anos de resistência.
+      </h1>
+      <blockquote className="text-gray-400 text-lg leading-relaxed mb-6">
+        "Era um grupo de amigos descontentes com o que tinha de mídia no Brasil. Fizemos um zine. E a gente vem documentando o skate brasileiro há 30 anos."
+      </blockquote>
+      <cite className="not-italic">
+        <span className="text-[#ff44cc] text-sm font-black uppercase tracking-widest block">Marco Cruz</span>
+        <span className="text-gray-300 text-xs uppercase tracking-widest block mt-1">Diretor da 100% SKATE</span>
+      </cite>
+    </div>
+
+    {/* Capa com frame criativo */}
+    <div className="flex flex-col items-center justify-center p-8 bg-black border-l border-gray-800">
+      <div className="relative">
+        {/* Frame rosa */}
+        <div className="absolute -inset-3 rounded-xl border-2 border-[#ff44cc] opacity-40" />
+        <div className="absolute -inset-1 rounded-lg border border-[#ff44cc] opacity-20" />
+        <img
+          src="/capa-edicao-01.jpg"
+          alt="100% SKATE Edição 01 - Bob Burnquist na capa"
+          className="relative rounded-lg shadow-2xl max-h-80 w-auto object-contain z-10"
+        />
+        {/* Badge edição */}
+        <span className="absolute -top-3 -right-3 bg-[#ff44cc] text-white text-xs font-black uppercase px-2 py-1 rounded-full z-20 tracking-widest">
+          Ed. 01
+        </span>
+      </div>
+      <div className="mt-6 text-center">
+        <span className="text-gray-500 text-xs uppercase tracking-widest block">Agosto 1995</span>
+        <span className="text-gray-600 text-xs uppercase tracking-widest block mt-1">Bob Burnquist na capa</span>
+      </div>
+    </div>
+  </div>
+</section>
 
           {/* Timeline */}
           <section className="mb-12">
