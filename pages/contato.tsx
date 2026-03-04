@@ -121,12 +121,9 @@ export default function ContatoPage() {
                 <h2 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest">
                   Email
                 </h2>
-                
-                  href="mailto:contato@cemporcentoskate.com"
-                  className="text-sm font-bold hover:text-[#ff44cc] transition-colors"
-                >
+                <p className="text-sm font-bold">
                   contato@cemporcentoskate.com
-                </a>
+                </p>
               </div>
 
               <div className="bg-black text-white rounded-2xl p-6">
@@ -149,3 +146,14 @@ export default function ContatoPage() {
                   <li className="flex items-center gap-3">
                     <span className="w-2 h-2 rounded-full bg-[#ff44cc] shrink-0" />
                     Revista, portal, YouTube, eventos e redes sociais
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      </Layout>
+    </>
+  )
+}
