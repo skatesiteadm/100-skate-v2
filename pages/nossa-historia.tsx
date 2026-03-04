@@ -136,19 +136,19 @@ export default function NossaHistoriaPage() {
 
          {/* 2026 */}
 <section className="relative bg-black text-white rounded-2xl overflow-hidden mb-16">
-  <BorderBeam lightColor="#ff44cc" lightWidth={300} duration={20} borderWidth={2} />
+  <BorderBeam lightColor="#ff44cc" lightWidth={600} duration={20} borderWidth={4} />
   
   <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-0">
     {/* Esquerda */}
     <div className="p-8 md:p-16 border-b md:border-b-0 md:border-r border-gray-800">
       <span className="text-[#ff44cc] text-xs font-black uppercase tracking-widest block mb-4">
-        Já estamos em 2026
+        Muitas novidades vindo por aí.
       </span>
       <h2 className="text-5xl md:text-7xl font-black uppercase leading-none mb-6">
         2026.
       </h2>
       <p className="text-gray-400 text-lg leading-relaxed">
-        Mais de 30 anos não são o fim. São o começo de uma nova fase. Muitas novidades vindo por aí.
+        O começo de uma nova fase. 
       </p>
     </div>
 
