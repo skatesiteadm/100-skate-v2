@@ -124,7 +124,7 @@ export default function NossaHistoriaPage() {
           {/* Mais que uma revista */}
           <section className="mb-12 max-w-3xl">
             <h2 className="text-2xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest">
-              Mais que uma Revista
+              Um estilo de vida
             </h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               Os costumes. A moda. As peças de skate. De 1995 para cá, os skatistas mudaram, se adaptaram e fizeram o mundo se adaptar a eles. São 30 anos de correria e de história sendo feita. Três décadas de resistência e insistência.
