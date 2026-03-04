@@ -1,6 +1,7 @@
 import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
 import Head from 'next/head'
+import Link from 'next/link'
 
 export default function NossaHistoriaPage() {
   return (
@@ -176,11 +177,12 @@ export default function NossaHistoriaPage() {
         </li>
       </ul>
       
-        href="/contato"
-        className="inline-block bg-[#ff44cc] text-white font-black uppercase text-xs px-6 py-3 rounded-full tracking-widest hover:bg-pink-500 transition-colors w-fit"
-      >
-        Fale com a gente
-      </a>
+   <Link
+  href="/contato"
+  className="inline-block bg-[#ff44cc] text-white font-black uppercase text-xs px-6 py-3 rounded-full tracking-widest hover:bg-pink-500 transition-colors w-fit"
+>
+  Fale com a gente
+</Link>
     </div>
   </div>
 </section>
