@@ -23,7 +23,10 @@ export default function NossaHistoriaPage() {
                 <p className="text-gray-400 text-lg leading-relaxed">
                   Um marco. Em 1995 nascia uma revista que representa os anseios e o talento da golden era do skateboard. Na capa, Bob Burnquist, o cara que não tinha medo de inovar com o switchstance e misturava as sessões de vertical da Prestige com o street de rua do Vale do Anhangabaú.
                 </p>
-                <p className="text-gray-400 text-sm leading-relaxed mt-4">
+                <p className="text-gray-400 text-lg leading-relaxed mt-4">
+                  Os anos 1990 foram diferenciados, mágicos e espontâneos. Aprendemos com as gerações mais antigas e botamos a mão na massa para traduzir como os skatistas dessa década viam e queriam ver o skate.
+                </p>
+                <p className="text-gray-400 text-sm leading-relaxed mt-4 font-bold">
                   A única revista impressa de skate em produção no Brasil.
                 </p>
               </div>
@@ -95,7 +98,7 @@ export default function NossaHistoriaPage() {
                 {
                   ano: '2025',
                   titulo: '30 Anos e A Banca',
-                  texto: 'Três décadas são comemoradas com A Banca, evento de três paradas por Porto Alegre, Florianópolis e São Paulo. Uma banca skatável com obstáculos em volta e o Museu 100% SKATE com exibição de itens históricos da revista. São 262.800 horas, 10.950 dias, 360 meses. A única revista impressa de skate em produção no Brasil. Resistência, insistência e vivência sendo contada a cada edição.',
+                  texto: 'Três décadas são comemoradas com A Banca, evento de três paradas por Porto Alegre, Florianópolis e São Paulo. Uma banca skatável com obstáculos em volta e o Museu 100% SKATE com exibição de itens históricos da revista. São 262.800 horas, 10.950 dias, 360 meses. A única revista impressa de skate em produção no Brasil.',
                 },
               ].map((item, i) => (
                 <div key={item.ano} className="flex gap-6 md:gap-12 items-start">
@@ -111,6 +114,16 @@ export default function NossaHistoriaPage() {
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* Citação Marco Cruz */}
+          <section className="bg-black text-white rounded-2xl p-8 md:p-12 mb-12">
+            <blockquote className="text-xl md:text-2xl font-black uppercase leading-tight max-w-3xl">
+              "Era um grupo de amigos descontentes com o que tinha de mídia no Brasil. Fizemos um zine. E a gente vem documentando o skate brasileiro há 30 anos."
+            </blockquote>
+            <cite className="text-[#ff44cc] text-xs font-black uppercase tracking-widest block mt-6 not-italic">
+              Marco Cruz, Diretor da CemporcentoSKATE
+            </cite>
           </section>
 
           {/* Mais que uma revista */}
