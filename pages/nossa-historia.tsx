@@ -11,7 +11,7 @@ export default function NossaHistoriaPage() {
           <BlogHeader title="100% SKATE" description={[]} level={1} />
 
           {/* Hero */}
-          <section className="bg-black text-white rounded-2xl overflow-hidden mb-8">
+          <section className="bg-black text-white rounded-2xl overflow-hidden mb-12">
             <div className="grid grid-cols-1 md:grid-cols-2 items-center">
               <div className="p-8 md:p-16">
                 <span className="text-[#ff44cc] text-xs font-black uppercase tracking-widest block mb-4">
@@ -20,9 +20,13 @@ export default function NossaHistoriaPage() {
                 <h1 className="text-4xl md:text-6xl font-black uppercase leading-tight mb-6">
                   Mais de 30 anos de resistência.
                 </h1>
-                <p className="text-gray-400 text-lg leading-relaxed">
-                  Um marco. Em 1995 nascia uma revista que representa os anseios e o talento da golden era do skateboard. Na capa, Bob Burnquist, o cara que não tinha medo de inovar com o switchstance e misturava as sessões de vertical da Prestige com o street de rua do Vale do Anhangabaú.
-                </p>
+                <blockquote className="text-gray-400 text-lg leading-relaxed mb-6">
+                  "Era um grupo de amigos descontentes com o que tinha de mídia no Brasil. Fizemos um zine. E a gente vem documentando o skate brasileiro há 30 anos."
+                </blockquote>
+                <cite className="not-italic">
+                  <span className="text-[#ff44cc] text-sm font-black uppercase tracking-widest">Marco Cruz</span>
+                  <span className="text-gray-500 text-xs uppercase tracking-widest block">Diretor da 100% SKATE</span>
+                </cite>
               </div>
               <div className="flex flex-col items-center justify-center p-8 bg-gray-900">
                 <img
@@ -36,16 +40,6 @@ export default function NossaHistoriaPage() {
                 </span>
               </div>
             </div>
-          </section>
-
-          {/* Citação Marco Cruz */}
-          <section className="bg-black text-white rounded-2xl p-8 md:p-12 mb-12">
-            <blockquote className="text-xl md:text-2xl font-black uppercase leading-tight max-w-3xl">
-              "Era um grupo de amigos descontentes com o que tinha de mídia no Brasil. Fizemos um zine. E a gente vem documentando o skate brasileiro há 30 anos."
-            </blockquote>
-            <cite className="text-[#ff44cc] text-xs font-black uppercase tracking-widest block mt-6 not-italic">
-              Marco Cruz, Diretor da CemporcentoSKATE
-            </cite>
           </section>
 
           {/* Timeline */}
