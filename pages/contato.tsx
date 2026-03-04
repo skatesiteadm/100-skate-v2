@@ -23,23 +23,32 @@ export default function ContatoPage() {
 
           {/* Hero */}
           <section className="bg-black text-white rounded-2xl p-8 md:p-16 mb-12">
-            <span className="text-[#ff44cc] text-xs font-black uppercase tracking-widest block mb-4">
-              Fale com a gente
-            </span>
-            <h1 className="text-4xl md:text-6xl font-black uppercase leading-tight mb-4">
-              Contato
-            </h1>
-            <p className="text-gray-400 text-lg max-w-xl">
-              Parcerias, anúncios, press e media kit. Tamo aqui.
-            </p>
-          </section>
+  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+    <div>
+      <span className="text-[#ff44cc] text-xs font-black uppercase tracking-widest block mb-4">
+        Fale com a gente
+      </span>
+      <h1 className="text-4xl md:text-6xl font-black uppercase leading-tight mb-4">
+        Contato
+      </h1>
+      <p className="text-gray-400 text-lg max-w-xl">
+        Parcerias, anúncios, press e media kit. Estamos à disposição.
+      </p>
+    </div>
+    <img
+      src="/favicon.svg"
+      alt="100% SKATE"
+      className="w-24 md:w-36 opacity-90 shrink-0"
+    />
+  </div>
+</section>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
 
             {/* Formulário */}
             <section>
               <h2 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-8 tracking-widest">
-                Solicite o Media Kit
+                Fale com a gente
               </h2>
 
               {enviado ? (
@@ -96,7 +105,7 @@ export default function ContatoPage() {
                     type="submit"
                     className="bg-[#ff44cc] text-white font-black uppercase text-xs px-6 py-4 rounded-full tracking-widest hover:bg-pink-500 transition-colors w-fit"
                   >
-                    Solicitar Media Kit
+                    Enviar
                   </button>
                 </form>
               )}
