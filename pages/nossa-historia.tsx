@@ -30,7 +30,7 @@ export default function NossaHistoriaPage() {
     </div>
 
     {/* Capa com frame criativo */}
-    <div className="flex flex-col items-center justify-center p-8 bg-black border-l border-gray-800">
+   <div className="flex flex-col items-center justify-center p-8 bg-black border-l border-gray-800">
   <div className="relative">
     {/* Aurora frame */}
     <div className="absolute -inset-4 rounded-2xl aurora-frame" />
