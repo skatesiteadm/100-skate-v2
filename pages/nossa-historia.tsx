@@ -136,8 +136,7 @@ export default function NossaHistoriaPage() {
           {/* 2026 */}
          {/* 2026 */}
 <section className="relative bg-black text-white rounded-2xl overflow-hidden mb-16">
-  {/* Aurora de fundo */}
-  <div className="absolute -inset-2 aurora-frame opacity-30 rounded-2xl" />
+  <BorderBeam lightColor="#ff44cc" lightWidth={300} duration={20} borderWidth={2} />
   
   <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-0">
     {/* Esquerda */}
