@@ -31,15 +31,25 @@ export default function NossaHistoriaPage() {
 
     {/* Capa com frame criativo */}
     <div className="flex flex-col items-center justify-center p-8 bg-black border-l border-gray-800">
-      <div className="relative">
-        {/* Frame rosa */}
-        <div className="absolute -inset-3 rounded-xl border-2 border-[#ff44cc] opacity-40" />
-        <div className="absolute -inset-1 rounded-lg border border-[#ff44cc] opacity-20" />
-        <img
-          src="/capa-edicao-01.jpg"
-          alt="100% SKATE Edição 01 - Bob Burnquist na capa"
-          className="relative rounded-lg shadow-2xl max-h-80 w-auto object-contain z-10"
-        />
+  <div className="relative">
+    {/* Aurora frame */}
+    <div className="absolute -inset-4 rounded-2xl aurora-frame" />
+    {/* Borda sólida por cima */}
+    <div className="absolute -inset-1 rounded-xl border border-[#ff44cc] opacity-60 z-10" />
+    <img
+      src="/capa-edicao-01.jpg"
+      alt="100% SKATE Edição 01 - Bob Burnquist na capa"
+      className="relative rounded-lg shadow-2xl max-h-80 w-auto object-contain z-20"
+    />
+    <span className="absolute -top-3 -right-3 bg-[#ff44cc] text-white text-xs font-black uppercase px-2 py-1 rounded-full z-30 tracking-widest">
+      Ed. 01
+    </span>
+  </div>
+  <div className="mt-6 text-center">
+    <span className="text-gray-500 text-xs uppercase tracking-widest block">Agosto 1995</span>
+    <span className="text-gray-600 text-xs uppercase tracking-widest block mt-1">Bob Burnquist na capa</span>
+  </div>
+</div>
         {/* Badge edição */}
         <span className="absolute -top-3 -right-3 bg-[#ff44cc] text-white text-xs font-black uppercase px-2 py-1 rounded-full z-20 tracking-widest">
           Ed. 01
