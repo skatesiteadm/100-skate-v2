@@ -1,8 +1,8 @@
 "use client"
 
-import { cn } from "classnames"
-import { motion } from "framer-motion"
-import { CSSProperties, useEffect, useRef } from "react"
+import cn from "classnames"
+import motion from "framer-motion"
+import CSSProperties, useEffect, useRef from "react"
 
 interface BorderBeamProps {
   lightWidth?: number
