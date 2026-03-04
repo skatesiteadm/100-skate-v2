@@ -54,6 +54,18 @@ export const revistaQuery = groq`
 }
 `
 
+export const todasRevistasQuery = groq`
+*[_type == "revista"] | order(edicao desc) {
+  _id,
+  titulo,
+  edicao,
+  capa,
+  descricao,
+  linkCompra,
+  ativa
+}
+`
+
 export interface Author {
   name?: string
   picture?: any
@@ -78,6 +90,7 @@ export interface Revista {
   capa?: any
   descricao?: string
   linkCompra?: string
+  ativa?: boolean
   materiaDestaque?: Post
 }
 
