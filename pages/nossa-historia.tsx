@@ -2,6 +2,7 @@ import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
 import Head from 'next/head'
 import Link from 'next/link'
+import { BorderBeam } from 'components/BorderBeam'
 
 export default function NossaHistoriaPage() {
   return (
