@@ -133,17 +133,57 @@ export default function NossaHistoriaPage() {
           </section>
 
           {/* 2026 */}
-          <section className="bg-black text-white rounded-2xl p-8 md:p-16 mb-16 text-center">
-            <span className="text-[#ff44cc] text-xs font-black uppercase tracking-widest block mb-4">
-              Em breve
-            </span>
-            <h2 className="text-5xl md:text-7xl font-black uppercase leading-tight mb-6">
-              2026.
-            </h2>
-            <p className="text-gray-400 text-lg max-w-xl mx-auto leading-relaxed">
-              Mais de 30 anos não são o fim. São o começo de uma nova fase. Fique ligado.
-            </p>
-          </section>
+         {/* 2026 */}
+<section className="relative bg-black text-white rounded-2xl overflow-hidden mb-16">
+  {/* Aurora de fundo */}
+  <div className="absolute -inset-2 aurora-frame opacity-30 rounded-2xl" />
+  
+  <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-0">
+    {/* Esquerda */}
+    <div className="p-8 md:p-16 border-b md:border-b-0 md:border-r border-gray-800">
+      <span className="text-[#ff44cc] text-xs font-black uppercase tracking-widest block mb-4">
+        Já estamos em 2026
+      </span>
+      <h2 className="text-5xl md:text-7xl font-black uppercase leading-none mb-6">
+        2026.
+      </h2>
+      <p className="text-gray-400 text-lg leading-relaxed">
+        Mais de 30 anos não são o fim. São o começo de uma nova fase. Muitas novidades vindo por aí.
+      </p>
+    </div>
+
+    {/* Direita */}
+    <div className="p-8 md:p-16 flex flex-col gap-6">
+      <p className="text-gray-300 text-sm uppercase tracking-widest font-bold">
+        Fique ligado ao que vem por aí
+      </p>
+      <ul className="space-y-3 text-gray-400 text-sm">
+        <li className="flex items-center gap-3">
+          <span className="w-2 h-2 rounded-full bg-[#ff44cc] shrink-0" />
+          Nova plataforma digital
+        </li>
+        <li className="flex items-center gap-3">
+          <span className="w-2 h-2 rounded-full bg-[#ff44cc] shrink-0" />
+          Novos eventos pelo Brasil
+        </li>
+        <li className="flex items-center gap-3">
+          <span className="w-2 h-2 rounded-full bg-[#ff44cc] shrink-0" />
+          Edições especiais da revista
+        </li>
+        <li className="flex items-center gap-3">
+          <span className="w-2 h-2 rounded-full bg-[#ff44cc] shrink-0" />
+          Parcerias e colabs inéditas
+        </li>
+      </ul>
+      
+        href="/contato"
+        className="inline-block bg-[#ff44cc] text-white font-black uppercase text-xs px-6 py-3 rounded-full tracking-widest hover:bg-pink-500 transition-colors w-fit"
+      >
+        Fale com a gente
+      </a>
+    </div>
+  </div>
+</section>
 
         </div>
       </Layout>
