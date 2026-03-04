@@ -47,7 +47,7 @@
     #ff44cc 16%
   );
   background-size: 300%;
-  animation: aurora 6s linear infinite;
+  animation: aurora 36s linear infinite;
   filter: blur(12px);
   opacity: 0.6;
 }
