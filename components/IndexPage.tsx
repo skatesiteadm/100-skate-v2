@@ -65,12 +65,14 @@ export default function IndexPage(props: IndexPageProps) {
                       <span className="absolute -top-3 -right-3 bg-[#ff44cc] text-white text-xs font-black uppercase px-3 py-1 rounded-full z-10 tracking-widest">
                         Nova Edição
                       </span>
-                      <img
-                        src={urlFor(revista.capa)}
-                        alt={revista.titulo}
-                        className="rounded-lg shadow-2xl max-h-80 w-auto object-contain"
-                        style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.8))' }}
-                      />
+                      <Image
+  src={urlFor(revista.capa)}
+  alt={revista.titulo || ''}
+  width={300}
+  height={400}
+  className="rounded-lg shadow-2xl object-contain"
+  style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.8))' }}
+/>
                     </div>
                   )}
                 </div>
