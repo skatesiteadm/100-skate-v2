@@ -3,11 +3,12 @@ import type { NextConfig } from 'next'
 const config: NextConfig = {
   reactStrictMode: true,
   images: {
-    remotePatterns: [
-      { hostname: 'cdn.sanity.io' },
-      { hostname: 'picsum.photos' },
-    ],
-  },
+  remotePatterns: [
+    { hostname: 'cdn.sanity.io' },
+    { hostname: 'picsum.photos' },
+    { hostname: 'i.ytimg.com' },
+  ],
+},
   typescript: {
     // Set this to false if you want production builds to abort if there's type errors
     ignoreBuildErrors: process.env.VERCEL_ENV === 'production',
