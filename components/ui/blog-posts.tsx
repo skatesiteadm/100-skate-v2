@@ -1,5 +1,6 @@
 import { cn } from '../../lib/utils'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface BlogPost {
   id: string
@@ -18,14 +19,18 @@ interface BlogGridProps {
 
 export function BlogGrid({ posts = [], className }: BlogGridProps) {
   const [hero, ...rest] = posts
-
   return (
     <div className={cn('flex flex-col gap-4 mb-12', className)}>
-      
-      {/* Imagem grande horizontal */}
       {hero && (
         <Link href={`/posts/${hero.slug}`} className="relative overflow-hidden rounded-xl group w-full" style={{ height: '420px' }}>
-          <img src={hero.imageUrl} alt={hero.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <Image
+            src={hero.imageUrl}
+            alt={hero.title || ''}
+            fill
+            sizes="(max-width: 768px) 100vw, 1200px"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            priority
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
           <div className="absolute bottom-0 left-0 p-5 text-white">
             {hero.category && (
@@ -38,12 +43,16 @@ export function BlogGrid({ posts = [], className }: BlogGridProps) {
           </div>
         </Link>
       )}
-
-      {/* Duas imagens lado a lado embaixo */}
       <div className="grid grid-cols-2 gap-4" style={{ height: '260px' }}>
         {rest.slice(0, 2).map((post) => (
           <Link key={post.id} href={`/posts/${post.slug}`} className="relative overflow-hidden rounded-xl group">
-            <img src={post.imageUrl} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <Image
+              src={post.imageUrl}
+              alt={post.title || ''}
+              fill
+              sizes="(max-width: 768px) 50vw, 600px"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
             <div className="absolute bottom-0 left-0 p-4 text-white">
               {post.category && (
@@ -57,7 +66,6 @@ export function BlogGrid({ posts = [], className }: BlogGridProps) {
           </Link>
         ))}
       </div>
-
     </div>
   )
 }
