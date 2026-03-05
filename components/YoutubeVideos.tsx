@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import useEmblaCarousel from 'embla-carousel-react'
 
 interface Video {
@@ -75,11 +76,12 @@ export default function YoutubeVideos() {
                     className="group flex flex-col gap-2 text-left w-full"
                   >
                     <div style={{ paddingTop: '56.25%', position: 'relative' }} className="overflow-hidden rounded-xl w-full">
-                      <img
+                      <Image
                         src={video.thumbnail}
                         alt={video.title}
-                        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-                        className="transition-transform duration-500 group-hover:scale-105"
+                        fill
+                        sizes="(max-width: 768px) 50vw, 400px"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div style={{ position: 'absolute', inset: 0 }} className="flex items-center justify-center">
                         <div className="bg-[#ff44cc] rounded-full w-12 h-12 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-opacity">
