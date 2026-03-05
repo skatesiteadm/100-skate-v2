@@ -30,3 +30,25 @@ export default function Page(props: PageProps) {
   )
 }
 
+export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
+  const { preview: previewMode = false, previewData } = ctx
+  const client = getClient(
+    previewMode ? { token: readToken, perspective: previewData } : undefined,
+  )
+  const [settings, posts = [], revista = null] = await Promise.all([
+    getSettings(client),
+    getAllPosts(client),
+    client.fetch(revistaQuery),
+  ])
+  return {
+    props: {
+      posts,
+      settings,
+      revista,
+      previewMode,
+      previewPerspective: typeof previewData === 'string' ? previewData : null,
+      token: previewMode ? readToken : '',
+    },
+  }
+}
+
