@@ -1,0 +1,66 @@
+import Head from "next/head"
+
+interface SEOProps {
+  title?: string
+  description?: string
+  image?: string
+  url?: string
+  type?: "website" | "article"
+  publishedAt?: string
+  author?: string
+}
+
+const defaults = {
+  siteName: "100%SKATE",
+  title: "100%SKATE | A maior midia de skate do Brasil",
+  description:
+    "30 anos documentando a historia do skate brasileiro. Materias, videos, eventos, revista e a cultura da rua.",
+  image: "/og-default.png",
+  url: "https://cemporcentoskate.com.br",
+}
+
+export default function SEO({
+  title,
+  description,
+  image,
+  url,
+  type = "website",
+  publishedAt,
+  author,
+}: SEOProps) {
+  const pageTitle = title
+    ? `${title} | ${defaults.siteName}`
+    : defaults.title
+  const pageDescription = description || defaults.description
+  const pageImage = image || defaults.image
+  const pageUrl = url || defaults.url
+
+  return (
+    <Head>
+      <title>{pageTitle}</title>
+      <meta name="description" content={pageDescription} />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="canonical" href={pageUrl} />
+
+      <meta property="og:type" content={type} />
+      <meta property="og:title" content={pageTitle} />
+      <meta property="og:description" content={pageDescription} />
+      <meta property="og:image" content={pageImage} />
+      <meta property="og:url" content={pageUrl} />
+      <meta property="og:site_name" content={defaults.siteName} />
+      <meta property="og:locale" content="pt_BR" />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={pageTitle} />
+      <meta name="twitter:description" content={pageDescription} />
+      <meta name="twitter:image" content={pageImage} />
+
+      {type === "article" && publishedAt && (
+        <meta property="article:published_time" content={publishedAt} />
+      )}
+      {type === "article" && author && (
+        <meta property="article:author" content={author} />
+      )}
+    </Head>
+  )
+}
