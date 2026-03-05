@@ -6,7 +6,7 @@ export default function Custom404() {
     <>
       <SEO
         title="404"
-        description="Pagina nao encontrada. Volte pro site da 100%SKATE."
+        description="Página não encontrada. Volte pro site da 100%SKATE."
       />
       <div
         style={{
@@ -45,7 +45,7 @@ export default function Custom404() {
             color: '#888',
           }}
         >
-          Essa pagina nao existe. Deve ter caido do skate.
+          Caiu do skate! Essa página não existe :(
         </p>
         <Link
           href="/"
@@ -59,7 +59,7 @@ export default function Custom404() {
             fontSize: '0.95rem',
           }}
         >
-          VOLTAR PRO SITE
+          LEVANTAR
         </Link>
       </div>
     </>
