@@ -1,5 +1,6 @@
 import PostPage from 'components/PostPage'
 import PreviewPostPage from 'components/PreviewPostPage'
+import SEO from 'components/SEO'
 import { readToken } from 'lib/sanity.api'
 import {
   getAllPostsSlugs,
@@ -30,7 +31,20 @@ export default function ProjectSlugRoute(props: PageProps) {
     )
   }
 
-  return <PostPage post={post} morePosts={morePosts} settings={settings} />
+  return (
+    <>
+      <SEO
+        title={post.title}
+        description={post.excerpt}
+        image={post.coverImage?.asset?.url}
+        url={`https://cemporcentoskate.com.br/posts/${post.slug}`}
+        type="article"
+        publishedAt={post.date}
+        author={post.author?.name}
+      />
+      <PostPage post={post} morePosts={morePosts} settings={settings} />
+    </>
+  )
 }
 
 export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
@@ -38,7 +52,6 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const client = getClient(
     previewMode ? { token: readToken, perspective: previewData } : undefined,
   )
-
   const [settings, { post, morePosts }] = await Promise.all([
     getSettings(client),
     getPostAndMoreStories(client, params.slug),
@@ -62,7 +75,6 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
 
 export const getStaticPaths = async () => {
   const slugs = await getAllPostsSlugs()
-
   return {
     paths: slugs?.map(({ slug }) => `/posts/${slug}`) || [],
     fallback: 'blocking',
