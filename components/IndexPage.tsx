@@ -11,6 +11,7 @@ import type { Post, Revista, Settings } from 'lib/sanity.queries'
 import imageUrlBuilder from '@sanity/image-url'
 import { Suspense } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const builder = imageUrlBuilder(getClient())
 
