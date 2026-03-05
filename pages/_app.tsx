@@ -3,6 +3,8 @@ import '../tailwind.css'
 import { VisualEditing } from '@sanity/visual-editing/next-pages-router'
 import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
+import GoogleAnalytics from "components/GoogleAnalytics"
+
 
 export interface SharedPageProps {
   previewMode: boolean
