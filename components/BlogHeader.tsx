@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import SearchBar from 'components/SearchBar'
-import { useDarkMode } from 'components/DarkModeProvider' // Ajuste o path se necessário
+import { useDarkMode } from 'lib/darkMode'
 
 export default function BlogHeader({
   title,
