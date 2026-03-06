@@ -52,9 +52,9 @@ export default function IndexPage(props: IndexPageProps) {
           <BlogGrid posts={gridPosts} />
 
           {/* Banner anunciante */}
-          <div className="w-full my-8 flex items-center justify-center bg-gray-100 border border-dashed border-gray-300 rounded-xl" style={{ height: '120px' }}>
-            <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Espaço Publicitário — 970×90</span>
-          </div>
+          <div className="my-8">
+  <BannerSlot posicao="topo" />
+</div>
 
           {/* Seção Revista */}
           {revista && (
