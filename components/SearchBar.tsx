@@ -58,14 +58,29 @@ export default function SearchBar() {
 
   return (
     <>
+      {/* Desktop: input já visível */}
+      <form onSubmit={handleSubmit} className="hidden md:flex items-center gap-2 bg-white/10 rounded-full px-3 py-1">
+        <span className="text-gray-400 text-xs">🔍</span>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => { setQuery(e.target.value); setOpen(e.target.value.length >= 2) }}
+          onFocus={() => query.length >= 2 && setOpen(true)}
+          placeholder="Pesquisar..."
+          className="bg-transparent text-white text-xs outline-none w-32 placeholder-gray-400"
+        />
+      </form>
+
+      {/* Mobile: só ícone */}
       <button
         onClick={() => setOpen(true)}
-        className="hover:text-pink-400 transition-colors"
+        className="md:hidden hover:text-pink-400 transition-colors"
         aria-label="Buscar"
       >
         🔍
       </button>
 
+      {/* Modal overlay */}
       {open && (
         <div
           className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4"
@@ -96,9 +111,7 @@ export default function SearchBar() {
             </form>
 
             <div className="max-h-96 overflow-y-auto">
-              {loading && (
-                <p className="text-sm text-gray-400 p-5">Buscando...</p>
-              )}
+              {loading && <p className="text-sm text-gray-400 p-5">Buscando...</p>}
               {!loading && query.length >= 2 && results.length === 0 && (
                 <p className="text-sm text-gray-400 p-5">Nenhum resultado para "{query}".</p>
               )}
