@@ -13,7 +13,7 @@ const myPortableTextComponents: Partial<PortableTextReactComponents> = {
 export default function PostBody({ content }) {
   return (
     <div className="mx-auto max-w-3xl">
-      <div className="prose prose-lg prose-headings:font-black prose-headings:uppercase prose-a:text-[#ff44cc] prose-a:no-underline hover:prose-a:underline">
+      <div className="prose prose-lg dark:prose-invert prose-headings:font-black prose-headings:uppercase prose-a:text-[#ff44cc] prose-a:no-underline hover:prose-a:underline dark:prose-p:text-zinc-300 dark:prose-li:text-zinc-300">
         <PortableText value={content} components={myPortableTextComponents} />
       </div>
       <div className="my-12">
