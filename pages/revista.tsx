@@ -6,6 +6,7 @@ import { Revista, Settings, todasRevistasQuery } from 'lib/sanity.queries'
 import imageUrlBuilder from '@sanity/image-url'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import type { SharedPageProps } from 'pages/_app'
 
 const builder = imageUrlBuilder(getClient())
@@ -30,57 +31,78 @@ export default function RevistaPage({ revistas, settings }: PageProps) {
             Revista
           </h1>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+          <div className="flex flex-col gap-8 mb-16">
             {revistas.map((revista) => (
-              <div key={revista._id} className="flex flex-col gap-3">
-                {/* Capa */}
-                <div className="relative overflow-hidden rounded-xl bg-gray-100">
-                  {revista.ativa && (
-                    <span className="absolute top-2 right-2 bg-[#ff44cc] text-white text-xs font-black uppercase px-2 py-1 rounded-full z-10 tracking-widest">
-                      Nova
-                    </span>
-                  )}
-                  {revista.capa && (
-                    <img
-                      src={urlFor(revista.capa)}
-                      alt={revista.titulo}
-                      className="w-full object-cover"
-                    />
-                  )}
-                </div>
+              <section key={revista._id} className="bg-black text-white rounded-2xl overflow-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                  {/* Capa */}
+                  <div className="relative flex justify-center items-center p-8 md:p-12 bg-gradient-to-br from-gray-900 to-black">
+                    {revista.capa && (
+                      <div className="relative">
+                        {revista.ativa && (
+                          <span className="absolute -top-3 -right-3 bg-[#ff44cc] text-white text-xs font-black uppercase px-3 py-1 rounded-full z-10 tracking-widest">
+                            Nova Edição
+                          </span>
+                        )}
+                        <img
+                          src={urlFor(revista.capa)}
+                          alt={revista.titulo}
+                          className="rounded-lg shadow-2xl max-h-80 w-auto object-contain"
+                          style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.8))' }}
+                        />
+                      </div>
+                    )}
+                  </div>
 
-                {/* Info */}
-                <div className="flex flex-col gap-1">
-                  <span className="text-xs text-gray-400 font-bold uppercase tracking-widest">
-                    Edição {revista.edicao}
-                  </span>
-                  <h3 className="text-sm font-black uppercase leading-tight">
-                    {revista.titulo}
-                  </h3>
-                  {revista.descricao && (
-                    <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">
-                      {revista.descricao}
-                    </p>
-                  )}
-                </div>
+                  {/* Info */}
+                  <div className="flex flex-col justify-center gap-5 p-8 md:p-12">
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-black uppercase tracking-widest text-gray-400 border border-gray-700 px-3 py-1 rounded-full">
+                        Edição {revista.edicao}
+                      </span>
+                      <span className="text-xs font-bold uppercase tracking-widest text-[#ff44cc]">
+                        Revista
+                      </span>
+                    </div>
 
-                {/* Botão */}
-                {revista.linkCompra ? (
-                  <button
-                    onClick={() => window.open(revista.linkCompra, '_blank')}
-                    className="bg-black hover:bg-gray-800 text-white font-black uppercase text-xs px-4 py-2 rounded-full tracking-widest transition-colors w-full"
-                  >
-                    Compre Aqui
-                  </button>
-                ) : (
-                  <button
-                    disabled
-                    className="bg-gray-100 text-gray-400 font-black uppercase text-xs px-4 py-2 rounded-full tracking-widest w-full cursor-not-allowed"
-                  >
-                    Compre em Breve
-                  </button>
-                )}
-              </div>
+                    <h3 className="text-3xl md:text-4xl font-black uppercase leading-tight">
+                      {revista.titulo}
+                    </h3>
+
+                    {revista.descricao && (
+                      <p className="text-gray-400 leading-relaxed text-sm">{revista.descricao}</p>
+                    )}
+
+                    {revista.materiaDestaque && (
+                      <div className="border-t border-gray-800 pt-5">
+                        <span className="text-xs font-black uppercase tracking-widest text-gray-500 block mb-2">
+                          Matéria de Capa
+                        </span>
+                        <div className="flex items-center gap-4 flex-wrap">
+                          <Link href={`/posts/${revista.materiaDestaque.slug}`} className="font-black uppercase text-lg hover:text-[#ff44cc] transition-colors">
+                            {revista.materiaDestaque.title}
+                          </Link>
+                          {revista.linkCompra ? (
+                            <button
+                              onClick={() => window.open(revista.linkCompra, '_blank')}
+                              className="bg-[#ff44cc] hover:bg-[#ff44cc]/80 text-white font-black uppercase text-xs px-5 py-2 rounded-full tracking-widest transition-colors whitespace-nowrap"
+                            >
+                              Compre Aqui
+                            </button>
+                          ) : (
+                            <button
+                              disabled
+                              className="bg-gray-800 text-gray-500 font-black uppercase text-xs px-5 py-2 rounded-full tracking-widest whitespace-nowrap cursor-not-allowed"
+                            >
+                              Compre em Breve
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </section>
             ))}
           </div>
         </div>
