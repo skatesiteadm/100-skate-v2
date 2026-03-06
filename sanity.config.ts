@@ -21,15 +21,14 @@ import bannerType from 'schemas/banner'
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Next.js Blog with Sanity.io'
-
 export default defineConfig({
   basePath: '/studio',
   projectId,
   dataset,
   title,
   schema: {
-  types: [authorType, postType, settingsType, revistaType, bannerType],
-},
+    types: [authorType, postType, settingsType, revistaType, bannerType],
+  },
   plugins: [
     structureTool({
       structure: settingsStructure(settingsType),
