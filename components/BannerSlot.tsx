@@ -37,7 +37,14 @@ export default function BannerSlot({ posicao }: BannerSlotProps) {
       )
       .then((banners) => {
         if (banners.length > 0) {
-          setBanner(banners[Math.floor(Math.random() * banners.length)])
+          const escolhido = banners[Math.floor(Math.random() * banners.length)]
+          setBanner(escolhido)
+          if (typeof window !== 'undefined' && (window as any).gtag) {
+            ;(window as any).gtag('event', 'banner_impression', {
+              banner_nome: escolhido.nome,
+              banner_posicao: posicao,
+            })
+          }
         }
         setLoaded(true)
       })
