@@ -53,27 +53,27 @@ export default function IndexPage(props: IndexPageProps) {
 
           {/* Banner anunciante */}
           <div className="my-8">
-  <BannerSlot posicao="topo" />
-</div>
+            <BannerSlot posicao="topo" />
+          </div>
 
           {/* Seção Revista */}
           {revista && (
-            <section className="my-12 bg-black text-white rounded-2xl overflow-hidden">
+            <section className="my-12 bg-black dark:bg-[#0a0a0a] text-white rounded-2xl overflow-hidden border border-transparent dark:border-zinc-800 shadow-xl">
               <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="relative flex justify-center items-center p-8 md:p-12 bg-gradient-to-br from-gray-900 to-black">
+                <div className="relative flex justify-center items-center p-8 md:p-12 bg-gradient-to-br from-gray-900 to-black dark:from-[#111] dark:to-black">
                   {revista.capa && (
                     <div className="relative">
                       <span className="absolute -top-3 -right-3 bg-[#ff44cc] text-white text-xs font-black uppercase px-3 py-1 rounded-full z-10 tracking-widest">
                         Nova Edição
                       </span>
                       <Image
-  src={urlFor(revista.capa)}
-  alt={revista.titulo || ''}
-  width={300}
-  height={400}
-  className="rounded-lg shadow-2xl object-contain"
-  style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.8))' }}
-/>
+                        src={urlFor(revista.capa)}
+                        alt={revista.titulo || ''}
+                        width={300}
+                        height={400}
+                        className="rounded-lg shadow-2xl object-contain"
+                        style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.8))' }}
+                      />
                     </div>
                   )}
                 </div>
@@ -129,7 +129,8 @@ export default function IndexPage(props: IndexPageProps) {
           )}
 
           <YoutubeVideos />
-<LojaPreview />
+          <LojaPreview />
+          
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </div>
         <Suspense />
