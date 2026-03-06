@@ -91,7 +91,7 @@ export default function SearchBar() {
     <img
       src="/logoskate.svg"
       alt="100% SKATE"
-      style={{ height: '40px', width: 'auto', filter: 'brightness(0)' }}
+      style={{ height: '95px', width: 'auto', filter: 'brightness(0)' }}
     />
   </div>
             <form onSubmit={handleSubmit} className="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
