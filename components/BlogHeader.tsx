@@ -23,12 +23,17 @@ export default function BlogHeader({
               <Link href="/contato" className="hover:text-pink-400 tracking-widest hidden md:block transition-colors">CONTATO</Link>
             </div>
             <div className="flex gap-3 items-center text-xs">
-              <span className="hidden md:block"><SearchBar /></span>
-              <a href="https://instagram.com/cemporcentoskate" target="_blank" className="hover:text-pink-400 transition-colors">IG</a>
-              <a href="https://youtube.com/@CemporcentoSKATE_" target="_blank" className="hover:text-pink-400 transition-colors">YT</a>
-              <a href="https://tiktok.com/@cemporcentoskate" target="_blank" className="hover:text-pink-400 transition-colors">TK</a>
+              {/* Desktop: redes sociais */}
+              <div className="hidden md:flex gap-3 items-center">
+                <a href="https://instagram.com/cemporcentoskate" target="_blank" className="hover:text-pink-400 transition-colors">IG</a>
+                <a href="https://youtube.com/@CemporcentoSKATE_" target="_blank" className="hover:text-pink-400 transition-colors">YT</a>
+                <a href="https://tiktok.com/@cemporcentoskate" target="_blank" className="hover:text-pink-400 transition-colors">TK</a>
+              </div>
+              {/* Search sempre visível */}
+              <SearchBar />
             </div>
           </div>
+
           <header className="flex justify-center items-center pt-1 pb-0 w-full">
             <Link href="/" className="flex justify-center">
               <img
@@ -38,6 +43,7 @@ export default function BlogHeader({
               />
             </Link>
           </header>
+
           {!hideNav && (
             <nav className="w-full border-y border-gray-200 mb-14 overflow-x-auto">
               <ul className="flex gap-4 md:gap-8 px-4 md:px-8 py-6 text-xs md:text-sm font-bold uppercase whitespace-nowrap justify-center">
@@ -65,9 +71,7 @@ export default function BlogHeader({
       )
     default:
       throw new Error(
-        `Invalid level: ${
-          JSON.stringify(level) || typeof level
-        }, only 1 or 2 are allowed`,
+        `Invalid level: ${JSON.stringify(level) || typeof level}, only 1 or 2 are allowed`,
       )
   }
 }
