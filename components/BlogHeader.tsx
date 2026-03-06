@@ -37,7 +37,7 @@ export default function BlogHeader({
                 src="/logoskate.svg"
                 alt="CEMPORCENTOSKATE"
                 style={{ height: '220px', width: 'auto' }}
-                className="dark:invert"
+                className="dark:[filter:brightness(0)_saturate(100%)_invert(30%)_sepia(100%)_saturate(500%)_hue-rotate(280deg)_brightness(1.2)]"
               />
             </Link>
           </header>
@@ -62,7 +62,7 @@ export default function BlogHeader({
               src="/logoskate.svg"
               alt="CEMPORCENTOSKATE"
               style={{ height: '50px', width: 'auto', maxWidth: '180px' }}
-              className="dark:invert"
+              className="dark:[filter:brightness(0)_saturate(100%)_invert(30%)_sepia(100%)_saturate(500%)_hue-rotate(280deg)_brightness(1.2)]"
             />
           </Link>
         </header>
