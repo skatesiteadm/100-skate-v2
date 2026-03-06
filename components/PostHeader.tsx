@@ -15,9 +15,9 @@ export default function PostHeader(
       </div>
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center gap-3 mb-4 text-xs uppercase tracking-widest">
-          <span className="bg-black text-white px-2 py-1 rounded font-bold">Skate</span>
+          <span className="bg-black dark:bg-zinc-700 text-white px-2 py-1 rounded font-bold">Skate</span>
           {date && (
-            <span className="text-gray-500">
+            <span className="text-gray-500 dark:text-zinc-400">
               <Date dateString={date} />
             </span>
           )}
