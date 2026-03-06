@@ -28,7 +28,7 @@ export function ProductCard({
   return (
     <div
       className={cn(
-        'group relative flex flex-col items-center overflow-hidden rounded-xl border border-gray-200 bg-white p-5 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1',
+        'group relative flex flex-col items-center overflow-hidden rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-[#111111] p-5 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1',
         className
       )}
       {...props}
@@ -39,7 +39,7 @@ export function ProductCard({
         </span>
       )}
 
-      <div className="relative mb-4 flex h-52 w-full items-center justify-center overflow-hidden rounded-lg bg-gray-50">
+      <div className="relative mb-4 flex h-52 w-full items-center justify-center overflow-hidden rounded-lg bg-gray-50 dark:bg-zinc-900">
         <img
           src={imageUrl}
           alt={name}
@@ -48,25 +48,24 @@ export function ProductCard({
       </div>
 
       <div className="flex flex-grow flex-col items-center gap-1 w-full">
-        <h3 className="font-black uppercase text-sm leading-tight">{name}</h3>
-        {tagline && <p className="text-xs text-gray-500">{tagline}</p>}
+        <h3 className="font-black uppercase text-sm leading-tight text-black dark:text-white">{name}</h3>
+        {tagline && <p className="text-xs text-gray-500 dark:text-gray-400">{tagline}</p>}
       </div>
 
       <div className="mt-4 flex flex-col items-center gap-3 w-full">
         <div className="flex items-center gap-2">
-          <span className="text-xl font-black">{formatPrice(price)}</span>
+          <span className="text-xl font-black text-black dark:text-white">{formatPrice(price)}</span>
           {originalPrice && (
-            <span className="text-sm text-gray-400 line-through">{formatPrice(originalPrice)}</span>
+            <span className="text-sm text-gray-400 dark:text-gray-500 line-through">{formatPrice(originalPrice)}</span>
           )}
         </div>
         <button
           onClick={() => buyUrl && window.open(buyUrl, '_blank')}
-          className="w-full bg-black hover:bg-[#ff44cc] text-white font-black uppercase text-xs px-4 py-3 rounded-full tracking-widest transition-colors duration-300"
+          className="w-full bg-black dark:bg-white hover:bg-[#ff44cc] dark:hover:bg-[#ff44cc] text-white dark:text-black dark:hover:text-white font-black uppercase text-xs px-4 py-3 rounded-full tracking-widest transition-colors duration-300"
         >
           Comprar
         </button>
       </div>
     </div>
   )
-}
 }
