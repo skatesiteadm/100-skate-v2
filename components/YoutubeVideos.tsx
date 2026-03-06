@@ -54,7 +54,7 @@ export default function YoutubeVideos() {
 
       <section className="mb-12">
         <Link href="/videos" className="block hover:opacity-70 transition-opacity">
-          <h2 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest cursor-pointer">
+          <h2 className="text-xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-6 tracking-widest cursor-pointer text-black dark:text-white">
             Vídeos Recentes →
           </h2>
         </Link>
@@ -62,7 +62,7 @@ export default function YoutubeVideos() {
         <div className="relative">
           <button
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-2xl font-black hover:bg-[#ff44cc] transition-colors shadow-lg"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 rounded-full bg-black dark:bg-gray-700 text-white flex items-center justify-center text-2xl font-black hover:bg-[#ff44cc] dark:hover:bg-[#ff44cc] transition-colors shadow-lg"
           >
             ‹
           </button>
@@ -91,7 +91,7 @@ export default function YoutubeVideos() {
                         </div>
                       </div>
                     </div>
-                    <h3 className="text-sm font-bold uppercase leading-tight group-hover:underline">
+                    <h3 className="text-sm font-bold uppercase leading-tight group-hover:underline text-black dark:text-white">
                       {video.title}
                     </h3>
                   </button>
@@ -102,7 +102,7 @@ export default function YoutubeVideos() {
 
           <button
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-2xl font-black hover:bg-[#ff44cc] transition-colors shadow-lg"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 rounded-full bg-black dark:bg-gray-700 text-white flex items-center justify-center text-2xl font-black hover:bg-[#ff44cc] dark:hover:bg-[#ff44cc] transition-colors shadow-lg"
           >
             ›
           </button>
