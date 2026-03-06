@@ -1,10 +1,9 @@
 import '../tailwind.css'
-
 import { VisualEditing } from '@sanity/visual-editing/next-pages-router'
 import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
 import GoogleAnalytics from "components/GoogleAnalytics"
-
+import { DarkModeProvider } from 'lib/darkMode'
 
 export interface SharedPageProps {
   previewMode: boolean
@@ -20,7 +19,7 @@ export default function App({
 }: AppProps<SharedPageProps>) {
   const { previewMode, previewPerspective, token } = pageProps
   return (
-    <>
+    <DarkModeProvider>
       {previewMode ? (
         <PreviewProvider perspective={previewPerspective} token={token}>
           <Component {...pageProps} />
@@ -29,6 +28,7 @@ export default function App({
         <Component {...pageProps} />
       )}
       {previewMode && <VisualEditing />}
-    </>
+      <GoogleAnalytics />
+    </DarkModeProvider>
   )
 }
