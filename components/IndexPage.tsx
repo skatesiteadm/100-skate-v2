@@ -12,6 +12,7 @@ import imageUrlBuilder from '@sanity/image-url'
 import { Suspense } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import BannerSlot from 'components/BannerSlot'
 
 const builder = imageUrlBuilder(getClient())
 
