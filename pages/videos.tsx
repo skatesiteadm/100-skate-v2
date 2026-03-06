@@ -2,6 +2,7 @@ import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
+import PodcastCarousel from 'components/PodcastCarousel'
 
 interface Video {
   id: string
