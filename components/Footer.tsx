@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
           {/* Logo e descrição */}
           <div className="md:col-span-1">
-            <img src="/logoskate.svg" alt="100% SKATE" style={{ height: '60px', width: 'auto', filter: 'invert(1)' }} />
+            <Link href="/"><img src="/logoskate.svg" alt="100% SKATE" style={{ height: '60px', width: 'auto', filter: 'invert(1)', cursor: 'pointer' }} /></Link>
             <p className="text-gray-400 text-xs mt-4 leading-relaxed">
               30 anos documentando a história do skate brasileiro.
             </p>
