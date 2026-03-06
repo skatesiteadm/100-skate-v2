@@ -17,18 +17,22 @@ export default function BlogHeader({
       return (
         <>
           <div className="w-full bg-black text-white text-xs flex justify-between items-center px-4 md:px-8 py-2 rounded-b-xl">
-            <div className="flex gap-3 md:gap-5">
-              <Link href="/loja" className="hover:text-pink-400 tracking-widest transition-colors">LOJA</Link>
-              <Link href="/nossa-historia" className="hover:text-pink-400 tracking-widest transition-colors">NOSSA HISTORIA</Link>
-              <Link href="/contato" className="hover:text-pink-400 tracking-widest hidden md:block transition-colors">CONTATO</Link>
-            </div>
-            <div className="flex gap-3 items-center text-xs">
-              {/* Desktop: redes sociais */}
-              <div className="hidden md:flex gap-3 items-center">
-                <a href="https://instagram.com/cemporcentoskate" target="_blank" className="hover:text-pink-400 transition-colors">IG</a>
-                <a href="https://youtube.com/@CemporcentoSKATE_" target="_blank" className="hover:text-pink-400 transition-colors">YT</a>
-                <a href="https://tiktok.com/@cemporcentoskate" target="_blank" className="hover:text-pink-400 transition-colors">TK</a>
-              </div>
+  <div className="flex gap-3 md:gap-5">
+    <Link href="/loja" className="hover:text-pink-400 tracking-widest transition-colors">LOJA</Link>
+    <Link href="/nossa-historia" className="hover:text-pink-400 tracking-widest transition-colors">NOSSA HISTORIA</Link>
+    <Link href="/contato" className="hover:text-pink-400 tracking-widest hidden md:block transition-colors">CONTATO</Link>
+  </div>
+  <div className="flex gap-3 items-center text-xs">
+    {/* Search sempre visível */}
+    <SearchBar />
+    {/* Redes sociais só no desktop */}
+    <div className="hidden md:flex gap-3 items-center">
+      <a href="https://instagram.com/cemporcentoskate" target="_blank" className="hover:text-pink-400 transition-colors">IG</a>
+      <a href="https://youtube.com/@CemporcentoSKATE_" target="_blank" className="hover:text-pink-400 transition-colors">YT</a>
+      <a href="https://tiktok.com/@cemporcentoskate" target="_blank" className="hover:text-pink-400 transition-colors">TK</a>
+    </div>
+  </div>
+</div>
               {/* Search sempre visível */}
               <SearchBar />
             </div>
