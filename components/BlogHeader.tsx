@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import SearchBar from 'components/SearchBar'
-import { useDarkMode } from 'caminho/para/seu/DarkModeProvider' // Ajuste o path
+import { useDarkMode } from 'components/DarkModeProvider' // Ajuste o path se necessário
 
 export default function BlogHeader({
   title,
@@ -13,6 +13,8 @@ export default function BlogHeader({
   level: 1 | 2
   hideNav?: boolean
 }) {
+  const { toggle } = useDarkMode()
+
   switch (level) {
     case 1:
       return (
@@ -33,23 +35,28 @@ export default function BlogHeader({
             </div>
           </div>
           <header className="flex justify-center items-center pt-1 pb-0 w-full">
-            <Link href="/" className="flex justify-center" onDoubleClick={() => document.documentElement.classList.toggle('dark')}>
+            <Link 
+              href="/" 
+              className="flex justify-center" 
+              onDoubleClick={toggle}
+              title="Duplo clique para alternar modo escuro"
+            >
               <img
                 src="/logoskate.svg"
                 alt="CEMPORCENTOSKATE"
                 style={{ height: '220px', width: 'auto' }}
-                className="dark:[filter:brightness(0)_saturate(100%)_invert(30%)_sepia(100%)_saturate(500%)_hue-rotate(280deg)_brightness(1.2)]"
+                className="dark:[filter:brightness(0)_saturate(100%)_invert(30%)_sepia(100%)_saturate(500%)_hue-rotate(280deg)_brightness(1.2)] transition-all duration-300 cursor-pointer"
               />
             </Link>
           </header>
           {!hideNav && (
-            <nav className="w-full border-y border-gray-200 dark:border-gray-800 mb-14 overflow-x-auto">
+            <nav className="w-full border-y border-gray-200 dark:border-zinc-800 mb-14 overflow-x-auto">
               <ul className="flex gap-4 md:gap-8 px-4 md:px-8 py-6 text-xs md:text-sm font-bold uppercase whitespace-nowrap justify-center">
-                <li><Link href="/fiksperto" className="text-black dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Fiksperto</Link></li>
-                <li><Link href="/videos" className="text-black dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Videos</Link></li>
-                <li><Link href="/eventos" className="text-black dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Eventos</Link></li>
-                <li><Link href="/revista" className="text-black dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Revista</Link></li>
-                <li><Link href="/loja" className="text-black dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Loja</Link></li>
+                <li><Link href="/fiksperto" className="text-black dark:text-zinc-300 transition-colors hover:text-[#ff44cc] dark:hover:text-white">Fiksperto</Link></li>
+                <li><Link href="/videos" className="text-black dark:text-zinc-300 transition-colors hover:text-[#ff44cc] dark:hover:text-white">Videos</Link></li>
+                <li><Link href="/eventos" className="text-black dark:text-zinc-300 transition-colors hover:text-[#ff44cc] dark:hover:text-white">Eventos</Link></li>
+                <li><Link href="/revista" className="text-black dark:text-zinc-300 transition-colors hover:text-[#ff44cc] dark:hover:text-white">Revista</Link></li>
+                <li><Link href="/loja" className="text-black dark:text-zinc-300 transition-colors hover:text-[#ff44cc] dark:hover:text-white">Loja</Link></li>
               </ul>
             </nav>
           )}
@@ -57,13 +64,13 @@ export default function BlogHeader({
       )
     case 2:
       return (
-        <header className="flex justify-center items-center py-4 border-b border-gray-200 dark:border-gray-800 mb-8 w-full">
-          <Link href="/">
+        <header className="flex justify-center items-center py-4 border-b border-gray-200 dark:border-zinc-800 mb-8 w-full">
+          <Link href="/" onDoubleClick={toggle}>
             <img
               src="/logoskate.svg"
-              alt="CEMPORCENTOSKATE"
+              alt="100%SKATE"
               style={{ height: '50px', width: 'auto', maxWidth: '180px' }}
-              className="dark:[filter:brightness(0)_saturate(100%)_invert(30%)_sepia(100%)_saturate(500%)_hue-rotate(280deg)_brightness(1.2)]"
+              className="dark:[filter:brightness(0)_saturate(100%)_invert(30%)_sepia(100%)_saturate(500%)_hue-rotate(280deg)_brightness(1.2)] transition-all duration-300 cursor-pointer"
             />
           </Link>
         </header>
