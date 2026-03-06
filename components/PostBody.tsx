@@ -1,14 +1,4 @@
-/**
- * This component uses Portable Text to render a post body.
- *
- * You can learn more about Portable Text on:
- * https://www.sanity.io/docs/block-content
- * https://github.com/portabletext/react-portabletext
- * https://portabletext.org/
- *
- */
 import { PortableText, type PortableTextReactComponents } from 'next-sanity'
-
 import { SanityImage } from './SanityImage'
 
 const myPortableTextComponents: Partial<PortableTextReactComponents> = {
@@ -21,7 +11,7 @@ const myPortableTextComponents: Partial<PortableTextReactComponents> = {
 
 export default function PostBody({ content }) {
   return (
-    <div className="mx-auto max-w-2xl prose">
+    <div className="mx-auto max-w-3xl prose prose-lg prose-headings:font-black prose-headings:uppercase prose-a:text-[#ff44cc] prose-a:no-underline hover:prose-a:underline">
       <PortableText value={content} components={myPortableTextComponents} />
     </div>
   )
