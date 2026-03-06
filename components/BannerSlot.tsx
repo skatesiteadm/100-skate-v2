@@ -70,7 +70,7 @@ export default function BannerSlot({ posicao }: BannerSlotProps) {
   }
 
   return (
-    
+    <a
       href={banner.link}
       target="_blank"
       rel="noopener noreferrer"
