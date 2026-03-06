@@ -9,6 +9,10 @@ interface SearchResult {
   _type: string
 }
 
+const LupaIcon = ({ className }: { className?: string }) => (
+  <img src="/lupa.svg" alt="buscar" className={className} />
+)
+
 export default function SearchBar() {
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState('')
@@ -60,12 +64,12 @@ export default function SearchBar() {
     <>
       {/* Desktop: input já visível */}
       <form onSubmit={handleSubmit} className="hidden md:flex items-center gap-2 bg-white/10 rounded-full px-3 py-1">
-        <span className="text-gray-400 text-xs">🔍</span>
+        <LupaIcon className="w-3 h-3 invert opacity-60" />
         <input
           type="text"
           value={query}
           onChange={(e) => { setQuery(e.target.value); setOpen(e.target.value.length >= 2) }}
-          onFocus={() => query.length >= 2 && setOpen(true)}
+          onFocus={() => setOpen(true)}
           placeholder="Pesquisar..."
           className="bg-transparent text-white text-xs outline-none w-32 placeholder-gray-400"
         />
@@ -74,10 +78,10 @@ export default function SearchBar() {
       {/* Mobile: só ícone */}
       <button
         onClick={() => setOpen(true)}
-        className="md:hidden hover:text-pink-400 transition-colors"
+        className="md:hidden hover:opacity-70 transition-opacity"
         aria-label="Buscar"
       >
-        🔍
+        <LupaIcon className="w-4 h-4 invert" />
       </button>
 
       {/* Modal overlay */}
@@ -92,7 +96,7 @@ export default function SearchBar() {
             onClick={(e) => e.stopPropagation()}
           >
             <form onSubmit={handleSubmit} className="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
-              <span className="text-xl">🔍</span>
+              <LupaIcon className="w-5 h-5 opacity-40" />
               <input
                 ref={inputRef}
                 type="text"
