@@ -31,25 +31,24 @@ export default function BlogHeader({
               </div>
             </div>
           </div>
-
           <header className="flex justify-center items-center pt-1 pb-0 w-full">
-            <Link href="/" className="flex justify-center">
+            <Link href="/" className="flex justify-center" onDoubleClick={() => document.documentElement.classList.toggle('dark')}>
               <img
                 src="/logoskate.svg"
                 alt="CEMPORCENTOSKATE"
                 style={{ height: '220px', width: 'auto' }}
+                className="dark:invert"
               />
             </Link>
           </header>
-
           {!hideNav && (
-            <nav className="w-full border-y border-gray-200 mb-14 overflow-x-auto">
+            <nav className="w-full border-y border-gray-200 dark:border-gray-800 mb-14 overflow-x-auto">
               <ul className="flex gap-4 md:gap-8 px-4 md:px-8 py-6 text-xs md:text-sm font-bold uppercase whitespace-nowrap justify-center">
-                <li><Link href="/fiksperto" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Fiksperto</Link></li>
-                <li><Link href="/videos" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Videos</Link></li>
-                <li><Link href="/eventos" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Eventos</Link></li>
-                <li><Link href="/revista" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Revista</Link></li>
-                <li><Link href="/loja" className="transition-colors" onMouseEnter={e => (e.target as HTMLElement).style.color='#ff44cc'} onMouseLeave={e => (e.target as HTMLElement).style.color=''}>Loja</Link></li>
+                <li><Link href="/fiksperto" className="text-black dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Fiksperto</Link></li>
+                <li><Link href="/videos" className="text-black dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Videos</Link></li>
+                <li><Link href="/eventos" className="text-black dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Eventos</Link></li>
+                <li><Link href="/revista" className="text-black dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Revista</Link></li>
+                <li><Link href="/loja" className="text-black dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Loja</Link></li>
               </ul>
             </nav>
           )}
@@ -57,12 +56,13 @@ export default function BlogHeader({
       )
     case 2:
       return (
-        <header className="flex justify-center items-center py-4 border-b border-gray-200 mb-8 w-full">
+        <header className="flex justify-center items-center py-4 border-b border-gray-200 dark:border-gray-800 mb-8 w-full">
           <Link href="/">
             <img
               src="/logoskate.svg"
               alt="CEMPORCENTOSKATE"
               style={{ height: '50px', width: 'auto', maxWidth: '180px' }}
+              className="dark:invert"
             />
           </Link>
         </header>
