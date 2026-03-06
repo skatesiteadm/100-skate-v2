@@ -82,10 +82,18 @@ export default function SearchBar() {
           style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}
           onClick={() => setOpen(false)}
         >
-          <div
-            className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
+         <div
+  className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden"
+  onClick={(e) => e.stopPropagation()}
+>
+  {/* Logo branding */}
+  <div className="flex justify-center items-center py-4 bg-white border-b border-gray-100">
+    <img
+      src="/logoskate.svg"
+      alt="100% SKATE"
+      style={{ height: '40px', width: 'auto', filter: 'brightness(0)' }}
+    />
+  </div>
             <form onSubmit={handleSubmit} className="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
               <LupaIcon className="w-5 h-5 opacity-40" />
               <input
