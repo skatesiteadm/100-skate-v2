@@ -75,15 +75,6 @@ export default function SearchBar() {
         />
       </form>
 
-      {/* Mobile: só ícone */}
-      <button
-        onClick={() => setOpen(true)}
-        className="md:hidden hover:opacity-70 transition-opacity"
-        aria-label="Buscar"
-      >
-        <LupaIcon className="w-4 h-4 invert" />
-      </button>
-
       {/* Modal overlay */}
       {open && (
         <div
