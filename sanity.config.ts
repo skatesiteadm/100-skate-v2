@@ -28,8 +28,8 @@ export default defineConfig({
   dataset,
   title,
   schema: {
-    types: [authorType, postType, settingsType, revistaType],
-  },
+  types: [authorType, postType, settingsType, revistaType, bannerType],
+},
   plugins: [
     structureTool({
       structure: settingsStructure(settingsType),
