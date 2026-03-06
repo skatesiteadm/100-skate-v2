@@ -1,83 +1,55 @@
 import Link from 'next/link'
-import SearchBar from 'components/SearchBar'
+import { DarkModeButton } from 'components/ui/flip-button'
 import { useDarkMode } from 'lib/darkMode'
 
-export default function BlogHeader({
-  title,
-  description,
-  level,
-  hideNav = false,
-}: {
-  title: string
-  description?: any[]
-  level: 1 | 2
-  hideNav?: boolean
-}) {
+export default function Footer() {
   const { toggle } = useDarkMode()
 
-  switch (level) {
-    case 1:
-      return (
-        <>
-          <div className="w-full bg-black text-white text-xs flex justify-between items-center px-4 md:px-8 py-2 rounded-b-xl">
-            <div className="flex gap-3 md:gap-5">
-              <Link href="/loja" className="hover:text-pink-400 tracking-widest transition-colors">LOJA</Link>
-              <Link href="/nossa-historia" className="hover:text-pink-400 tracking-widest transition-colors">NOSSA HISTORIA</Link>
-              <Link href="/contato" className="hover:text-pink-400 tracking-widest hidden md:block transition-colors">CONTATO</Link>
-            </div>
-            <div className="flex gap-3 items-center text-xs">
-              <SearchBar />
-              <div className="hidden md:flex gap-3 items-center">
-                <a href="https://instagram.com/cemporcentoskate" target="_blank" className="hover:text-pink-400 transition-colors">IG</a>
-                <a href="https://youtube.com/@CemporcentoSKATE_" target="_blank" className="hover:text-pink-400 transition-colors">YT</a>
-                <a href="https://tiktok.com/@cemporcentoskate" target="_blank" className="hover:text-pink-400 transition-colors">TK</a>
-              </div>
+  return (
+    <footer className="bg-black text-white mt-16">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+          <div className="md:col-span-1">
+            <Link href="/">
+              <img src="/logoskate.svg" alt="100% SKATE" style={{ height: '60px', width: 'auto', filter: 'invert(1)', cursor: 'pointer' }} />
+            </Link>
+            <p className="text-gray-400 text-xs mt-4 leading-relaxed">
+              30 anos documentando a história do skate brasileiro.
+            </p>
+            <div className="mt-6">
+              <DarkModeButton onToggle={toggle} />
             </div>
           </div>
-          <header className="flex justify-center items-center pt-1 pb-0 w-full">
-            <Link 
-              href="/" 
-              className="flex justify-center" 
-              onDoubleClick={toggle}
-              title="Duplo clique para alternar modo escuro"
-            >
-              <img
-                src="/logoskate.svg"
-                alt="CEMPORCENTOSKATE"
-                style={{ height: '220px', width: 'auto' }}
-                className="dark:[filter:brightness(0)_saturate(100%)_invert(30%)_sepia(100%)_saturate(500%)_hue-rotate(280deg)_brightness(1.2)] transition-all duration-300 cursor-pointer"
-              />
-            </Link>
-          </header>
-          {!hideNav && (
-            <nav className="w-full border-y border-gray-200 dark:border-zinc-800 mb-14 overflow-x-auto">
-              <ul className="flex gap-4 md:gap-8 px-4 md:px-8 py-6 text-xs md:text-sm font-bold uppercase whitespace-nowrap justify-center">
-                <li><Link href="/fiksperto" className="text-black dark:text-zinc-300 transition-colors hover:text-[#ff44cc] dark:hover:text-white">Fiksperto</Link></li>
-                <li><Link href="/videos" className="text-black dark:text-zinc-300 transition-colors hover:text-[#ff44cc] dark:hover:text-white">Videos</Link></li>
-                <li><Link href="/eventos" className="text-black dark:text-zinc-300 transition-colors hover:text-[#ff44cc] dark:hover:text-white">Eventos</Link></li>
-                <li><Link href="/revista" className="text-black dark:text-zinc-300 transition-colors hover:text-[#ff44cc] dark:hover:text-white">Revista</Link></li>
-                <li><Link href="/loja" className="text-black dark:text-zinc-300 transition-colors hover:text-[#ff44cc] dark:hover:text-white">Loja</Link></li>
-              </ul>
-            </nav>
-          )}
-        </>
-      )
-    case 2:
-      return (
-        <header className="flex justify-center items-center py-4 border-b border-gray-200 dark:border-zinc-800 mb-8 w-full">
-          <Link href="/" onDoubleClick={toggle}>
-            <img
-              src="/logoskate.svg"
-              alt="100%SKATE"
-              style={{ height: '50px', width: 'auto', maxWidth: '180px' }}
-              className="dark:[filter:brightness(0)_saturate(100%)_invert(30%)_sepia(100%)_saturate(500%)_hue-rotate(280deg)_brightness(1.2)] transition-all duration-300 cursor-pointer"
-            />
-          </Link>
-        </header>
-      )
-    default:
-      throw new Error(
-        `Invalid level: ${JSON.stringify(level) || typeof level}, only 1 or 2 are allowed`,
-      )
-  }
+          <div>
+            <h4 className="font-black uppercase text-sm mb-4 tracking-widest">Conteúdo</h4>
+            <ul className="space-y-2 text-gray-400 text-xs">
+              <li><Link href="/fiksperto" className="hover:text-white transition-colors">Fiksperto</Link></li>
+              <li><Link href="/videos" className="hover:text-white transition-colors">Vídeos</Link></li>
+              <li><Link href="/eventos" className="hover:text-white transition-colors">Eventos</Link></li>
+              <li><Link href="/revista" className="hover:text-white transition-colors">Revista</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-black uppercase text-sm mb-4 tracking-widest">Institucional</h4>
+            <ul className="space-y-2 text-gray-400 text-xs">
+              <li><Link href="/nossa-historia" className="hover:text-white transition-colors">Nossa História</Link></li>
+              <li><Link href="/contato" className="hover:text-white transition-colors">Contato</Link></li>
+              <li><Link href="/loja" className="hover:text-white transition-colors">Loja</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-black uppercase text-sm mb-4 tracking-widest">Redes Sociais</h4>
+            <ul className="space-y-2 text-gray-400 text-xs">
+              <li><a href="https://instagram.com/cemporcentoskate" target="_blank" className="hover:text-white transition-colors">Instagram</a></li>
+              <li><a href="https://youtube.com/@CemporcentoSKATE_" target="_blank" className="hover:text-white transition-colors">YouTube</a></li>
+              <li><a href="https://tiktok.com/@cemporcentoskate" target="_blank" className="hover:text-white transition-colors">TikTok</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="border-t border-gray-800 pt-6 text-center text-gray-500 text-xs">
+          © {new Date().getFullYear()} 100% SKATE — Todos os direitos reservados.
+        </div>
+      </div>
+    </footer>
+  )
 }
