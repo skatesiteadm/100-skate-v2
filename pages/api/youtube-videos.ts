@@ -5,14 +5,22 @@ const API_KEY = process.env.YOUTUBE_API_KEY
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    // Busca os 10 mais recentes para ter margem para filtrar shorts
-    const searchRes = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&order=date&maxResults=25&type=video`
+    const channelRes = await fetch(
+      `https://www.googleapis.com/youtube/v3/channels?key=${API_KEY}&id=${CHANNEL_ID}&part=contentDetails`
     )
-    const searchData = await searchRes.json()
-    const ids = searchData.items?.map((i: any) => i.id.videoId).join(',')
+    const channelData = await channelRes.json()
+    const uploadsPlaylistId = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads
 
-    // Busca detalhes para pegar duração
+    if (!uploadsPlaylistId) {
+      return res.status(500).json({ videos: [] })
+    }
+
+    const playlistRes = await fetch(
+      `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${uploadsPlaylistId}&part=snippet&maxResults=20`
+    )
+    const playlistData = await playlistRes.json()
+    const ids = playlistData.items?.map((i: any) => i.snippet.resourceId.videoId).join(',')
+
     const detailRes = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${ids}&part=contentDetails,snippet`
     )
@@ -21,13 +29,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const videos = detailData.items
       ?.filter((item: any) => {
         const duration = item.contentDetails.duration
-        // Filtra shorts — duração menor que PT1M (1 minuto)
         const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
-        const hours = parseInt(match?.[1] || '0')
-        const minutes = parseInt(match?.[2] || '0')
-        const seconds = parseInt(match?.[3] || '0')
-        const total = hours * 3600 + minutes * 60 + seconds
-        return total > 60
+        const h = parseInt(match?.[1] || '0')
+        const m = parseInt(match?.[2] || '0')
+        const s = parseInt(match?.[3] || '0')
+        return h * 3600 + m * 60 + s > 60
       })
       .slice(0, 6)
       .map((item: any) => ({
