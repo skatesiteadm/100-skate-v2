@@ -24,7 +24,6 @@ const NO_POSTS: Post[] = []
 export default function PostPage(props: PostPageProps) {
   const { preview, loading, morePosts = NO_POSTS, post, settings } = props
   const { title = demo.title } = settings || {}
-
   const slug = post?.slug
 
   if (!slug && !preview) {
@@ -34,12 +33,11 @@ export default function PostPage(props: PostPageProps) {
   return (
     <>
       <PostPageHead settings={settings} post={post} />
-
       <Layout preview={preview} loading={loading}>
         <Container>
-          <BlogHeader title={title} level={2} />
+          <BlogHeader title={title} description={[]} level={1} />
           {preview && !post ? (
-            <PostTitle>Loading…</PostTitle>
+            <PostTitle>Loading...</PostTitle>
           ) : (
             <>
               <article>
