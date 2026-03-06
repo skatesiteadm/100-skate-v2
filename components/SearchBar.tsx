@@ -63,7 +63,7 @@ export default function SearchBar() {
   return (
     <>
       {/* Desktop: input já visível */}
-      <form onSubmit={handleSubmit} className="hidden md:flex items-center gap-2 bg-white/10 rounded-full px-3 py-1">
+      <form onSubmit={handleSubmit} className="flex items-center gap-2 bg-white/10 rounded-full px-3 py-1">
         <LupaIcon className="w-3 h-3 invert opacity-60" />
         <input
           type="text"
