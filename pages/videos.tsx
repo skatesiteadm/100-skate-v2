@@ -82,7 +82,7 @@ export default function VideosPage() {
                     className="transition-transform duration-500 group-hover:scale-105"
                   />
                   <div style={{ position: 'absolute', inset: 0 }} className="flex items-center justify-center">
-                   <div style={{ backgroundColor: '#cc0000' }} className="rounded-full w-8 h-8 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div style={{ backgroundColor: '#cc0000' }} className="rounded-full w-8 h-8 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
                       <svg viewBox="0 0 24 24" fill="white" className="w-4 h-4 ml-0.5">
                         <path d="M8 5v14l11-7z" />
                       </svg>
@@ -96,16 +96,13 @@ export default function VideosPage() {
             ))}
           </div>
 
+          <PodcastCarousel />
+
           <div className="flex justify-center mb-16">
             <button
               onClick={() => window.open('https://youtube.com/@CemporcentoSKATE_', '_blank')}
               className="bg-black hover:bg-gray-800 text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest transition-colors"
             >
-                </div>
-
-          <PodcastCarousel />
-
-          <div className="flex justify-center mb-16">
               Ver Mais Vídeos
             </button>
           </div>
