@@ -22,7 +22,11 @@ export function BlogGrid({ posts = [], className }: BlogGridProps) {
   return (
     <div className={cn('flex flex-col gap-4 mb-12', className)}>
       {hero && (
-        <Link href={`/posts/${hero.slug}`} className="relative overflow-hidden rounded-xl group w-full" style={{ height: '420px' }}>
+        <Link 
+          href={`/posts/${hero.slug}`} 
+          className="relative overflow-hidden rounded-xl group w-full bg-gray-100 dark:bg-[#111111]" 
+          style={{ height: '420px' }}
+        >
           <Image
             src={hero.imageUrl}
             alt={hero.title || ''}
@@ -45,7 +49,11 @@ export function BlogGrid({ posts = [], className }: BlogGridProps) {
       )}
       <div className="grid grid-cols-2 gap-4" style={{ height: '260px' }}>
         {rest.slice(0, 2).map((post) => (
-          <Link key={post.id} href={`/posts/${post.slug}`} className="relative overflow-hidden rounded-xl group">
+          <Link 
+            key={post.id} 
+            href={`/posts/${post.slug}`} 
+            className="relative overflow-hidden rounded-xl group bg-gray-100 dark:bg-[#111111]"
+          >
             <Image
               src={post.imageUrl}
               alt={post.title || ''}
