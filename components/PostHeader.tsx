@@ -10,20 +10,24 @@ export default function PostHeader(
   const { title, coverImage, date, author, slug } = props
   return (
     <>
-      <PostTitle>{title}</PostTitle>
-      <div className="hidden md:mb-12 md:block">
-        {author && <Avatar name={author.name} picture={author.picture} />}
-      </div>
-      <div className="mb-8 sm:mx-0 md:mb-16">
+      <div className="mb-8 sm:mx-0">
         <CoverImage title={title} image={coverImage} priority slug={slug} />
       </div>
-      <div className="mx-auto max-w-2xl">
-        <div className="mb-6 block md:hidden">
-          {author && <Avatar name={author.name} picture={author.picture} />}
+      <div className="max-w-3xl mx-auto">
+        <div className="flex items-center gap-3 mb-4 text-xs uppercase tracking-widest">
+          <span className="bg-black text-white px-2 py-1 rounded font-bold">Skate</span>
+          {date && (
+            <span className="text-gray-500">
+              <Date dateString={date} />
+            </span>
+          )}
         </div>
-        <div className="mb-6 text-lg">
-          <Date dateString={date} />
-        </div>
+        <PostTitle>{title}</PostTitle>
+        {author && (
+          <div className="mb-8">
+            <Avatar name={author.name} picture={author.picture} />
+          </div>
+        )}
       </div>
     </>
   )
