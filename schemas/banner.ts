@@ -15,13 +15,13 @@ export default defineType({
       name: 'posicao',
       title: 'Posicao',
       type: 'string',
-      options: {
-        list: [
-          { title: 'Topo (970x90)', value: 'topo' },
-          { title: 'Sidebar (160x600)', value: 'sidebar' },
-          { title: 'Mobile rodape (320x50)', value: 'mobile' },
-        ],
-      },
+     options: {
+  list: [
+    { title: 'Topo - desktop e mobile (970x90)', value: 'topo' },
+    { title: 'Sidebar - desktop (160x600)', value: 'sidebar' },
+    { title: 'Rodape fixo - mobile (320x50)', value: 'mobile' },
+  ],
+},
       validation: (Rule) => Rule.required(),
     }),
     defineField({
