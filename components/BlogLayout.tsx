@@ -13,7 +13,7 @@ export default function BlogLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-950 transition-colors duration-300">
       <AlertBanner preview={preview} loading={loading} />
       <main className="flex-1 pb-16 md:pb-0">
         <div className="flex gap-6 max-w-screen-2xl mx-auto px-4">
