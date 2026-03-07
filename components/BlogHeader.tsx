@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import SearchBar from 'components/SearchBar'
 import { useDarkMode } from 'lib/darkMode'
+import { motion } from 'framer-motion'
 
 export default function BlogHeader({
   title,
@@ -13,7 +14,7 @@ export default function BlogHeader({
   level: 1 | 2
   hideNav?: boolean
 }) {
-  const { toggle } = useDarkMode()
+  const { dark, toggle } = useDarkMode()
 
   switch (level) {
     case 1:
@@ -34,21 +35,28 @@ export default function BlogHeader({
               </div>
             </div>
           </div>
+
           <header className="flex justify-center items-center pt-1 pb-0 w-full">
-            <Link
-              href="/"
-              className="flex justify-center"
-              onDoubleClick={toggle}
-              title="Duplo clique para alternar modo escuro"
-            >
-              <img
+            <div style={{ perspective: '800px' }}>
+              <motion.img
                 src="/logoskate.svg"
                 alt="CEMPORCENTOSKATE"
-                style={{ height: '220px', width: 'auto' }}
-                className="dark:[filter:brightness(0)_saturate(100%)_invert(30%)_sepia(100%)_saturate(500%)_hue-rotate(280deg)_brightness(1.2)] transition-all duration-300 cursor-pointer"
+                onDoubleClick={toggle}
+                animate={{ rotateX: dark ? 180 : 0 }}
+                transition={{ duration: 0.6, type: 'spring', stiffness: 180 }}
+                style={{
+                  height: '220px',
+                  width: 'auto',
+                  cursor: 'pointer',
+                  filter: dark
+                    ? 'brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(500%) hue-rotate(280deg) brightness(1.2)'
+                    : 'brightness(0)',
+                  transition: 'filter 0.4s ease',
+                }}
               />
-            </Link>
+            </div>
           </header>
+
           {!hideNav && (
             <nav className="w-full border-y border-zinc-800 mb-14 overflow-x-auto">
               <ul className="flex gap-4 md:gap-8 px-4 md:px-8 py-6 text-xs md:text-sm font-bold uppercase whitespace-nowrap justify-center">
@@ -65,14 +73,25 @@ export default function BlogHeader({
     case 2:
       return (
         <header className="flex justify-center items-center py-4 border-b border-zinc-800 mb-8 w-full">
-          <Link href="/" onDoubleClick={toggle}>
-            <img
+          <div style={{ perspective: '800px' }}>
+            <motion.img
               src="/logoskate.svg"
               alt="100%SKATE"
-              style={{ height: '50px', width: 'auto', maxWidth: '180px' }}
-              className="dark:[filter:brightness(0)_saturate(100%)_invert(30%)_sepia(100%)_saturate(500%)_hue-rotate(280deg)_brightness(1.2)] transition-all duration-300 cursor-pointer"
+              onDoubleClick={toggle}
+              animate={{ rotateX: dark ? 180 : 0 }}
+              transition={{ duration: 0.6, type: 'spring', stiffness: 180 }}
+              style={{
+                height: '50px',
+                width: 'auto',
+                maxWidth: '180px',
+                cursor: 'pointer',
+                filter: dark
+                  ? 'brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(500%) hue-rotate(280deg) brightness(1.2)'
+                  : 'brightness(0)',
+                transition: 'filter 0.4s ease',
+              }}
             />
-          </Link>
+          </div>
         </header>
       )
     default:
