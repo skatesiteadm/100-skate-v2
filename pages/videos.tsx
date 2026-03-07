@@ -28,9 +28,7 @@ export default function VideosPage() {
 
   const activeTitle = videos.find((v) => v.id === activeVideo)?.title
   const gridVideos = videos.filter((v) => v.id !== activeVideo)
-  const cols = 4
-  const trimmed = Math.floor(gridVideos.length / cols) * cols
-  const displayVideos = gridVideos.slice(0, trimmed)
+  const displayVideos = gridVideos.slice(0, 12)
 
   return (
     <>
