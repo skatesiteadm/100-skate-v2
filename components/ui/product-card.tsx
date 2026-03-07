@@ -28,7 +28,7 @@ export function ProductCard({
   return (
     <div
       className={cn(
-        'group relative flex flex-col items-center overflow-hidden rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-[#111111] p-5 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1',
+        'group relative flex flex-col items-center overflow-hidden rounded-xl border border-gray-200 dark:border-zinc-700 bg-white dark:bg-[#1e1e1e] p-5 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1',
         className
       )}
       {...props}
