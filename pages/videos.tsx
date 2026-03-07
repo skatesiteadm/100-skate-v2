@@ -8,7 +8,7 @@ interface Video {
   id: string
   title: string
   thumbnail: string
-  duration: number
+  duration: string
 }
 
 export default function VideosPage() {
@@ -23,7 +23,6 @@ export default function VideosPage() {
         const all = data.videos || []
         setVideos(all)
         setActiveVideo(all[0]?.id || null)
-        setActiveVideo(firstLong?.id || all[0]?.id || null)
       })
   }, [])
 
@@ -105,7 +104,6 @@ export default function VideosPage() {
               Ver Mais Vídeos
             </button>
           </div>
-
         </div>
       </Layout>
     </>
