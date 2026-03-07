@@ -67,9 +67,9 @@ export default function LojaPreview() {
 
   return (
     <section className="my-12">
-   <div className="border-b-2 border-black dark:border-white pb-2 mb-8">
+   <div className="border-b-2 border-black dark:border-gray-100 pb-2 mb-8">
   <Link href="/loja" className="block hover:opacity-70 transition-opacity">
-    <h2 className="text-xl font-black uppercase tracking-widest cursor-pointer text-black dark:text-white">
+    <h2 className="text-xl font-black uppercase tracking-widest cursor-pointer text-black dark:text-gray-100">
       Loja →
     </h2>
   </Link>
