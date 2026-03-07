@@ -22,14 +22,13 @@ export default function VideosPage() {
       .then((data) => {
         const all = data.videos || []
         setVideos(all)
-        const firstLong = all.find((v: Video) => v.duration > 120)
+        setActiveVideo(all[0]?.id || null)
         setActiveVideo(firstLong?.id || all[0]?.id || null)
       })
   }, [])
 
   const activeTitle = videos.find((v) => v.id === activeVideo)?.title
   const gridVideos = videos.filter((v) => v.id !== activeVideo)
-
   const cols = 4
   const trimmed = Math.floor(gridVideos.length / cols) * cols
   const displayVideos = gridVideos.slice(0, trimmed)
@@ -42,7 +41,7 @@ export default function VideosPage() {
           <BlogHeader title="100% SKATE" description={[]} level={1} />
 
           {activeTitle && (
-            <h2 className="text-xl font-black uppercase mb-4 leading-tight">
+            <h2 className="text-xl font-black uppercase mb-4 leading-tight text-black dark:text-white">
               {activeTitle}
             </h2>
           )}
@@ -59,7 +58,7 @@ export default function VideosPage() {
             </div>
           )}
 
-          <h3 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest">
+          <h3 className="text-xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-6 tracking-widest text-black dark:text-white">
             Mais Vídeos
           </h3>
 
@@ -89,7 +88,7 @@ export default function VideosPage() {
                     </div>
                   </div>
                 </div>
-                <h3 className="text-xs font-bold uppercase leading-tight group-hover:underline line-clamp-2">
+                <h3 className="text-xs font-bold uppercase leading-tight group-hover:underline line-clamp-2 text-black dark:text-white">
                   {video.title}
                 </h3>
               </button>
@@ -101,7 +100,7 @@ export default function VideosPage() {
           <div className="flex justify-center mb-16">
             <button
               onClick={() => window.open('https://youtube.com/@CemporcentoSKATE_', '_blank')}
-              className="bg-black hover:bg-gray-800 text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest transition-colors"
+              className="bg-black dark:bg-white hover:bg-[#ff44cc] dark:hover:bg-[#ff44cc] text-white dark:text-black dark:hover:text-white font-black uppercase text-sm px-8 py-4 rounded-full tracking-widest transition-colors"
             >
               Ver Mais Vídeos
             </button>
