@@ -42,7 +42,7 @@ export default function BlogHeader({
                 src="/logoskate.svg"
                 alt="CEMPORCENTOSKATE"
                 onDoubleClick={toggle}
-                animate={{ rotateX: dark ? 180 : 0 }}
+                animate={{ rotateX: dark ? 0 : -180 }}
                 transition={{ duration: 0.6, type: 'spring', stiffness: 180 }}
                 style={{
                   height: '220px',
@@ -78,7 +78,7 @@ export default function BlogHeader({
               src="/logoskate.svg"
               alt="100%SKATE"
               onDoubleClick={toggle}
-              animate={{ rotateX: dark ? 180 : 0 }}
+              animate={{ rotateX: dark ? 0 : -180 }}
               transition={{ duration: 0.6, type: 'spring', stiffness: 180 }}
               style={{
                 height: '50px',
