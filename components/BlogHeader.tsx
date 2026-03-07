@@ -37,17 +37,27 @@ export default function BlogHeader({
           </div>
 
           <header className="flex justify-center items-center pt-1 pb-0 w-full">
-            <div style={{ perspective: '800px' }}>
-  <Link href="/">
-    <motion.img
-      src="/logoskate.svg"
-      onDoubleClick={(e) => { e.preventDefault(); toggle() }}
-      ...
-    />
-  </Link>
-</div>
-          </header>
-
+  <div style={{ perspective: '800px' }}>
+    <Link href="/">
+      <motion.img
+        src="/logoskate.svg"
+        alt="CEMPORCENTOSKATE"
+        onDoubleClick={(e) => { e.preventDefault(); toggle() }}
+        animate={{ rotateX: dark ? 360 : 0 }}
+        transition={{ duration: 0.6, type: 'spring', stiffness: 180 }}
+        style={{
+          height: '220px',
+          width: 'auto',
+          cursor: 'pointer',
+          filter: dark
+            ? 'brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(500%) hue-rotate(280deg) brightness(1.2)'
+            : 'brightness(0)',
+          transition: 'filter 0.4s ease',
+        }}
+      />
+    </Link>
+  </div>
+</header>
           {!hideNav && (
             <nav className="w-full border-y border-zinc-800 mb-14 overflow-x-auto">
               <ul className="flex gap-4 md:gap-8 px-4 md:px-8 py-6 text-xs md:text-sm font-bold uppercase whitespace-nowrap justify-center">
