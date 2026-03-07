@@ -1,15 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-const CHANNEL_ID = 'UCP3_207yNHXuUOcfDnf6aEQ'
+const PLAYLIST_ID = 'PLmu1x9wkyRKpDoznugZNL_XP7b53kbf5L'
 const API_KEY = process.env.YOUTUBE_API_KEY
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const searchRes = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&order=date&maxResults=50&type=video`
+    const playlistRes = await fetch(
+      `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${PLAYLIST_ID}&part=snippet&maxResults=50`
     )
-    const searchData = await searchRes.json()
-    const ids = searchData.items?.map((i: any) => i.id.videoId).join(',')
+    const playlistData = await playlistRes.json()
+    const ids = playlistData.items?.map((i: any) => i.snippet.resourceId.videoId).join(',')
 
     const detailRes = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${ids}&part=contentDetails,snippet`
@@ -20,17 +20,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ?.filter((item: any) => {
         const duration = item.contentDetails.duration
         const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
-        const hours = parseInt(match?.[1] || '0')
-        const minutes = parseInt(match?.[2] || '0')
-        const seconds = parseInt(match?.[3] || '0')
-        const total = hours * 3600 + minutes * 60 + seconds
-        return total > 90
+        const h = parseInt(match?.[1] || '0')
+        const m = parseInt(match?.[2] || '0')
+        const s = parseInt(match?.[3] || '0')
+        return h * 3600 + m * 60 + s > 62
       })
-      .slice(0, 13)
+      .slice(0, 15)
       .map((item: any) => ({
         id: item.id,
         title: item.snippet.title,
         thumbnail: item.snippet.thumbnails.high.url,
+        duration: item.contentDetails.duration,
       })) || []
 
     res.setHeader('Cache-Control', 's-maxage=3600')
