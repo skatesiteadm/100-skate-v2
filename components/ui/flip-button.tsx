@@ -27,28 +27,29 @@ export function DarkModeButton({
     >
       {/* Shape com logoskate2.svg flipando */}
       <div style={{ perspective: '600px' }}>
-        <motion.div
-          animate={{ rotateX: dark ? 180 : 0 }}
-          transition={{ duration: 0.5, type: 'spring', stiffness: 200 }}
-          style={{
-            width: '28px',
-            height: '36px',
-            borderRadius: '6px 6px 8px 8px',
-            background: '#ff44cc',
-            transform: 'rotate(-4deg)',
-            flexShrink: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <img
-            src="/logoskate2.svg"
-            alt="%"
-            style={{ width: '18px', height: '18px', filter: 'brightness(0) invert(1)' }}
-          />
-        </motion.div>
-      </div>
+  <motion.div
+    animate={{ rotateX: dark ? 180 : 0 }}
+    transition={{ duration: 0.5, type: 'spring', stiffness: 200 }}
+    style={{
+      width: '52px',
+      height: '28px',
+      borderRadius: '40% 40% 38% 38% / 50% 50% 50% 50%',
+      background: '#1a1a1a',
+      border: '2px solid #333',
+      transform: 'rotate(-5deg)',
+      flexShrink: 0,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}
+  >
+    <img
+      src="/logoskate2.svg"
+      alt="%"
+      style={{ width: '22px', height: '22px' }}
+    />
+  </motion.div>
+</div>
 
       {/* Label */}
       <span
