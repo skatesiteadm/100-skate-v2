@@ -133,7 +133,7 @@ export default function EventosPage({ eventos }: PageProps) {
                   </p>
                   <Countdown date={new Date(evento.date)} />
                   {evento.linkInscricao && (
-                    
+                    <a
                       href={evento.linkInscricao}
                       target="_blank"
                       rel="noreferrer"
