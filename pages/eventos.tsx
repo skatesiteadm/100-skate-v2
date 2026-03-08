@@ -75,7 +75,7 @@ function Countdown({ date }: { date: Date }) {
   return (
     <div className="grid grid-cols-4 gap-2 mt-3">
       {[{ v: days, l: 'Dias' }, { v: hours, l: 'Hrs' }, { v: minutes, l: 'Min' }, { v: seconds, l: 'Seg' }].map((u) => (
-        <div key={u.l} className="bg-black/10 rounded-xl p-2 text-center">
+        <div key={u.l} className="bg-black/10 dark:bg-white/10 rounded-xl p-2 text-center">
           <div className="text-lg font-black tabular-nums">{u.v.toString().padStart(2, '0')}</div>
           <div className="text-xs font-bold uppercase tracking-widest opacity-60">{u.l}</div>
         </div>
@@ -95,8 +95,7 @@ export default function EventosPage() {
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
           <BlogHeader title="100% SKATE" description={[]} level={1} />
 
-          {/* Próximos Eventos */}
-          <h1 className="text-3xl font-black uppercase border-b-2 border-black pb-2 mb-8 tracking-widest">
+          <h1 className="text-3xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-8 tracking-widest text-black dark:text-white">
             Próximos Eventos
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
@@ -106,7 +105,7 @@ export default function EventosPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -4 }}
-                className="rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm"
+                className="rounded-2xl overflow-hidden border border-gray-200 dark:border-zinc-800 bg-white dark:bg-[#111111] shadow-sm"
               >
                 <div className="relative overflow-hidden h-48">
                   <img src={evento.image} alt={evento.title} className="w-full h-full object-cover" />
@@ -116,17 +115,16 @@ export default function EventosPage() {
                   </span>
                 </div>
                 <div className="p-5">
-                  <h3 className="font-black uppercase text-lg leading-tight">{evento.title}</h3>
-                  <p className="text-xs text-gray-500 mt-1 font-bold uppercase tracking-widest">{evento.location}</p>
-                  <p className="text-xs text-gray-400 mt-1">{evento.date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
+                  <h3 className="font-black uppercase text-lg leading-tight text-black dark:text-white">{evento.title}</h3>
+                  <p className="text-xs text-gray-500 dark:text-zinc-400 mt-1 font-bold uppercase tracking-widest">{evento.location}</p>
+                  <p className="text-xs text-gray-400 dark:text-zinc-500 mt-1">{evento.date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
                   <Countdown date={evento.date} />
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Eventos Passados */}
-          <h2 className="text-3xl font-black uppercase border-b-2 border-black pb-2 mb-8 tracking-widest">
+          <h2 className="text-3xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-8 tracking-widest text-black dark:text-white">
             Eventos Passados
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
@@ -135,19 +133,18 @@ export default function EventosPage() {
                 key={evento.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded-2xl overflow-hidden border border-gray-200 flex gap-4 p-4 bg-white"
+                className="rounded-2xl overflow-hidden border border-gray-200 dark:border-zinc-800 flex gap-4 p-4 bg-white dark:bg-[#111111]"
               >
                 <img src={evento.image} alt={evento.title} className="w-32 h-24 object-cover rounded-xl flex-shrink-0 grayscale" />
                 <div className="flex flex-col justify-center">
-                  <span className="text-xs font-black uppercase tracking-widest text-gray-400 mb-1">Encerrado</span>
-                  <h3 className="font-black uppercase text-base leading-tight">{evento.title}</h3>
-                  <p className="text-xs text-gray-500 mt-1 font-bold">{evento.location}</p>
-                  <p className="text-xs text-gray-400 mt-1">{evento.date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
+                  <span className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-zinc-500 mb-1">Encerrado</span>
+                  <h3 className="font-black uppercase text-base leading-tight text-black dark:text-white">{evento.title}</h3>
+                  <p className="text-xs text-gray-500 dark:text-zinc-400 mt-1 font-bold">{evento.location}</p>
+                  <p className="text-xs text-gray-400 dark:text-zinc-500 mt-1">{evento.date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
                 </div>
               </motion.div>
             ))}
           </div>
-
         </div>
       </Layout>
     </>
