@@ -17,7 +17,7 @@ export default function YoutubeSection({ videos }: YoutubeSectionProps) {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {videos.map((video) => (
-          
+          <a
             key={video.id}
             href={`https://www.youtube.com/watch?v=${video.id}`}
             target="_blank"
