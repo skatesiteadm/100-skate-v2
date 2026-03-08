@@ -2,6 +2,7 @@ import Link from 'next/link'
 import SearchBar from 'components/SearchBar'
 import { useDarkMode } from 'lib/darkMode'
 import { useRef } from 'react'
+import { useRouter } from 'next/router'
 
 export default function BlogHeader({
   title,
@@ -15,6 +16,7 @@ export default function BlogHeader({
   hideNav?: boolean
 }) {
   const { dark, toggle } = useDarkMode()
+  const router = useRouter()
   const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   function handleLogoClick() {
@@ -25,7 +27,7 @@ export default function BlogHeader({
     } else {
       clickTimer.current = setTimeout(() => {
         clickTimer.current = null
-        window.location.href = '/'
+        router.push('/')
       }, 250)
     }
   }
@@ -64,7 +66,6 @@ export default function BlogHeader({
                 width: 'auto',
                 cursor: 'pointer',
                 filter: logoFilter,
-                transition: 'filter 0.4s ease',
               }}
             />
           </header>
@@ -95,7 +96,6 @@ export default function BlogHeader({
               maxWidth: '180px',
               cursor: 'pointer',
               filter: logoFilter,
-              transition: 'filter 0.4s ease',
             }}
           />
         </header>
