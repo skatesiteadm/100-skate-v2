@@ -23,7 +23,7 @@ export default function NossaHistoriaPage() {
                   Mais de 30 anos de resistência.
                 </h1>
                 <blockquote className="text-gray-400 text-lg leading-relaxed mb-6">
-                  "Era um grupo de amigos descontentes com o que tinha de mídia no Brasil. Fizemos um zine. E a gente vem documentando o skate brasileiro há 30 anos."
+                  &ldquo;Era um grupo de amigos descontentes com o que tinha de mídia no Brasil. Fizemos um zine. E a gente vem documentando o skate brasileiro há 30 anos.&rdquo;
                 </blockquote>
                 <cite className="not-italic">
                   <span className="text-[#ff44cc] text-sm font-black uppercase tracking-widest block">Marco Cruz</span>
