@@ -69,9 +69,9 @@ export default function ContatoPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
 
             <section>
-              <h2 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-8 tracking-widest">
-                Fale com a gente
-              </h2>
+              <h2 className="text-xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-8 tracking-widest text-black dark:text-white">
+  Fale com a gente
+</h2>
 
               {enviado ? (
                 <div className="bg-black text-white rounded-2xl p-8 text-center">
