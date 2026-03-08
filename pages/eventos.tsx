@@ -73,14 +73,10 @@ function Countdown({ date }: { date: Date }) {
   const seconds = timeLeft % 60
 
   return (
-    <div className="grid grid-cols-4 gap-2 mt-3">
-      {[{ v: days, l: 'Dias' }, { v: hours, l: 'Hrs' }, { v: minutes, l: 'Min' }, { v: seconds, l: 'Seg' }].map((u) => (
-        <div key={u.l} className="bg-black/10 dark:bg-white/10 rounded-xl p-2 text-center">
-          <div className="text-lg font-black tabular-nums">{u.v.toString().padStart(2, '0')}</div>
-          <div className="text-xs font-bold uppercase tracking-widest opacity-60">{u.l}</div>
-        </div>
-      ))}
-    </div>
+    <div key={u.l} className="bg-zinc-800 rounded-xl p-2 text-center">
+  <div className="text-lg font-black tabular-nums text-white">{u.v.toString().padStart(2, '0')}</div>
+  <div className="text-xs font-bold uppercase tracking-widest text-zinc-400">{u.l}</div>
+</div>
   )
 }
 
