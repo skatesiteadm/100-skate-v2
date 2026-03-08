@@ -116,7 +116,7 @@ export default function SearchBar() {
             <div className="max-h-96 overflow-y-auto">
               {loading && <p className="text-sm text-gray-400 p-5">Buscando...</p>}
               {!loading && query.length >= 2 && results.length === 0 && (
-                <p className="text-sm text-gray-400 p-5">Nenhum resultado para "{query}".</p>
+                <p className="text-sm text-gray-400 p-5">Nenhum resultado para &ldquo;{query}&rdquo;.</p>
               )}
               {!loading && query.length < 2 && (
                 <p className="text-sm text-gray-400 p-5">Digite pelo menos 2 caracteres para buscar.</p>
