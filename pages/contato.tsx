@@ -42,6 +42,8 @@ export default function ContatoPage() {
     },
   })
 
+  const inputBase = 'bg-white dark:bg-zinc-800 text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border-2 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none transition-colors'
+
   return (
     <>
       <Head><title>Contato — 100% SKATE</title></Head>
@@ -70,8 +72,8 @@ export default function ContatoPage() {
 
             <section>
               <h2 className="text-xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-8 tracking-widest text-black dark:text-white">
-  Fale com a gente
-</h2>
+                Fale com a gente
+              </h2>
 
               {enviado ? (
                 <div className="bg-black text-white rounded-2xl p-8 text-center">
@@ -82,43 +84,43 @@ export default function ContatoPage() {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
 
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs font-black uppercase tracking-widest">Nome *</label>
+                    <label className="text-xs font-black uppercase tracking-widest text-black dark:text-white">Nome *</label>
                     <input
                       type="text"
                       {...field('nome')}
-                      className={`border-2 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none transition-colors ${errors.nome ? 'border-red-500 focus:border-red-500' : 'border-black focus:border-[#ff44cc]'}`}
+                      className={`${inputBase} ${errors.nome ? 'border-red-500 focus:border-red-500' : 'border-zinc-300 dark:border-zinc-600 focus:border-[#ff44cc]'}`}
                       placeholder="Seu nome"
                     />
                     {errors.nome && <span className="text-red-500 text-xs font-bold">{errors.nome}</span>}
                   </div>
 
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs font-black uppercase tracking-widest">Email *</label>
+                    <label className="text-xs font-black uppercase tracking-widest text-black dark:text-white">Email *</label>
                     <input
                       type="email"
                       {...field('email')}
-                      className={`border-2 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none transition-colors ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-black focus:border-[#ff44cc]'}`}
+                      className={`${inputBase} ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-zinc-300 dark:border-zinc-600 focus:border-[#ff44cc]'}`}
                       placeholder="seu@email.com"
                     />
                     {errors.email && <span className="text-red-500 text-xs font-bold">{errors.email}</span>}
                   </div>
 
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs font-black uppercase tracking-widest">Empresa / Marca</label>
+                    <label className="text-xs font-black uppercase tracking-widest text-black dark:text-white">Empresa / Marca</label>
                     <input
                       type="text"
                       {...field('empresa')}
-                      className="border-2 border-black rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-[#ff44cc] transition-colors"
+                      className={`${inputBase} border-zinc-300 dark:border-zinc-600 focus:border-[#ff44cc]`}
                       placeholder="Nome da empresa ou marca"
                     />
                   </div>
 
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs font-black uppercase tracking-widest">Mensagem *</label>
+                    <label className="text-xs font-black uppercase tracking-widest text-black dark:text-white">Mensagem *</label>
                     <textarea
                       {...field('mensagem')}
                       rows={5}
-                      className={`border-2 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none transition-colors resize-none ${errors.mensagem ? 'border-red-500 focus:border-red-500' : 'border-black focus:border-[#ff44cc]'}`}
+                      className={`${inputBase} resize-none ${errors.mensagem ? 'border-red-500 focus:border-red-500' : 'border-zinc-300 dark:border-zinc-600 focus:border-[#ff44cc]'}`}
                       placeholder="Conte sobre sua marca, objetivo e tipo de parceria..."
                     />
                     {errors.mensagem && <span className="text-red-500 text-xs font-bold">{errors.mensagem}</span>}
@@ -136,11 +138,11 @@ export default function ContatoPage() {
 
             <section className="flex flex-col gap-8">
               <div>
-                <h2 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest">
+                <h2 className="text-xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-6 tracking-widest text-black dark:text-white">
                   Onde Estamos
                 </h2>
-                <div className="text-sm text-gray-600 leading-relaxed space-y-1">
-                  <p className="font-black text-black">100 Skate Mag LTDA</p>
+                <div className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed space-y-1">
+                  <p className="font-black text-black dark:text-white">100 Skate Mag LTDA</p>
                   <p>Servidão Laura Duarte Prazeres SN</p>
                   <p>Campeche, Florianópolis SC</p>
                   <p>CEP 88065-175</p>
@@ -149,10 +151,10 @@ export default function ContatoPage() {
               </div>
 
               <div>
-                <h2 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest">
+                <h2 className="text-xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-6 tracking-widest text-black dark:text-white">
                   Email
                 </h2>
-                <p className="text-sm font-bold">contato@cemporcentoskate.com</p>
+                <p className="text-sm font-bold text-black dark:text-white">contato@cemporcentoskate.com</p>
               </div>
 
               <div className="bg-black text-white rounded-2xl p-6">
