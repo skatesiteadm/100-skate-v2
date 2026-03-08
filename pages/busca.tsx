@@ -60,7 +60,7 @@ export default function BuscaPage({ settings }: PageProps) {
 
   function getTypeLabel(type: string) {
     switch (type) {
-      case 'post': return 'Materia'
+      case 'post': return 'Matéria'
       case 'evento': return 'Evento'
       case 'revista': return 'Revista'
       default: return ''
@@ -71,7 +71,7 @@ export default function BuscaPage({ settings }: PageProps) {
     <>
       <SEO
         title={q ? `Busca: ${q}` : 'Busca'}
-        description={`Resultados de busca no site da 100%SKATE para "${q}".`}
+        description={`Resultados de busca no site da 100%SKATE para ${q}.`}
       />
       <Layout>
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
@@ -79,7 +79,7 @@ export default function BuscaPage({ settings }: PageProps) {
 
           <div className="mb-12">
             <h1 className="text-2xl md:text-3xl font-black uppercase mb-2 text-black dark:text-white">
-              {q ? `Resultados para "${q}"` : 'Busca'}
+              {q ? `Resultados para: ${q}` : 'Busca'}
             </h1>
             {!loading && results.length > 0 && (
               <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -89,13 +89,13 @@ export default function BuscaPage({ settings }: PageProps) {
           </div>
 
           {loading && (
-            <p className="text-gray-500 text-sm">Buscando...</p>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">Buscando...</p>
           )}
 
           {!loading && q.length >= 2 && results.length === 0 && (
             <div className="text-center py-16">
               <p className="text-xl font-bold text-gray-400 mb-2">Nenhum resultado encontrado.</p>
-              <p className="text-sm text-gray-500">Tente buscar com outros termos.</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Tente buscar com outros termos.</p>
             </div>
           )}
 
@@ -125,9 +125,9 @@ export default function BuscaPage({ settings }: PageProps) {
                     {item.title}
                   </h3>
                   {item.excerpt && (
-                    <p className="text-xs text-gray-500 line-clamp-2">{item.excerpt}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-2">{item.excerpt}</p>
                   )}
-                  <div className="text-xs text-gray-400">
+                  <div className="text-xs text-gray-400 dark:text-gray-500">
                     {item.author?.name && <span>{item.author.name}</span>}
                   </div>
                 </Link>
