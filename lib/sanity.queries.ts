@@ -99,5 +99,21 @@ export interface Settings {
   description?: any[]
   ogImage?: {
     title?: string
-  }
+ export const eventosQuery = `*[_type == "evento"] | order(date asc) {
+  _id,
+  title,
+  date,
+  location,
+  linkInscricao,
+  "image": image.asset->url,
+}`
+
+export interface Evento {
+  _id: string
+  title: string
+  date: string
+  location: string
+  image: string
+  linkInscricao?: string
+}
 }
