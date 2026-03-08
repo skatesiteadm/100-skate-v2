@@ -68,10 +68,10 @@ export default function LojaPage() {
           <BlogHeader title="100% SKATE" description={[]} level={1} />
 
           <div className="mb-10">
-            <h1 className="text-3xl font-black uppercase border-b-2 border-black pb-3 tracking-widest">
-              Loja
-            </h1>
-            <p className="text-gray-500 text-sm mt-2">Produtos oficiais 100% SKATE</p>
+         <h1 className="text-3xl font-black uppercase border-b-2 border-black dark:border-white pb-3 tracking-widest text-black dark:text-white">
+  Loja
+</h1>
+<p className="text-gray-500 dark:text-gray-400 text-sm mt-2">Produtos oficiais 100% SKATE</p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16">
