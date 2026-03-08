@@ -78,11 +78,11 @@ export default function BuscaPage({ settings }: PageProps) {
           <BlogHeader title="100% SKATE" description={[]} level={1} />
 
           <div className="mb-12">
-            <h1 className="text-2xl md:text-3xl font-black uppercase mb-2">
+            <h1 className="text-2xl md:text-3xl font-black uppercase mb-2 text-black dark:text-white">
               {q ? `Resultados para "${q}"` : 'Busca'}
             </h1>
             {!loading && results.length > 0 && (
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 {results.length} resultado{results.length !== 1 ? 's' : ''} encontrado{results.length !== 1 ? 's' : ''}
               </p>
             )}
@@ -121,7 +121,7 @@ export default function BuscaPage({ settings }: PageProps) {
                   <span className="text-[10px] uppercase tracking-widest text-[#ff44cc] font-bold">
                     {getTypeLabel(item._type)}
                   </span>
-                  <h3 className="text-sm font-bold uppercase leading-tight group-hover:text-[#ff44cc] transition-colors">
+                  <h3 className="text-sm font-bold uppercase leading-tight group-hover:text-[#ff44cc] transition-colors text-black dark:text-white">
                     {item.title}
                   </h3>
                   {item.excerpt && (
