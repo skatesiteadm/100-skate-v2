@@ -22,23 +22,21 @@ export default function FikspertoPage({ posts, settings }: PageProps) {
       <Layout preview={false}>
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
           <BlogHeader title="100% SKATE" description={[]} level={1} />
-
-          <h1 className="text-3xl font-black uppercase border-b-2 border-black pb-2 mb-8 tracking-widest">
+          <h1 className="text-3xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-8 tracking-widest text-black dark:text-white">
             Fiksperto
           </h1>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             {posts.map((post) => (
               <article key={post._id} className="flex flex-col gap-2">
-                <div className="relative aspect-video overflow-hidden rounded-xl">
+                <div className="relative aspect-video overflow-hidden rounded-xl bg-gray-100 dark:bg-zinc-900">
                   <CoverImage slug={post.slug} title={post.title} image={post.coverImage} />
                 </div>
-                <h3 className="text-sm font-bold uppercase leading-tight">
+                <h3 className="text-sm font-bold uppercase leading-tight text-black dark:text-white">
                   <Link href={`/posts/${post.slug}`} className="hover:text-[#ff44cc] transition-colors">
                     {post.title}
                   </Link>
                 </h3>
-                <div className="text-xs text-gray-500">
+                <div className="text-xs text-gray-500 dark:text-zinc-400">
                   {post.author?.name && <span>{post.author.name} • </span>}
                   <Date dateString={post.date} />
                 </div>
