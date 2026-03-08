@@ -52,14 +52,14 @@ export default function PodcastCarousel() {
       )}
 
       <section className="mb-12">
-        <h2 className="text-xl font-black uppercase border-b-2 border-black pb-2 mb-6 tracking-widest">
+        <h2 className="text-xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-6 tracking-widest text-black dark:text-white">
           Podcast →
         </h2>
 
         <div className="relative">
           <button
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-2xl font-black hover:bg-[#ff44cc] transition-colors shadow-lg"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 rounded-full bg-black dark:bg-gray-700 text-white flex items-center justify-center text-2xl font-black hover:bg-[#ff44cc] dark:hover:bg-[#ff44cc] transition-colors shadow-lg"
           >
             ‹
           </button>
@@ -88,7 +88,7 @@ export default function PodcastCarousel() {
                         </div>
                       </div>
                     </div>
-                    <h3 className="text-sm font-bold uppercase leading-tight group-hover:underline line-clamp-2">
+                    <h3 className="text-sm font-bold uppercase leading-tight group-hover:underline line-clamp-2 text-black dark:text-white">
                       {video.title}
                     </h3>
                   </button>
@@ -99,7 +99,7 @@ export default function PodcastCarousel() {
 
           <button
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-2xl font-black hover:bg-[#ff44cc] transition-colors shadow-lg"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 rounded-full bg-black dark:bg-gray-700 text-white flex items-center justify-center text-2xl font-black hover:bg-[#ff44cc] dark:hover:bg-[#ff44cc] transition-colors shadow-lg"
           >
             ›
           </button>
