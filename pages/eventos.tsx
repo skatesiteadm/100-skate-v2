@@ -57,6 +57,11 @@ const eventos: Evento[] = [
   },
 ]
 
+interface CountdownUnit {
+  v: number
+  l: string
+}
+
 function Countdown({ date }: { date: Date }) {
   const [timeLeft, setTimeLeft] = useState(0)
 
@@ -72,11 +77,22 @@ function Countdown({ date }: { date: Date }) {
   const minutes = Math.floor((timeLeft % 3600) / 60)
   const seconds = timeLeft % 60
 
+  const units: CountdownUnit[] = [
+    { v: days, l: 'Dias' },
+    { v: hours, l: 'Hrs' },
+    { v: minutes, l: 'Min' },
+    { v: seconds, l: 'Seg' },
+  ]
+
   return (
-    <div key={u.l} className="bg-zinc-800 rounded-xl p-2 text-center">
-  <div className="text-lg font-black tabular-nums text-white">{u.v.toString().padStart(2, '0')}</div>
-  <div className="text-xs font-bold uppercase tracking-widest text-zinc-400">{u.l}</div>
-</div>
+    <div className="grid grid-cols-4 gap-2 mt-3">
+      {units.map((unit) => (
+        <div key={unit.l} className="bg-zinc-800 rounded-xl p-2 text-center">
+          <div className="text-lg font-black tabular-nums text-white">{unit.v.toString().padStart(2, '0')}</div>
+          <div className="text-xs font-bold uppercase tracking-widest text-zinc-400">{unit.l}</div>
+        </div>
+      ))}
+    </div>
   )
 }
 
