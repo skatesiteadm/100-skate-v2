@@ -27,15 +27,14 @@ export default function RevistaPage({ revistas, settings }: PageProps) {
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
           <BlogHeader title="100% SKATE" description={[]} level={1} />
 
-          <h1 className="text-3xl font-black uppercase border-b-2 border-black pb-2 mb-8 tracking-widest">
+          <h1 className="text-3xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-8 tracking-widest text-black dark:text-white">
             Revista
           </h1>
 
           <div className="flex flex-col gap-8 mb-16">
             {revistas.map((revista) => (
-              <section key={revista._id} className="bg-black text-white rounded-2xl overflow-hidden">
+              <section key={revista._id} className="bg-black text-white rounded-2xl overflow-hidden border border-transparent dark:border-zinc-800">
                 <div className="grid grid-cols-1 md:grid-cols-2">
-                  {/* Capa */}
                   <div className="relative flex justify-center items-center p-8 md:p-12 bg-gradient-to-br from-gray-900 to-black">
                     {revista.capa && (
                       <div className="relative">
@@ -53,8 +52,6 @@ export default function RevistaPage({ revistas, settings }: PageProps) {
                       </div>
                     )}
                   </div>
-
-                  {/* Info */}
                   <div className="flex flex-col justify-center gap-5 p-8 md:p-12">
                     <div className="flex items-center gap-3">
                       <span className="text-xs font-black uppercase tracking-widest text-gray-400 border border-gray-700 px-3 py-1 rounded-full">
@@ -64,15 +61,12 @@ export default function RevistaPage({ revistas, settings }: PageProps) {
                         Revista
                       </span>
                     </div>
-
                     <h3 className="text-3xl md:text-4xl font-black uppercase leading-tight">
                       {revista.titulo}
                     </h3>
-
                     {revista.descricao && (
                       <p className="text-gray-400 leading-relaxed text-sm">{revista.descricao}</p>
                     )}
-
                     {revista.materiaDestaque && (
                       <div className="border-t border-gray-800 pt-5">
                         <span className="text-xs font-black uppercase tracking-widest text-gray-500 block mb-2">
@@ -114,19 +108,4 @@ export default function RevistaPage({ revistas, settings }: PageProps) {
 export const getStaticProps: GetStaticProps<PageProps> = async (ctx) => {
   const { preview: previewMode = false, previewData } = ctx
   const client = getClient(
-    previewMode ? { token: readToken, perspective: previewData } : undefined,
-  )
-  const [settings, revistas = []] = await Promise.all([
-    getSettings(client),
-    client.fetch(todasRevistasQuery),
-  ])
-  return {
-    props: {
-      revistas,
-      settings,
-      previewMode,
-      previewPerspective: typeof previewData === 'string' ? previewData : null,
-      token: previewMode ? readToken : '',
-    },
-  }
-}
+    previewMode ? { token: readToken, perspective: previewData } : undefin
