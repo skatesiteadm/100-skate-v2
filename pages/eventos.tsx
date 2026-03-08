@@ -183,10 +183,11 @@ export const getStaticProps: GetStaticProps<PageProps> = async (ctx) => {
   const client = getClient(
     previewMode ? { token: readToken, perspective: previewData } : undefined,
   )
-  const [settings, eventos = []] = await Promise.all([
-    getSettings(client),
-    client.fetch(eventosQuery),
-  ])
+const [settings, eventosData] = await Promise.all([
+  getSettings(client),
+  client.fetch(eventosQuery),
+])
+const eventos = eventosData || []
   return {
     props: {
       eventos,
