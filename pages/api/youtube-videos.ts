@@ -1,8 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-
 const CHANNEL_ID = 'UCP3_207yNHXuUOcfDnf6aEQ'
 const API_KEY = process.env.YOUTUBE_API_KEY
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const channelRes = await fetch(
@@ -10,22 +8,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     )
     const channelData = await channelRes.json()
     const uploadsPlaylistId = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads
-
     if (!uploadsPlaylistId) {
       return res.status(500).json({ videos: [] })
     }
-
     const playlistRes = await fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${uploadsPlaylistId}&part=snippet&maxResults=20`
+      `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${uploadsPlaylistId}&part=snippet&maxResults=20&_=${Date.now()}`
     )
     const playlistData = await playlistRes.json()
     const ids = playlistData.items?.map((i: any) => i.snippet.resourceId.videoId).join(',')
-
     const detailRes = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${ids}&part=contentDetails,snippet`
     )
     const detailData = await detailRes.json()
-
     const videos = detailData.items
       ?.filter((item: any) => {
         const duration = item.contentDetails.duration
@@ -41,8 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         title: item.snippet.title,
         thumbnail: item.snippet.thumbnails.high.url,
       })) || []
-
-    res.setHeader('Cache-Control', 's-maxage=3600')
+    res.setHeader('Cache-Control', 'no-store')
     res.status(200).json({ videos })
   } catch (error) {
     res.status(500).json({ videos: [] })
