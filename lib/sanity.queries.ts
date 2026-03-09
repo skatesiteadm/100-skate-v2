@@ -66,6 +66,17 @@ export const todasRevistasQuery = groq`
 }
 `
 
+export const eventosQuery = groq`
+*[_type == "evento"] | order(date asc) {
+  _id,
+  title,
+  date,
+  location,
+  linkInscricao,
+  "image": image.asset->url,
+}
+`
+
 export interface Author {
   name?: string
   picture?: any
@@ -99,14 +110,8 @@ export interface Settings {
   description?: any[]
   ogImage?: {
     title?: string
- export const eventosQuery = `*[_type == "evento"] | order(date asc) {
-  _id,
-  title,
-  date,
-  location,
-  linkInscricao,
-  "image": image.asset->url,
-}`
+  }
+}
 
 export interface Evento {
   _id: string
@@ -115,5 +120,4 @@ export interface Evento {
   location: string
   image: string
   linkInscricao?: string
-}
 }
