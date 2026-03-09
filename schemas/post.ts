@@ -50,6 +50,26 @@ export default defineType({
           options: {
             hotspot: true,
           },
+          {
+  type: 'object',
+  name: 'embed',
+  title: 'Embed (YouTube, Instagram, etc)',
+  fields: [
+    {
+      name: 'url',
+      type: 'url',
+      title: 'URL',
+      description: 'Cole o link do YouTube, Instagram, Twitter, Spotify...',
+      validation: (rule) => rule.required(),
+    },
+  ],
+  preview: {
+    select: { url: 'url' },
+    prepare({ url }) {
+      return { title: '🔗 Embed', subtitle: url }
+    },
+  },
+},
           fields: [
             {
               name: 'caption',
