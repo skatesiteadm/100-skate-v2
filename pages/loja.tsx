@@ -2,92 +2,115 @@ import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
 import { ProductCard } from 'components/ui/product-card'
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
 
-const produtos = [
-  {
-    id: 1,
-    name: 'Camiseta 100% SKATE',
-    tagline: 'Edição limitada 2025',
-    price: 89.90,
-    originalPrice: 119.90,
-    imageUrl: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80',
-    badge: 'Novo',
-    buyUrl: 'https://shopify.com',
-  },
-  {
-    id: 2,
-    name: 'Boné 100% SKATE',
-    tagline: 'Snapback aba reta',
-    price: 69.90,
-    imageUrl: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&q=80',
-    buyUrl: 'https://shopify.com',
-  },
-  {
-    id: 3,
-    name: 'Shape 100% SKATE',
-    tagline: 'Deck 8.0 maple canadense',
-    price: 249.90,
-    originalPrice: 299.90,
-    imageUrl: 'https://images.unsplash.com/photo-1547447134-cd3f5c716030?w=600&q=80',
-    badge: 'Oferta',
-    buyUrl: 'https://shopify.com',
-  },
-  {
-    id: 4,
-    name: 'Revista Edição 227',
-    tagline: 'Desafio de Rua — edição impressa',
-    price: 29.90,
-    imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&q=80',
-    buyUrl: 'https://shopify.com',
-  },
-  {
-    id: 5,
-    name: 'Mochila 100% SKATE',
-    tagline: 'Com compartimento para shape',
-    price: 159.90,
-    originalPrice: 199.90,
-    imageUrl: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80',
-    buyUrl: 'https://shopify.com',
-  },
-  {
-    id: 6,
-    name: 'Adesivos Pack',
-    tagline: '10 adesivos variados',
-    price: 19.90,
-    imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-    buyUrl: 'https://shopify.com',
-  },
-]
+const SHOPIFY_DOMAIN = '100-skate-2.myshopify.com'
+const STOREFRONT_TOKEN = '20ef8b7d7a97abc7c900b98fd9c422c2'
+
+interface ShopifyProduct {
+  id: string
+  title: string
+  description: string
+  handle: string
+  priceRange: {
+    minVariantPrice: { amount: string }
+  }
+  compareAtPriceRange: {
+    minVariantPrice: { amount: string }
+  }
+  images: {
+    edges: { node: { url: string } }[]
+  }
+  variants: {
+    edges: { node: { id: string } }[]
+  }
+}
+
+async function fetchShopifyProducts(): Promise<ShopifyProduct[]> {
+  const query = `{
+    products(first: 20) {
+      edges {
+        node {
+          id
+          title
+          description
+          handle
+          priceRange { minVariantPrice { amount } }
+          compareAtPriceRange { minVariantPrice { amount } }
+          images(first: 1) { edges { node { url } } }
+          variants(first: 1) { edges { node { id } } }
+        }
+      }
+    }
+  }`
+
+  const res = await fetch(`https://${SHOPIFY_DOMAIN}/api/2024-01/graphql.json`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Shopify-Storefront-Access-Token': STOREFRONT_TOKEN,
+    },
+    body: JSON.stringify({ query }),
+  })
+
+  const data = await res.json()
+  return data.data?.products?.edges?.map((e: any) => e.node) || []
+}
 
 export default function LojaPage() {
+  const [produtos, setProdutos] = useState<ShopifyProduct[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchShopifyProducts()
+      .then(setProdutos)
+      .finally(() => setLoading(false))
+  }, [])
+
   return (
     <>
       <Head><title>Loja — 100% SKATE</title></Head>
       <Layout preview={false}>
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
           <BlogHeader title="100% SKATE" description={[]} level={1} />
-
           <div className="mb-10">
-         <h1 className="text-3xl font-black uppercase border-b-2 border-black dark:border-white pb-3 tracking-widest text-black dark:text-white">
-  Loja
-</h1>
-<p className="text-gray-500 dark:text-gray-400 text-sm mt-2">Produtos oficiais 100% SKATE</p>
+            <h1 className="text-3xl font-black uppercase border-b-2 border-black dark:border-white pb-3 tracking-widest text-black dark:text-white">
+              Loja
+            </h1>
+            <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">Produtos oficiais 100% SKATE</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16">
-            {produtos.map((produto) => (
-              <ProductCard
-                key={produto.id}
-                name={produto.name}
-                tagline={produto.tagline}
-                price={produto.price}
-                originalPrice={produto.originalPrice}
-                imageUrl={produto.imageUrl}
-                badge={produto.badge}
-                buyUrl={produto.buyUrl}
-              />
-            ))}
-          </div>
+          {loading && (
+            <p className="text-gray-400 text-sm mb-16">Carregando produtos...</p>
+          )}
+
+          {!loading && produtos.length === 0 && (
+            <p className="text-gray-400 text-sm mb-16">Nenhum produto disponível no momento.</p>
+          )}
+
+          {!loading && produtos.length > 0 && (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16">
+              {produtos.map((produto) => {
+                const price = parseFloat(produto.priceRange.minVariantPrice.amount)
+                const comparePrice = parseFloat(produto.compareAtPriceRange.minVariantPrice.amount)
+                const imageUrl = produto.images.edges[0]?.node.url || ''
+                const variantId = produto.variants.edges[0]?.node.id || ''
+                const buyUrl = `https://${SHOPIFY_DOMAIN}/cart/${variantId.split('/').pop()}:1`
+
+                return (
+                  <ProductCard
+                    key={produto.id}
+                    name={produto.title}
+                    tagline={produto.description}
+                    price={price}
+                    originalPrice={comparePrice > price ? comparePrice : undefined}
+                    imageUrl={imageUrl}
+                    buyUrl={buyUrl}
+                  />
+                )
+              })}
+            </div>
+          )}
         </div>
       </Layout>
     </>
