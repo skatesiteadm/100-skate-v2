@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import SearchBar from 'components/SearchBar'
 import { useDarkMode } from 'lib/darkMode'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 
 export default function BlogHeader({
@@ -18,11 +18,14 @@ export default function BlogHeader({
   const { dark, toggle } = useDarkMode()
   const router = useRouter()
   const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const [flipping, setFlipping] = useState(false)
 
   function handleLogoClick() {
     if (clickTimer.current) {
       clearTimeout(clickTimer.current)
       clickTimer.current = null
+      setFlipping(true)
+      setTimeout(() => setFlipping(false), 600)
       toggle()
     } else {
       clickTimer.current = setTimeout(() => {
@@ -36,10 +39,22 @@ export default function BlogHeader({
     ? 'brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(500%) hue-rotate(280deg) brightness(1.2)'
     : 'brightness(0)'
 
+  const flipStyle = flipping
+    ? { animation: 'logoFlip 0.6s ease' }
+    : {}
+
   switch (level) {
     case 1:
       return (
         <>
+          <style>{`
+            @keyframes logoFlip {
+              0% { transform: rotateX(0deg); }
+              50% { transform: rotateX(90deg); }
+              100% { transform: rotateX(0deg); }
+            }
+          `}</style>
+
           <div className="w-full bg-zinc-900 text-zinc-300 text-xs flex justify-between items-center px-4 md:px-8 py-2 rounded-b-xl">
             <div className="flex gap-3 md:gap-5">
               <Link href="/loja" className="hover:text-[#ff44cc] tracking-widest transition-colors">LOJA</Link>
@@ -56,7 +71,7 @@ export default function BlogHeader({
             </div>
           </div>
 
-          <header className="flex justify-center items-center pt-1 pb-0 w-full">
+          <header className="flex justify-center items-center pt-1 pb-0 w-full" style={{ perspective: '800px' }}>
             <img
               src="/logoskate.svg"
               alt="CEMPORCENTOSKATE"
@@ -66,6 +81,8 @@ export default function BlogHeader({
                 width: 'auto',
                 cursor: 'pointer',
                 filter: logoFilter,
+                transition: 'filter 0.4s ease',
+                ...flipStyle,
               }}
             />
           </header>
@@ -85,7 +102,7 @@ export default function BlogHeader({
       )
     case 2:
       return (
-        <header className="flex justify-center items-center py-4 border-b border-zinc-800 mb-8 w-full">
+        <header className="flex justify-center items-center py-4 border-b border-zinc-800 mb-8 w-full" style={{ perspective: '800px' }}>
           <img
             src="/logoskate.svg"
             alt="100%SKATE"
@@ -96,6 +113,8 @@ export default function BlogHeader({
               maxWidth: '180px',
               cursor: 'pointer',
               filter: logoFilter,
+              transition: 'filter 0.4s ease',
+              ...flipStyle,
             }}
           />
         </header>
