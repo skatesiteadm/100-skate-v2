@@ -43,7 +43,7 @@ export default defineType({
       name: 'content',
       title: 'Content',
       type: 'array',
-      of: [
+     of: [
         { type: 'block' },
         {
           type: 'image',
@@ -64,6 +64,25 @@ export default defineType({
               description: 'Important for SEO and accessiblity.',
             },
           ],
+        },
+        {
+          type: 'object',
+          name: 'embed',
+          title: 'Embed (YouTube, Instagram, etc)',
+          fields: [
+            {
+              name: 'url',
+              type: 'url',
+              title: 'URL',
+              description: 'Cole a URL do YouTube, Instagram, Twitter, etc.',
+            },
+          ],
+          preview: {
+            select: { url: 'url' },
+            prepare({ url }: { url: string }) {
+              return { title: 'Embed', subtitle: url }
+            },
+          },
         },
       ],
     }),
