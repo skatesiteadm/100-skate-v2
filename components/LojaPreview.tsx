@@ -1,108 +1,99 @@
 import Link from 'next/link'
 import { ProductCard } from 'components/ui/product-card'
 import useEmblaCarousel from 'embla-carousel-react'
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
-const produtos = [
-  {
-    id: 1,
-    name: 'Camiseta 100% SKATE',
-    tagline: 'Edição limitada 2025',
-    price: 89.90,
-    originalPrice: 119.90,
-    imageUrl: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80',
-    badge: 'Novo',
-    buyUrl: 'https://shopify.com',
-  },
-  {
-    id: 2,
-    name: 'Boné 100% SKATE',
-    tagline: 'Snapback aba reta',
-    price: 69.90,
-    imageUrl: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&q=80',
-    buyUrl: 'https://shopify.com',
-  },
-  {
-    id: 3,
-    name: 'Shape 100% SKATE',
-    tagline: 'Deck 8.0 maple canadense',
-    price: 249.90,
-    originalPrice: 299.90,
-    imageUrl: 'https://images.unsplash.com/photo-1547447134-cd3f5c716030?w=600&q=80',
-    badge: 'Oferta',
-    buyUrl: 'https://shopify.com',
-  },
-  {
-    id: 4,
-    name: 'Revista Edição 227',
-    tagline: 'Desafio de Rua — edição impressa',
-    price: 29.90,
-    imageUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&q=80',
-    buyUrl: 'https://shopify.com',
-  },
-  {
-    id: 5,
-    name: 'Mochila 100% SKATE',
-    tagline: 'Com compartimento para shape',
-    price: 159.90,
-    originalPrice: 199.90,
-    imageUrl: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80',
-    buyUrl: 'https://shopify.com',
-  },
-  {
-    id: 6,
-    name: 'Adesivos Pack',
-    tagline: '10 adesivos variados',
-    price: 19.90,
-    imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-    buyUrl: 'https://shopify.com',
-  },
-]
+const SHOPIFY_DOMAIN = '100-skate-2.myshopify.com'
+const STOREFRONT_TOKEN = '20ef8b7d7a97abc7c900b98fd9c422c2'
+
+interface ShopifyProduct {
+  id: string
+  title: string
+  handle: string
+  priceRange: { minVariantPrice: { amount: string } }
+  compareAtPriceRange: { minVariantPrice: { amount: string } }
+  images: { edges: { node: { url: string } }[] }
+  variants: { edges: { node: { id: string } }[] }
+}
+
+async function fetchShopifyProducts(): Promise<ShopifyProduct[]> {
+  const query = `{
+    products(first: 8) {
+      edges {
+        node {
+          id title handle
+          priceRange { minVariantPrice { amount } }
+          compareAtPriceRange { minVariantPrice { amount } }
+          images(first: 1) { edges { node { url } } }
+          variants(first: 1) { edges { node { id } } }
+        }
+      }
+    }
+  }`
+  const res = await fetch(`https://${SHOPIFY_DOMAIN}/api/2024-01/graphql.json`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Shopify-Storefront-Access-Token': STOREFRONT_TOKEN,
+    },
+    body: JSON.stringify({ query }),
+  })
+  const data = await res.json()
+  return data.data?.products?.edges?.map((e: any) => e.node) || []
+}
 
 export default function LojaPreview() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start', slidesToScroll: 1 })
-
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
+  const [produtos, setProdutos] = useState<ShopifyProduct[]>([])
+
+  useEffect(() => {
+    fetchShopifyProducts().then(setProdutos)
+  }, [])
+
+  if (!produtos.length) return null
 
   return (
     <section className="my-12">
-   <div className="border-b-2 border-black dark:border-gray-100 pb-2 mb-8">
-  <Link href="/loja" className="block hover:opacity-70 transition-opacity">
-    <h2 className="text-xl font-black uppercase tracking-widest cursor-pointer text-black dark:text-gray-100">
-      Loja →
-    </h2>
-  </Link>
-</div>
-      {/* Carrossel com setas laterais */}
+      <div className="border-b-2 border-black dark:border-gray-100 pb-2 mb-8">
+        <Link href="/loja" className="block hover:opacity-70 transition-opacity">
+          <h2 className="text-xl font-black uppercase tracking-widest cursor-pointer text-black dark:text-gray-100">
+            Loja →
+          </h2>
+        </Link>
+      </div>
+
       <div className="relative">
-        {/* Seta esquerda */}
         <button
           onClick={scrollPrev}
           className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 rounded-full bg-black text-white flex items-center justify-center text-2xl font-black hover:bg-[#ff44cc] transition-colors shadow-lg"
         >
           ‹
         </button>
-
         <div className="overflow-hidden mx-4" ref={emblaRef}>
           <div className="flex gap-4">
-            {produtos.map((produto) => (
-              <div key={produto.id} className="flex-none w-[calc(50%-8px)] md:w-[calc(25%-12px)]">
-                <ProductCard
-                  name={produto.name}
-                  tagline={produto.tagline}
-                  price={produto.price}
-                  originalPrice={produto.originalPrice}
-                  imageUrl={produto.imageUrl}
-                  badge={produto.badge}
-                  buyUrl={produto.buyUrl}
-                />
-              </div>
-            ))}
+            {produtos.map((produto) => {
+              const price = parseFloat(produto.priceRange.minVariantPrice.amount)
+              const comparePrice = parseFloat(produto.compareAtPriceRange.minVariantPrice.amount)
+              const imageUrl = produto.images.edges[0]?.node.url || ''
+              const variantId = produto.variants.edges[0]?.node.id || ''
+              const buyUrl = `https://${SHOPIFY_DOMAIN}/cart/${variantId.split('/').pop()}:1`
+
+              return (
+                <div key={produto.id} className="flex-none w-[calc(50%-8px)] md:w-[calc(25%-12px)]">
+                  <ProductCard
+                    name={produto.title}
+                    price={price}
+                    originalPrice={comparePrice > price ? comparePrice : undefined}
+                    imageUrl={imageUrl}
+                    buyUrl={buyUrl}
+                  />
+                </div>
+              )
+            })}
           </div>
         </div>
-
-        {/* Seta direita */}
         <button
           onClick={scrollNext}
           className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 rounded-full bg-black text-white flex items-center justify-center text-2xl font-black hover:bg-[#ff44cc] transition-colors shadow-lg"
