@@ -55,7 +55,7 @@ export default function BlogHeader({
             }
           `}</style>
 
-          <div className="w-full bg-zinc-900 text-zinc-300 text-xs flex justify-between items-center px-4 md:px-8 py-2 rounded-b-xl border border-zinc-600">
+          <div className="w-full bg-zinc-200 dark:bg-zinc-900 text-black dark:text-zinc-300 text-xs flex justify-between items-center px-4 md:px-8 py-2 rounded-b-xl">
             <div className="flex gap-3 md:gap-5">
               <Link href="/loja" className="hover:text-[#ff44cc] tracking-widest transition-colors">LOJA</Link>
               <Link href="/nossa-historia" className="hover:text-[#ff44cc] tracking-widest transition-colors">NOSSA HISTORIA</Link>
