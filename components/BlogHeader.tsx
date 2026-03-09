@@ -36,8 +36,8 @@ export default function BlogHeader({
   }
 
   const logoFilter = dark
-  ? 'brightness(0)'
-  : 'brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(500%) hue-rotate(280deg) brightness(1.2)'
+  ? 'brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(500%) hue-rotate(280deg) brightness(1.2)'
+  : 'brightness(0)'
 
   const flipStyle = flipping
     ? { animation: 'logoFlip 0.6s ease' }
