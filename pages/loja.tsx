@@ -101,7 +101,7 @@ export default function LojaPage() {
                   <ProductCard
                     key={produto.id}
                     name={produto.title}
-                    tagline={produto.description}
+                    tagline={produto.description?.split('.')[0] || ''}
                     price={price}
                     originalPrice={comparePrice > price ? comparePrice : undefined}
                     imageUrl={imageUrl}
