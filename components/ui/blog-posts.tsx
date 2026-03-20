@@ -20,12 +20,11 @@ interface BlogGridProps {
 export function BlogGrid({ posts = [], className }: BlogGridProps) {
   const [hero, ...rest] = posts
   return (
-    <div className={cn('flex flex-col gap-4 mb-12', className)}>
+    <div className={cn('flex flex-col gap-4 mb-6 md:mb-12', className)}>
       {hero && (
-        <Link 
-          href={`/posts/${hero.slug}`} 
-          className="relative overflow-hidden rounded-xl group w-full bg-gray-100 dark:bg-[#111111]" 
-          style={{ height: '420px' }}
+        <Link
+          href={`/posts/${hero.slug}`}
+          className="relative overflow-hidden rounded-xl group w-full bg-gray-100 dark:bg-[#111111] h-[260px] md:h-[420px]"
         >
           <Image
             src={hero.imageUrl}
