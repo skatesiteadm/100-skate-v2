@@ -4,8 +4,8 @@ import { ProductCard } from 'components/ui/product-card'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 
-const SHOPIFY_DOMAIN = '100-skate-2.myshopify.com'
-const STOREFRONT_TOKEN = '20ef8b7d7a97abc7c900b98fd9c422c2'
+const SHOPIFY_DOMAIN = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN!
+const STOREFRONT_TOKEN = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN!
 
 interface ShopifyProduct {
   id: string

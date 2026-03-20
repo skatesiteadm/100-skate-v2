@@ -1,14 +1,13 @@
 import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
+import VideoCarousel from 'components/VideoCarousel'
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
-import PodcastCarousel from 'components/PodcastCarousel'
 
 interface Video {
   id: string
   title: string
   thumbnail: string
-  duration: string
 }
 
 export default function VideosPage() {
@@ -17,7 +16,7 @@ export default function VideosPage() {
   const [autoplay, setAutoplay] = useState(false)
 
   useEffect(() => {
-    fetch('/api/youtube-videos-all')
+    fetch('/api/youtube-videos?limit=20')
       .then((res) => res.json())
       .then((data) => {
         const all = data.videos || []
@@ -27,8 +26,13 @@ export default function VideosPage() {
   }, [])
 
   const activeTitle = videos.find((v) => v.id === activeVideo)?.title
-  const gridVideos = videos.filter((v) => v.id !== activeVideo)
-  const displayVideos = gridVideos.slice(0, 12)
+  const gridVideos = videos.filter((v) => v.id !== activeVideo).slice(0, 12)
+
+  function selectVideo(id: string) {
+    setAutoplay(true)
+    setActiveVideo(id)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <>
@@ -59,15 +63,11 @@ export default function VideosPage() {
             Mais Vídeos
           </h3>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            {displayVideos.map((video) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            {gridVideos.map((video) => (
               <button
                 key={video.id}
-                onClick={() => {
-                  setAutoplay(true)
-                  setActiveVideo(video.id)
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                }}
+                onClick={() => selectVideo(video.id)}
                 className="group flex flex-col gap-2 text-left"
               >
                 <div style={{ paddingTop: '56.25%', position: 'relative' }} className="overflow-hidden rounded-xl w-full">
@@ -78,7 +78,7 @@ export default function VideosPage() {
                     className="transition-transform duration-500 group-hover:scale-105"
                   />
                   <div style={{ position: 'absolute', inset: 0 }} className="flex items-center justify-center">
-                    <div style={{ backgroundColor: '#cc0000' }} className="rounded-full w-8 h-8 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div className="rounded-full w-8 h-8 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity" style={{ backgroundColor: '#cc0000' }}>
                       <svg viewBox="0 0 24 24" fill="white" className="w-4 h-4 ml-0.5">
                         <path d="M8 5v14l11-7z" />
                       </svg>
@@ -92,7 +92,11 @@ export default function VideosPage() {
             ))}
           </div>
 
-          <PodcastCarousel />
+          <VideoCarousel
+            apiEndpoint="/api/youtube-podcast"
+            title="Podcast"
+            accentColor="#ff44cc"
+          />
 
           <div className="flex justify-center mb-16">
             <button

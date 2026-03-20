@@ -4,7 +4,6 @@ import Layout from 'components/BlogLayout'
 import MoreStories from 'components/MoreStories'
 import PostBody from 'components/PostBody'
 import PostHeader from 'components/PostHeader'
-import PostPageHead from 'components/PostPageHead'
 import PostTitle from 'components/PostTitle'
 import SectionSeparator from 'components/SectionSeparator'
 import * as demo from 'lib/demo.data'
@@ -32,7 +31,6 @@ export default function PostPage(props: PostPageProps) {
 
   return (
     <>
-      <PostPageHead settings={settings} post={post} />
       <Layout preview={preview} loading={loading}>
         <Container>
           <BlogHeader title={title} description={[]} level={1} hideNav />

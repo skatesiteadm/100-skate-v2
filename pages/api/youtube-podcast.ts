@@ -1,12 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { YOUTUBE_PODCAST_PLAYLIST_ID } from 'lib/youtube.constants'
 
-const PLAYLIST_ID = 'PLmu1x9wkyRKpx0qCsLJJlYbxanmFSJFAS'
 const API_KEY = process.env.YOUTUBE_API_KEY
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const limit = parseInt((req.query.limit as string) || '10', 10)
+
   try {
     const playlistRes = await fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${PLAYLIST_ID}&part=snippet&maxResults=10`
+      `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${YOUTUBE_PODCAST_PLAYLIST_ID}&part=snippet&maxResults=${limit}`
     )
     const playlistData = await playlistRes.json()
 

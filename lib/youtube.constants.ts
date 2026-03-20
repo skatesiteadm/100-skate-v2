@@ -1,0 +1,3 @@
+export const YOUTUBE_CHANNEL_ID = 'UCP3_207yNHXuUOcfDnf6aEQ'
+export const YOUTUBE_VIDEOS_PLAYLIST_ID = 'PLmu1x9wkyRKpDoznugZNL_XP7b53kbf5L'
+export const YOUTUBE_PODCAST_PLAYLIST_ID = 'PLmu1x9wkyRKpx0qCsLJJlYbxanmFSJFAS'

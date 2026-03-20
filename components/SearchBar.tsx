@@ -34,7 +34,7 @@ export default function SearchBar() {
     const timer = setTimeout(async () => {
       setLoading(true)
       try {
-        const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`)
+        const res = await fetch(`/api/search?q=${encodeURIComponent(query)}&limit=10`)
         const data = await res.json()
         setResults(data.results || [])
       } catch { setResults([]) }

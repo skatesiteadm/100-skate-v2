@@ -32,6 +32,34 @@ export default defineType({
       type: 'url',
     }),
     defineField({
+      name: 'materias',
+      title: 'Matérias',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'materia',
+          title: 'Matéria',
+          fields: [
+            {
+              name: 'titulo',
+              title: 'Título',
+              type: 'string',
+            },
+            {
+              name: 'descricao',
+              title: 'Descrição curta',
+              type: 'text',
+              rows: 2,
+            },
+          ],
+          preview: {
+            select: { title: 'titulo', subtitle: 'descricao' },
+          },
+        },
+      ],
+    }),
+    defineField({
       name: 'materiaDestaque',
       title: 'Matéria de Capa',
       type: 'reference',

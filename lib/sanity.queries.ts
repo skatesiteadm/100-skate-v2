@@ -48,6 +48,7 @@ export const revistaQuery = groq`
   capa,
   descricao,
   linkCompra,
+  materias[] { titulo, descricao },
   "materiaDestaque": materiaDestaque->{
     ${postFields}
   }
@@ -62,7 +63,8 @@ export const todasRevistasQuery = groq`
   capa,
   descricao,
   linkCompra,
-  ativa
+  ativa,
+  materias[] { titulo, descricao }
 }
 `
 
@@ -94,6 +96,11 @@ export interface Post {
   content?: any
 }
 
+export interface Materia {
+  titulo?: string
+  descricao?: string
+}
+
 export interface Revista {
   _id: string
   titulo?: string
@@ -102,6 +109,7 @@ export interface Revista {
   descricao?: string
   linkCompra?: string
   ativa?: boolean
+  materias?: Materia[]
   materiaDestaque?: Post
 }
 

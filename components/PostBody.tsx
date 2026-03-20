@@ -1,11 +1,30 @@
 import { PortableText, type PortableTextReactComponents } from 'next-sanity'
 import { SanityImage } from './SanityImage'
 import BannerSlot from './BannerSlot'
+import EmbedBlock from './portable-text/EmbedBlock'
 
 const myPortableTextComponents: Partial<PortableTextReactComponents> = {
   types: {
     image: ({ value }) => {
       return <SanityImage {...value} />
+    },
+    embed: ({ value }) => {
+      return <EmbedBlock value={value} />
+    },
+  },
+  marks: {
+    link: ({ children, value }) => {
+      const { url, blank, title } = value ?? {}
+      return (
+        <a
+          href={url}
+          title={title}
+          target={blank ? '_blank' : undefined}
+          rel={blank ? 'noopener noreferrer' : undefined}
+        >
+          {children}
+        </a>
+      )
     },
   },
 }

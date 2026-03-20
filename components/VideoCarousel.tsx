@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
-import useEmblaCarousel from 'embla-carousel-react'
+import Link from 'next/link'
 import Image from 'next/image'
+import useEmblaCarousel from 'embla-carousel-react'
 
 interface Video {
   id: string
@@ -8,7 +9,21 @@ interface Video {
   thumbnail: string
 }
 
-export default function PodcastCarousel() {
+interface VideoCarouselProps {
+  apiEndpoint: string
+  title: string
+  accentColor?: string
+  href?: string
+  limit?: number
+}
+
+export default function VideoCarousel({
+  apiEndpoint,
+  title,
+  accentColor = '#ff44cc',
+  href,
+  limit,
+}: VideoCarouselProps) {
   const [videos, setVideos] = useState<Video[]>([])
   const [activeVideo, setActiveVideo] = useState<string | null>(null)
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' })
@@ -17,10 +32,11 @@ export default function PodcastCarousel() {
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
 
   useEffect(() => {
-    fetch('/api/youtube-podcast')
+    const url = limit ? `${apiEndpoint}?limit=${limit}` : apiEndpoint
+    fetch(url)
       .then((res) => res.json())
       .then((data) => setVideos(data.videos || []))
-  }, [])
+  }, [apiEndpoint, limit])
 
   if (videos.length === 0) return null
 
@@ -52,14 +68,22 @@ export default function PodcastCarousel() {
       )}
 
       <section className="mb-12">
-        <h2 className="text-xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-6 tracking-widest text-black dark:text-white">
-          Podcast →
-        </h2>
+        {href ? (
+          <Link href={href} className="block hover:opacity-70 transition-opacity">
+            <h2 className="text-xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-6 tracking-widest cursor-pointer text-black dark:text-white">
+              {title}
+            </h2>
+          </Link>
+        ) : (
+          <h2 className="text-xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-6 tracking-widest text-black dark:text-white">
+            {title}
+          </h2>
+        )}
 
         <div className="relative">
           <button
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 rounded-full bg-black dark:bg-gray-700 text-white flex items-center justify-center text-2xl font-black hover:bg-[#ff44cc] dark:hover:bg-[#ff44cc] transition-colors shadow-lg"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 rounded-full bg-black dark:bg-gray-700 text-white flex items-center justify-center text-2xl font-black hover:opacity-80 transition-opacity shadow-lg"
           >
             ‹
           </button>
@@ -81,7 +105,10 @@ export default function PodcastCarousel() {
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div style={{ position: 'absolute', inset: 0 }} className="flex items-center justify-center">
-                        <div className="bg-[#ff44cc] rounded-full w-12 h-12 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div
+                          className="rounded-full w-12 h-12 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-opacity"
+                          style={{ backgroundColor: accentColor }}
+                        >
                           <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5 ml-1">
                             <path d="M8 5v14l11-7z" />
                           </svg>
@@ -99,7 +126,7 @@ export default function PodcastCarousel() {
 
           <button
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 rounded-full bg-black dark:bg-gray-700 text-white flex items-center justify-center text-2xl font-black hover:bg-[#ff44cc] dark:hover:bg-[#ff44cc] transition-colors shadow-lg"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 rounded-full bg-black dark:bg-gray-700 text-white flex items-center justify-center text-2xl font-black hover:opacity-80 transition-opacity shadow-lg"
           >
             ›
           </button>

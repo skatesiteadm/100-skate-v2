@@ -5,19 +5,12 @@ import Image from 'next/image'
 import SEO from 'components/SEO'
 import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
-import { getClient } from 'lib/sanity.client'
-import { getSettings } from 'lib/sanity.client'
+import { getClient, getSettings } from 'lib/sanity.client'
 import { Settings } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import type { SharedPageProps } from 'pages/_app'
 import { readToken } from 'lib/sanity.api'
-import imageUrlBuilder from '@sanity/image-url'
-
-const builder = imageUrlBuilder(getClient())
-
-function urlFor(source: any) {
-  return builder.image(source).width(400).url()
-}
+import { urlForImage } from 'lib/sanity.image'
 
 interface SearchResult {
   _id: string
@@ -46,7 +39,7 @@ export default function BuscaPage({ settings }: PageProps) {
       return
     }
     setLoading(true)
-    fetch(`/api/search-full?q=${encodeURIComponent(q)}`)
+    fetch(`/api/search?q=${encodeURIComponent(q)}`)
       .then((res) => res.json())
       .then((data) => {
         setResults(data.results || [])
@@ -110,7 +103,7 @@ export default function BuscaPage({ settings }: PageProps) {
                   {item.coverImage && (
                     <div className="relative aspect-video overflow-hidden rounded-xl">
                       <Image
-                        src={urlFor(item.coverImage)}
+                        src={urlForImage(item.coverImage).width(400).url()}
                         alt={item.title || ''}
                         fill
                         sizes="(max-width: 768px) 100vw, 400px"
