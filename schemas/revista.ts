@@ -46,12 +46,6 @@ export default defineType({
               title: 'Título',
               type: 'string',
             },
-            {
-              name: 'descricao',
-              title: 'Descrição curta',
-              type: 'text',
-              rows: 2,
-            },
           ],
           preview: {
             select: { title: 'titulo', subtitle: 'descricao' },
@@ -68,6 +62,11 @@ export default defineType({
     defineField({
       name: 'ativa',
       title: 'Edição Atual?',
+      type: 'boolean',
+    }),
+    defineField({
+      name: 'esgotada',
+      title: 'Esgotada?',
       type: 'boolean',
     }),
   ],

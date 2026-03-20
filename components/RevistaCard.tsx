@@ -57,9 +57,6 @@ export default function RevistaCard({ revista, showBadge = false }: RevistaCardP
                 {revista.materias.map((materia, i) => (
                   <li key={i}>
                     <span className="font-black uppercase text-sm text-white">{materia.titulo}</span>
-                    {materia.descricao && (
-                      <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">{materia.descricao}</p>
-                    )}
                   </li>
                 ))}
               </ul>
@@ -78,7 +75,14 @@ export default function RevistaCard({ revista, showBadge = false }: RevistaCardP
                 >
                   {revista.materiaDestaque.title}
                 </Link>
-                {revista.linkCompra ? (
+                {revista.esgotada ? (
+                  <button
+                    disabled
+                    className="bg-gray-800 text-gray-500 font-black uppercase text-xs px-5 py-2 rounded-full tracking-widest whitespace-nowrap cursor-not-allowed"
+                  >
+                    Esgotada
+                  </button>
+                ) : revista.linkCompra ? (
                   <button
                     onClick={() => window.open(revista.linkCompra, '_blank')}
                     className="bg-[#ff44cc] hover:bg-[#ff44cc]/80 text-white font-black uppercase text-xs px-5 py-2 rounded-full tracking-widest transition-colors whitespace-nowrap"
