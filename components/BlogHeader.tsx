@@ -91,7 +91,7 @@ export default function BlogHeader({
             <nav className="w-full border-y border-zinc-800 mb-14 overflow-x-auto">
               <ul className="flex gap-4 md:gap-8 px-4 md:px-8 py-6 text-xs md:text-sm font-bold uppercase whitespace-nowrap justify-center">
                 <li><Link href="/fiksperto" className="text-gray-900 dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Fiksperto</Link></li>
-                <li><Link href="/videos" className="text-gray-900 dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Videos</Link></li>
+                <li><Link href="/videos" className="text-gray-900 dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Vídeos</Link></li>
                 <li><Link href="/eventos" className="text-gray-900 dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Eventos</Link></li>
                 <li><Link href="/revista" className="text-gray-900 dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Revista</Link></li>
                 <li><Link href="/loja" className="text-gray-900 dark:text-white transition-colors hover:text-[#ff44cc] dark:hover:text-[#ff44cc]">Loja</Link></li>
