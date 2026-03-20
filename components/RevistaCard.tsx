@@ -53,10 +53,11 @@ export default function RevistaCard({ revista, showBadge = false }: RevistaCardP
               <span className="text-xs font-black uppercase tracking-widest text-gray-500 block mb-3">
                 Nesta Edição
               </span>
-              <ul className="flex flex-col gap-3">
+              <ul className="flex flex-col gap-1">
                 {revista.materias.map((materia, i) => (
-                  <li key={i}>
-                    <span className="font-black uppercase text-sm text-white">{materia.titulo}</span>
+                  <li key={i} className="flex items-center gap-2">
+                    <span className="text-[#ff44cc] text-xs">•</span>
+                    <span className="uppercase text-sm text-white">{materia.titulo}</span>
                   </li>
                 ))}
               </ul>
