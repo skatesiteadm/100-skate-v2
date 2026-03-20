@@ -80,7 +80,7 @@ export default function RevistaCard({ revista, showBadge = false }: RevistaCardP
                     disabled
                     className="bg-gray-800 text-gray-500 font-black uppercase text-xs px-5 py-2 rounded-full tracking-widest whitespace-nowrap cursor-not-allowed"
                   >
-                    Esgotada
+                    Sold Out
                   </button>
                 ) : revista.linkCompra ? (
                   <button
