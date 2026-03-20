@@ -66,7 +66,7 @@ export default defineType({
     }),
     defineField({
       name: 'esgotada',
-      title: 'Esgotada?',
+      title: 'Sold Out?',
       type: 'boolean',
     }),
   ],
