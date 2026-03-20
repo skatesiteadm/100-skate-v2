@@ -66,7 +66,7 @@ export default function BuscaPage({ settings }: PageProps) {
         title={q ? `Busca: ${q}` : 'Busca'}
         description={`Resultados de busca no site da 100%SKATE para ${q}.`}
       />
-      <Layout>
+      <Layout preview={false}>
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
           <BlogHeader title="100% SKATE" description={[]} level={1} />
 

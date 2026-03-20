@@ -118,7 +118,7 @@ export default function SearchBar() {
                 <p className="text-sm text-gray-400 dark:text-zinc-500 p-5">Buscando...</p>
               )}
               {!loading && query.length >= 2 && results.length === 0 && (
-                <p className="text-sm text-gray-400 dark:text-zinc-500 p-5">Nenhum resultado para "{query}".</p>
+                <p className="text-sm text-gray-400 dark:text-zinc-500 p-5">Nenhum resultado para &quot;{query}&quot;.</p>
               )}
               {!loading && query.length < 2 && (
                 <p className="text-sm text-gray-400 dark:text-zinc-500 p-5">Digite pelo menos 2 caracteres para buscar.</p>
