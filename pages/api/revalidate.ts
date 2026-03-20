@@ -118,7 +118,7 @@ async function readBody(readable: NextApiRequest): Promise<string> {
   return Buffer.concat(chunks).toString('utf8')
 }
 
-type StaleRoute = '/' | `/posts/${string}`
+type StaleRoute = '/' | `/posts/${string}` | '/revista'
 
 async function queryStaleRoutes(
   body: Pick<
@@ -158,6 +158,8 @@ async function queryStaleRoutes(
       return await queryStalePostRoutes(client, body._id)
     case 'settings':
       return await queryAllRoutes(client)
+    case 'revista':
+      return ['/revista']
     default:
       throw new TypeError(`Unknown type: ${body._type}`)
   }

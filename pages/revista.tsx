@@ -54,5 +54,6 @@ export const getStaticProps: GetStaticProps<PageProps> = async (ctx) => {
       previewPerspective: typeof previewData === 'string' ? previewData : null,
       token: previewMode ? readToken : '',
     },
+    revalidate: 60,
   }
 }
