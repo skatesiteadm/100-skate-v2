@@ -129,45 +129,51 @@ export default function CountdownGate({ children }: { children: ReactNode }) {
         }
       `}</style>
 
-      {/* Logo */}
-      <div style={{ animation: 'fadeUp 0.5s ease both', animationDelay: '0s', marginBottom: '2.5rem' }}>
-        <img
-          src="/logoskate.svg"
-          alt="100% SKATE"
+      {/* Shared-width wrapper: logo + countdown stay the same width */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', width: 'fit-content' }}>
+
+        {/* Logo */}
+        <div style={{ animation: 'fadeUp 0.5s ease both', animationDelay: '0s', marginBottom: '2.5rem' }}>
+          <img
+            src="/logoskate.svg"
+            alt="100% SKATE"
+            style={{
+              width: '100%',
+              height: 'auto',
+              display: 'block',
+              filter: 'brightness(0) saturate(100%) invert(42%) sepia(97%) saturate(1000%) hue-rotate(280deg) brightness(1.1)',
+            }}
+          />
+        </div>
+
+        {/* Em breve */}
+        <p
           style={{
-            height: 'clamp(80px, 14vw, 160px)',
-            width: 'auto',
-            filter: 'brightness(0) saturate(100%) invert(42%) sepia(97%) saturate(1000%) hue-rotate(280deg) brightness(1.1)',
+            color: '#71717a',
+            fontSize: '0.7rem',
+            fontWeight: 700,
+            letterSpacing: '0.3em',
+            textTransform: 'uppercase',
+            marginBottom: '2rem',
+            textAlign: 'center',
+            animation: 'fadeUp 0.5s ease both',
+            animationDelay: '0.1s',
           }}
-        />
-      </div>
+        >
+          Em breve
+        </p>
 
-      {/* Em breve */}
-      <p
-        style={{
-          color: '#71717a',
-          fontSize: '0.7rem',
-          fontWeight: 700,
-          letterSpacing: '0.3em',
-          textTransform: 'uppercase',
-          marginBottom: '2rem',
-          animation: 'fadeUp 0.5s ease both',
-          animationDelay: '0.1s',
-        }}
-      >
-        Em breve
-      </p>
-
-      {/* Countdown */}
-      <div
-        className="countdown-wrapper"
-        style={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          gap: 'clamp(8px, 2vw, 24px)',
-          animationDelay: '0.2s',
-        }}
-      >
+        {/* Countdown */}
+        <div
+          className="countdown-wrapper"
+          style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'space-between',
+            gap: 'clamp(8px, 2vw, 24px)',
+            animationDelay: '0.2s',
+          }}
+        >
         <div className="countdown-unit">
           <NumberFlow value={time.days} format={{ minimumIntegerDigits: 2 }} className="countdown-number" />
           <span className="countdown-label">Dias</span>
@@ -186,6 +192,7 @@ export default function CountdownGate({ children }: { children: ReactNode }) {
         <div className="countdown-unit">
           <NumberFlow value={time.seconds} format={{ minimumIntegerDigits: 2 }} className="countdown-number" />
           <span className="countdown-label">Seg</span>
+        </div>
         </div>
       </div>
 
