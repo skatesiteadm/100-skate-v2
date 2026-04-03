@@ -1,9 +1,10 @@
 import '../tailwind.css'
 import { VisualEditing } from '@sanity/visual-editing/next-pages-router'
+import { Analytics } from '@vercel/analytics/next'
 import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
-import GoogleAnalytics from "components/GoogleAnalytics"
 import { DarkModeProvider } from 'lib/darkMode'
+import CountdownGate from 'components/CountdownGate'
 
 export interface SharedPageProps {
   previewMode: boolean
@@ -20,15 +21,17 @@ export default function App({
   const { previewMode, previewPerspective, token } = pageProps
   return (
     <DarkModeProvider>
-      {previewMode ? (
-        <PreviewProvider perspective={previewPerspective} token={token}>
+      <CountdownGate>
+        {previewMode ? (
+          <PreviewProvider perspective={previewPerspective} token={token}>
+            <Component {...pageProps} />
+          </PreviewProvider>
+        ) : (
           <Component {...pageProps} />
-        </PreviewProvider>
-      ) : (
-        <Component {...pageProps} />
-      )}
-      {previewMode && <VisualEditing />}
-      <GoogleAnalytics />
+        )}
+        {previewMode && <VisualEditing />}
+      </CountdownGate>
+      <Analytics />
     </DarkModeProvider>
   )
 }
