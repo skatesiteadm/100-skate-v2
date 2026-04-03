@@ -1,5 +1,6 @@
 import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
+import BannerSlot from 'components/BannerSlot'
 import { readToken } from 'lib/sanity.api'
 import { getClient, getSettings } from 'lib/sanity.client'
 import { Revista, Settings, todasRevistasQuery } from 'lib/sanity.queries'
@@ -21,6 +22,10 @@ export default function RevistaPage({ revistas, settings }: PageProps) {
       <Layout preview={false}>
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
           <BlogHeader title="100% SKATE" description={[]} level={1} />
+
+          <div className="mb-8">
+            <BannerSlot posicao="topo" />
+          </div>
 
           <h1 className="text-3xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-8 tracking-widest text-black dark:text-white">
             Revista
