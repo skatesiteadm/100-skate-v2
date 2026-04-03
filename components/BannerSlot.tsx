@@ -58,18 +58,7 @@ export default function BannerSlot({ posicao }: BannerSlotProps) {
 
   if (!loaded) return null
 
-  if (!banner) {
-    return (
-      <div
-        className="w-full flex items-center justify-center bg-gray-100 border border-dashed border-gray-300 rounded-xl"
-        style={{ height: dim.h, maxWidth: dim.w, margin: '0 auto' }}
-      >
-        <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">
-          Espaco Publicitario - {dim.label}
-        </span>
-      </div>
-    )
-  }
+  if (!banner) return null
 
   return (
     <a
