@@ -58,7 +58,7 @@ export default function CountdownGate({ children }: { children: ReactNode }) {
     <div
       style={{
         minHeight: '100vh',
-        backgroundColor: '#18181b',
+        backgroundColor: '#09090b',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -105,7 +105,7 @@ export default function CountdownGate({ children }: { children: ReactNode }) {
           font-size: clamp(2.5rem, 8vw, 5rem);
           font-weight: 900;
           line-height: 1;
-          color: #ff44cc;
+          color: #ffffff;
           letter-spacing: -0.04em;
           font-variant-numeric: tabular-nums;
         }
@@ -137,7 +137,7 @@ export default function CountdownGate({ children }: { children: ReactNode }) {
           style={{
             height: 'clamp(80px, 14vw, 160px)',
             width: 'auto',
-            filter: 'brightness(0) invert(1)',
+            filter: 'brightness(0) saturate(100%) invert(42%) sepia(97%) saturate(1000%) hue-rotate(280deg) brightness(1.1)',
           }}
         />
       </div>
