@@ -1,6 +1,7 @@
 import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
 import VideoCarousel from 'components/VideoCarousel'
+import BannerSlot from 'components/BannerSlot'
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 
@@ -12,6 +13,7 @@ interface Video {
 
 export default function VideosPage() {
   const [videos, setVideos] = useState<Video[]>([])
+  const [loading, setLoading] = useState(true)
   const [activeVideo, setActiveVideo] = useState<string | null>(null)
   const [autoplay, setAutoplay] = useState(false)
 
@@ -22,6 +24,7 @@ export default function VideosPage() {
         const all = data.videos || []
         setVideos(all)
         setActiveVideo(all[0]?.id || null)
+        setLoading(false)
       })
   }, [])
 
@@ -41,6 +44,22 @@ export default function VideosPage() {
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
           <BlogHeader title="100% SKATE" description={[]} level={1} />
 
+          {loading ? (
+            <>
+              <div className="h-6 w-2/3 bg-gray-200 dark:bg-zinc-800 rounded animate-pulse mb-4" />
+              <div className="w-full mb-8 rounded-xl bg-gray-200 dark:bg-zinc-800 animate-pulse" style={{ paddingTop: '56.25%' }} />
+              <div className="h-6 w-32 bg-gray-200 dark:bg-zinc-800 rounded animate-pulse mb-6" />
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                {[...Array(8)].map((_, i) => (
+                  <div key={i} className="flex flex-col gap-2">
+                    <div className="rounded-xl bg-gray-200 dark:bg-zinc-800 animate-pulse" style={{ paddingTop: '56.25%' }} />
+                    <div className="h-3 bg-gray-200 dark:bg-zinc-800 rounded animate-pulse w-3/4" />
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
           {activeTitle && (
             <h2 className="text-xl font-black uppercase mb-4 leading-tight text-black dark:text-white">
               {activeTitle}
@@ -58,6 +77,10 @@ export default function VideosPage() {
               />
             </div>
           )}
+
+          <div className="mb-8">
+            <BannerSlot posicao="topo" />
+          </div>
 
           <h3 className="text-xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-6 tracking-widest text-black dark:text-white">
             Mais Vídeos
@@ -91,11 +114,13 @@ export default function VideosPage() {
               </button>
             ))}
           </div>
+            </>
+          )}
 
           <VideoCarousel
             apiEndpoint="/api/youtube-podcast"
             title="Podcast"
-            accentColor="#ff44cc"
+            accentColor="#cc0000"
           />
 
           <div className="flex justify-center mb-16">

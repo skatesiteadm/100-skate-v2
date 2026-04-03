@@ -1,5 +1,6 @@
 import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
+import BannerSlot from 'components/BannerSlot'
 import { motion } from 'framer-motion'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
@@ -94,8 +95,8 @@ function Countdown({ date }: { date: Date }) {
 export default function EventosPage({ eventos }: PageProps) {
   const now = new Date()
   const data = eventos.length >= 4 ? eventos : mockEventos
-  const futuros = data.filter(e => new Date(e.date) >= now)
-  const passados = data.filter(e => new Date(e.date) < now)
+  const futuros = data.filter(e => new Date(e.date) >= now).slice(0, 12)
+  const passados = data.filter(e => new Date(e.date) < now).slice(-4)
 
   return (
     <>
@@ -103,6 +104,10 @@ export default function EventosPage({ eventos }: PageProps) {
       <Layout preview={false}>
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
           <BlogHeader title="100% SKATE" description={[]} level={1} />
+
+          <div className="mb-8">
+            <BannerSlot posicao="topo" />
+          </div>
 
           <h1 className="text-3xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-8 tracking-widest text-black dark:text-white">
             Próximos Eventos
@@ -132,14 +137,22 @@ export default function EventosPage({ eventos }: PageProps) {
                     {new Date(evento.date).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
                   </p>
                   <Countdown date={new Date(evento.date)} />
-                  {evento.linkInscricao && (
+                  {evento.linkAtivo === 'inscricao' && evento.linkInscricao && (
                     <a
                       href={evento.linkInscricao}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-4 block w-full text-center bg-[#ff44cc] hover:bg-[#ff44cc]/80 text-white font-black uppercase text-xs px-4 py-2 rounded-full tracking-widest transition-colors"
+                      className="mt-4 block w-full text-center border-2 border-[#ff44cc] bg-white text-black dark:bg-black dark:text-white hover:opacity-80 font-black uppercase text-xs px-4 py-2 rounded-full tracking-widest transition-opacity"
                     >
-                      Inscreva-se
+                      Saiba Mais
+                    </a>
+                  )}
+                  {evento.linkAtivo === 'materia' && evento.linkMateria && (
+                    <a
+                      href={evento.linkMateria}
+                      className="mt-4 block w-full text-center border-2 border-black dark:border-white bg-[#ff44cc] text-white hover:opacity-80 font-black uppercase text-xs px-4 py-2 rounded-full tracking-widest transition-opacity"
+                    >
+                      Ver Matéria
                     </a>
                   )}
                 </div>
@@ -168,6 +181,14 @@ export default function EventosPage({ eventos }: PageProps) {
                   <p className="text-xs text-gray-400 dark:text-zinc-500 mt-1">
                     {new Date(evento.date).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}
                   </p>
+                  {evento.linkMateria && (
+                    <a
+                      href={evento.linkMateria}
+                      className="mt-3 inline-block text-center border-2 border-black dark:border-white bg-transparent text-black dark:text-white hover:opacity-80 font-black uppercase text-xs px-4 py-2 rounded-full tracking-widest transition-opacity"
+                    >
+                      Ver Matéria
+                    </a>
+                  )}
                 </div>
               </motion.div>
             ))}
