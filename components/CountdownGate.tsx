@@ -1,14 +1,12 @@
 import { useEffect, useState, ReactNode } from 'react'
 import { useRouter } from 'next/router'
+import NumberFlow from '@number-flow/react'
 
 // Monday April 6, 2026 at midnight BRT (UTC-3)
 // Change this date to adjust the launch time
 const LAUNCH_DATE = new Date('2026-04-06T19:00:00Z')
 const BYPASS_KEY = 'skatepreview'
 
-function pad(n: number) {
-  return String(n).padStart(2, '0')
-}
 
 function getTimeLeft() {
   const diff = Math.max(0, LAUNCH_DATE.getTime() - Date.now())
@@ -171,22 +169,22 @@ export default function CountdownGate({ children }: { children: ReactNode }) {
         }}
       >
         <div className="countdown-unit">
-          <span className="countdown-number">{pad(time.days)}</span>
+          <NumberFlow value={time.days} format={{ minimumIntegerDigits: 2 }} className="countdown-number" />
           <span className="countdown-label">Dias</span>
         </div>
         <span className="countdown-sep">:</span>
         <div className="countdown-unit">
-          <span className="countdown-number">{pad(time.hours)}</span>
+          <NumberFlow value={time.hours} format={{ minimumIntegerDigits: 2 }} className="countdown-number" />
           <span className="countdown-label">Horas</span>
         </div>
         <span className="countdown-sep">:</span>
         <div className="countdown-unit">
-          <span className="countdown-number">{pad(time.minutes)}</span>
+          <NumberFlow value={time.minutes} format={{ minimumIntegerDigits: 2 }} className="countdown-number" />
           <span className="countdown-label">Min</span>
         </div>
         <span className="countdown-sep">:</span>
         <div className="countdown-unit">
-          <span className="countdown-number">{pad(time.seconds)}</span>
+          <NumberFlow value={time.seconds} format={{ minimumIntegerDigits: 2 }} className="countdown-number" />
           <span className="countdown-label">Seg</span>
         </div>
       </div>
