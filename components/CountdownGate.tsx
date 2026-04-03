@@ -76,7 +76,7 @@ export default function CountdownGate({ children }: { children: ReactNode }) {
           position: 'absolute',
           inset: 0,
           backgroundImage:
-            'repeating-linear-gradient(100deg, #ff44cc 0%, #ff44cc 7%, transparent 10%, transparent 12%, #ff44cc 16%)',
+            'repeating-linear-gradient(100deg, #3f3f46 0%, #3f3f46 7%, transparent 10%, transparent 12%, #3f3f46 16%)',
           backgroundSize: '300%',
           animation: 'aurora 36s linear infinite',
           filter: 'blur(60px)',
