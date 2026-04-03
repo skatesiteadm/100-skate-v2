@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { track } from '@vercel/analytics'
 import imageUrlBuilder from '@sanity/image-url'
 import { getClient } from 'lib/sanity.client'
 
@@ -30,7 +31,7 @@ export default function BannerSlot({ posicao }: BannerSlotProps) {
     const hoje = new Date().toISOString().split('T')[0]
     getClient()
       .fetch<Banner[]>(
-        `*[_type == "banner" && ativo == true && posicao == $posicao && (dataInicio == null || dataInicio <= $hoje) && (dataFim == null || dataFim >= $hoje)] {
+        `*[_type == "banner" && ativo != false && posicao == $posicao && (dataInicio == null || dataInicio <= $hoje) && (dataFim == null || dataFim >= $hoje)] {
           _id, nome, imagem, link
         }`,
         { posicao, hoje }
@@ -39,12 +40,6 @@ export default function BannerSlot({ posicao }: BannerSlotProps) {
         if (banners.length > 0) {
           const escolhido = banners[Math.floor(Math.random() * banners.length)]
           setBanner(escolhido)
-          if (typeof window !== 'undefined' && (window as any).gtag) {
-            ;(window as any).gtag('event', 'banner_impression', {
-              banner_nome: escolhido.nome,
-              banner_posicao: posicao,
-            })
-          }
         }
         setLoaded(true)
       })
@@ -52,8 +47,8 @@ export default function BannerSlot({ posicao }: BannerSlotProps) {
   }, [posicao])
 
   function trackClick() {
-    if (typeof window !== 'undefined' && (window as any).gtag && banner) {
-      ;(window as any).gtag('event', 'banner_click', {
+    if (banner) {
+      track('banner_click', {
         banner_nome: banner.nome,
         banner_posicao: posicao,
         banner_link: banner.link,
