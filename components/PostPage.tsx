@@ -33,7 +33,7 @@ export default function PostPage(props: PostPageProps) {
     <>
       <Layout preview={preview} loading={loading}>
         <Container>
-          <BlogHeader title={title} description={[]} level={1} hideNav />
+          <BlogHeader title={title} description={[]} level={1} />
           {preview && !post ? (
             <PostTitle>Loading...</PostTitle>
           ) : (

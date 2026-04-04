@@ -34,6 +34,24 @@ export default defineType({
       title: 'Link de Inscrição',
       type: 'url',
     }),
+    defineField({
+      name: 'linkMateria',
+      title: 'Link da Matéria',
+      type: 'url',
+    }),
+    defineField({
+      name: 'linkAtivo',
+      title: 'Link Ativo',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Link de Inscrição', value: 'inscricao' },
+          { title: 'Link da Matéria', value: 'materia' },
+        ],
+        layout: 'radio',
+      },
+      description: 'Escolha qual link será exibido no site. Deixe em branco para não exibir nenhum.',
+    }),
   ],
   preview: {
     select: {

@@ -63,14 +63,14 @@ export default function SearchBar() {
   return (
     <>
       <form onSubmit={handleSubmit} className="flex items-center gap-2 bg-white/10 rounded-full px-3 py-1">
-        <LupaIcon className="w-3 h-3 invert opacity-60" />
+        <LupaIcon className="w-3 h-3 invert dark:invert-0 opacity-60" />
         <input
           type="text"
           value={query}
           onChange={(e) => { setQuery(e.target.value); setOpen(e.target.value.length >= 2) }}
           onFocus={() => setOpen(true)}
           placeholder="Pesquisar..."
-          className="bg-transparent text-white text-xs outline-none w-32 placeholder-gray-400"
+          className="bg-transparent text-white dark:text-zinc-800 text-xs outline-none w-32 placeholder-gray-400 dark:placeholder-zinc-600"
         />
       </form>
 

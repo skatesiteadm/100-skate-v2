@@ -4,7 +4,11 @@ import { YOUTUBE_PODCAST_PLAYLIST_ID } from 'lib/youtube.constants'
 const API_KEY = process.env.YOUTUBE_API_KEY
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const limit = parseInt((req.query.limit as string) || '10', 10)
+  if (req.method !== 'GET') {
+    return res.status(405).json({ videos: [] })
+  }
+
+  const limit = Math.min(parseInt((req.query.limit as string) || '10', 10), 50)
 
   try {
     const playlistRes = await fetch(

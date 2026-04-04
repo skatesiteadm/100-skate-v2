@@ -2,7 +2,6 @@ import BlogHeader from 'components/BlogHeader'
 import Layout from 'components/BlogLayout'
 import MoreStories from 'components/MoreStories'
 import VideoCarousel from 'components/VideoCarousel'
-import LojaPreview from 'components/LojaPreview'
 import { BlogGrid } from 'components/ui/blog-posts'
 import * as demo from 'lib/demo.data'
 import { getClient } from 'lib/sanity.client'
@@ -11,6 +10,7 @@ import { urlForImage } from 'lib/sanity.image'
 import { Suspense } from 'react'
 import BannerSlot from 'components/BannerSlot'
 import RevistaCard from 'components/RevistaCard'
+import LojaPreview from 'components/LojaPreview'
 
 
 export interface IndexPageProps {
@@ -63,7 +63,6 @@ export default function IndexPage(props: IndexPageProps) {
             limit={6}
           />
           <LojaPreview />
-          
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </div>
         <Suspense />

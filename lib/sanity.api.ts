@@ -27,7 +27,7 @@ export const PREVIEW_MODE_ROUTE = '/api/preview-mode/enable'
 /**
  * Used to configure edit intent links, for Presentation Mode, as well as to configure where the Studio is mounted in the router.
  */
-export const studioUrl = '/studio'
+export const studioUrl = '/editor'
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {

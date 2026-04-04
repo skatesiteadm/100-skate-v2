@@ -25,6 +25,7 @@ export default function VideoCarousel({
   limit,
 }: VideoCarouselProps) {
   const [videos, setVideos] = useState<Video[]>([])
+  const [loading, setLoading] = useState(true)
   const [activeVideo, setActiveVideo] = useState<string | null>(null)
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' })
 
@@ -35,8 +36,23 @@ export default function VideoCarousel({
     const url = limit ? `${apiEndpoint}?limit=${limit}` : apiEndpoint
     fetch(url)
       .then((res) => res.json())
-      .then((data) => setVideos(data.videos || []))
+      .then((data) => { setVideos(data.videos || []); setLoading(false) })
+      .catch(() => setLoading(false))
   }, [apiEndpoint, limit])
+
+  if (loading) return (
+    <section className="mb-12">
+      <div className="h-7 w-48 bg-gray-200 dark:bg-zinc-800 rounded animate-pulse mb-6" />
+      <div className="flex gap-4 overflow-hidden mx-4">
+        {[...Array(3)].map((_, i) => (
+          <div key={i} className="flex-none w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] flex flex-col gap-2">
+            <div className="rounded-xl bg-gray-200 dark:bg-zinc-800 animate-pulse" style={{ paddingTop: '56.25%' }} />
+            <div className="h-3 bg-gray-200 dark:bg-zinc-800 rounded animate-pulse w-3/4" />
+          </div>
+        ))}
+      </div>
+    </section>
+  )
 
   if (videos.length === 0) return null
 

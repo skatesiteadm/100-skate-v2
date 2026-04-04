@@ -69,38 +69,39 @@ export default function RevistaCard({ revista, showBadge = false }: RevistaCardP
               <span className="text-xs font-black uppercase tracking-widest text-gray-500 block mb-2">
                 Matéria de Capa
               </span>
-              <div className="flex items-center gap-4 flex-wrap">
-                <Link
-                  href={`/posts/${revista.materiaDestaque.slug}`}
-                  className="font-black uppercase text-lg hover:text-[#ff44cc] transition-colors"
-                >
-                  {revista.materiaDestaque.title}
-                </Link>
-                {revista.esgotada ? (
-                  <button
-                    disabled
-                    className="bg-gray-800 text-gray-500 font-black uppercase text-xs px-5 py-2 rounded-full tracking-widest whitespace-nowrap cursor-not-allowed"
-                  >
-                    Sold Out
-                  </button>
-                ) : revista.linkCompra ? (
-                  <button
-                    onClick={() => window.open(revista.linkCompra, '_blank')}
-                    className="bg-[#ff44cc] hover:bg-[#ff44cc]/80 text-white font-black uppercase text-xs px-5 py-2 rounded-full tracking-widest transition-colors whitespace-nowrap"
-                  >
-                    Compre Aqui
-                  </button>
-                ) : (
-                  <button
-                    disabled
-                    className="bg-gray-800 text-gray-500 font-black uppercase text-xs px-5 py-2 rounded-full tracking-widest whitespace-nowrap cursor-not-allowed"
-                  >
-                    Compre em Breve
-                  </button>
-                )}
-              </div>
+              <Link
+                href={`/posts/${revista.materiaDestaque.slug}`}
+                className="font-black uppercase text-lg hover:text-[#ff44cc] transition-colors"
+              >
+                {revista.materiaDestaque.title}
+              </Link>
             </div>
           )}
+
+          <div className="border-t border-gray-800 pt-5">
+            {revista.esgotada ? (
+              <button
+                disabled
+                className="bg-gray-800 text-gray-500 font-black uppercase text-xs px-5 py-2 rounded-full tracking-widest whitespace-nowrap cursor-not-allowed"
+              >
+                Sold Out
+              </button>
+            ) : revista.linkCompra ? (
+              <button
+                onClick={() => window.open(revista.linkCompra, '_blank')}
+                className="bg-[#ff44cc] hover:bg-[#ff44cc]/80 text-white font-black uppercase text-xs px-5 py-2 rounded-full tracking-widest transition-colors whitespace-nowrap"
+              >
+                Compre Aqui
+              </button>
+            ) : (
+              <button
+                disabled
+                className="bg-gray-800 text-gray-500 font-black uppercase text-xs px-5 py-2 rounded-full tracking-widest whitespace-nowrap cursor-not-allowed"
+              >
+                Compre em Breve
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </section>

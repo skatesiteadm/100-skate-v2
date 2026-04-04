@@ -1,6 +1,8 @@
 import { cn } from '../../lib/utils'
-import Link from 'next/link'
+import { track } from '@vercel/analytics'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect } from 'react'
 
 interface BlogPost {
   id: string
@@ -19,6 +21,14 @@ interface BlogGridProps {
 
 export function BlogGrid({ posts = [], className }: BlogGridProps) {
   const [hero, ...rest] = posts
+
+  useEffect(() => {
+    const top3 = [hero, ...rest.slice(0, 2)].filter(Boolean)
+    top3.forEach((post, i) =>
+      track('post_view', { slug: post.slug, title: post.title, position: i + 1 })
+    )
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <div className={cn('flex flex-col gap-4 mb-6 md:mb-12', className)}>
       {hero && (
@@ -32,6 +42,8 @@ export function BlogGrid({ posts = [], className }: BlogGridProps) {
             fill
             sizes="(max-width: 768px) 100vw, 1200px"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
+            placeholder="blur"
+            blurDataURL="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
@@ -59,6 +71,8 @@ export function BlogGrid({ posts = [], className }: BlogGridProps) {
               fill
               sizes="(max-width: 768px) 50vw, 600px"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
+              placeholder="blur"
+              blurDataURL="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
             <div className="absolute bottom-0 left-0 p-4 text-white">

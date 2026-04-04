@@ -77,6 +77,8 @@ export const eventosQuery = groq`
   date,
   location,
   linkInscricao,
+  linkMateria,
+  linkAtivo,
   "image": image.asset->url,
 }
 `
@@ -130,4 +132,6 @@ export interface Evento {
   location: string
   image: string
   linkInscricao?: string
+  linkMateria?: string
+  linkAtivo?: 'inscricao' | 'materia'
 }

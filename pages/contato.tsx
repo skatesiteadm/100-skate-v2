@@ -21,7 +21,7 @@ export default function ContatoPage() {
     return e
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const errs = validate()
     if (Object.keys(errs).length > 0) {
@@ -29,9 +29,27 @@ export default function ContatoPage() {
       return
     }
     setErrors({})
-    const mailto = `mailto:contato@cemporcentoskate.com?subject=Solicitação de Media Kit - ${form.empresa}&body=Nome: ${form.nome}%0AEmail: ${form.email}%0AEmpresa: ${form.empresa}%0A%0AMensagem:%0A${form.mensagem}`
-    window.location.href = mailto
-    setEnviado(true)
+    try {
+      const res = await fetch('https://formspree.io/f/xykbwbjj', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          nome: form.nome,
+          email: form.email,
+          empresa: form.empresa,
+          mensagem: form.mensagem,
+        }),
+      })
+      if (res.ok) {
+        setEnviado(true)
+        setForm({ nome: '', email: '', empresa: '', mensagem: '' })
+      } else {
+        const data = await res.json().catch(() => ({}))
+        setErrors({ mensagem: data?.error || `Erro ao enviar (${res.status}). Tente novamente.` })
+      }
+    } catch {
+      setErrors({ mensagem: 'Erro ao enviar. Tente novamente.' })
+    }
   }
 
   const field = (key: keyof typeof form) => ({
@@ -139,14 +157,11 @@ export default function ContatoPage() {
             <section className="flex flex-col gap-8">
               <div>
                 <h2 className="text-xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-6 tracking-widest text-black dark:text-white">
-                  Onde Estamos
+                  Empresa
                 </h2>
                 <div className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed space-y-1">
                   <p className="font-black text-black dark:text-white">100 Skate Mag LTDA</p>
-                  <p>Servidão Laura Duarte Prazeres SN</p>
-                  <p>Campeche, Florianópolis SC</p>
-                  <p>CEP 88065-175</p>
-                  <p className="pt-2 text-gray-400">CNPJ: 60.234.444/0001-13</p>
+                  <p className="text-gray-400">CNPJ: 60.234.444/0001-13</p>
                 </div>
               </div>
 

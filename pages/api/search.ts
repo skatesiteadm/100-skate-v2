@@ -7,14 +7,18 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ results: [] })
+  }
+
   const { q, limit } = req.query
 
-  if (!q || typeof q !== 'string' || q.trim().length < 2) {
+  if (!q || typeof q !== 'string' || q.trim().length < 2 || q.trim().length > 200) {
     return res.status(400).json({ results: [] })
   }
 
   const searchTerm = q.trim()
-  const resultLimit = parseInt((limit as string) || '20', 10)
+  const resultLimit = Math.min(parseInt((limit as string) || '20', 10), 50)
 
   try {
     const results = await client.fetch(

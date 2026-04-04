@@ -23,7 +23,7 @@ import eventoType from 'schemas/evento'
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Next.js Blog with Sanity.io'
 export default defineConfig({
-  basePath: '/studio',
+  basePath: '/editor',
   projectId,
   dataset,
   title,
