@@ -16,14 +16,14 @@ type SitemapLocation = {
 
 // Use this to manually add routes to the sitemap
 const defaultUrls: SitemapLocation[] = [
-  {
-    url: '/',
-    changefreq: 'daily',
-    priority: 1,
-    lastmod: new Date(), // or custom date: '2023-06-12T00:00:00.000Z',
-  },
-  //   { url: '/about', priority: 0.5 },
-  //   { url: '/blog', changefreq: 'weekly', priority: 0.7 },
+  { url: '/', changefreq: 'daily', priority: 1, lastmod: new Date() },
+  { url: '/videos', changefreq: 'daily', priority: 0.8 },
+  { url: '/eventos', changefreq: 'weekly', priority: 0.8 },
+  { url: '/revista', changefreq: 'weekly', priority: 0.8 },
+  { url: '/fiksperto', changefreq: 'weekly', priority: 0.7 },
+  { url: '/loja', changefreq: 'weekly', priority: 0.7 },
+  { url: '/nossa-historia', changefreq: 'monthly', priority: 0.5 },
+  { url: '/contato', changefreq: 'monthly', priority: 0.4 },
 ]
 
 const createSitemap = (locations: SitemapLocation[]) => {

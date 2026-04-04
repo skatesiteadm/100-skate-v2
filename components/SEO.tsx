@@ -15,8 +15,8 @@ const defaults = {
   title: "100%SKATE | A maior midia de skate do Brasil",
   description:
     "30 anos documentando a historia do skate brasileiro. Materias, videos, eventos, revista e a cultura da rua.",
-  image: "/og-default.png",
-  url: "https://cemporcentoskate.com.br",
+  image: "https://cemporcentoskate.com/og-default.png",
+  url: "https://cemporcentoskate.com",
 }
 
 export default function SEO({
