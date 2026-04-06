@@ -37,7 +37,7 @@ export default function ProjectSlugRoute(props: PageProps) {
         title={post.title}
         description={post.excerpt}
         image={post.coverImage?.asset?.url}
-        url={`https://cemporcentoskate.com.br/posts/${post.slug}`}
+        url={`https://cemporcentoskate.com/posts/${post.slug}`}
         type="article"
         publishedAt={post.date}
         author={post.author?.name}
