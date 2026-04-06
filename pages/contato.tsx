@@ -96,7 +96,7 @@ export default function ContatoPage() {
               {enviado ? (
                 <div className="bg-black text-white rounded-2xl p-8 text-center">
                   <span className="text-[#ff44cc] text-4xl font-black block mb-4">ok.</span>
-                  <p className="text-gray-400">Seu cliente de email foi aberto. A gente responde em breve.</p>
+                  <p className="text-gray-400">Mensagem enviada com sucesso! A gente responde em breve.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>

@@ -1,5 +1,6 @@
 import AlertBanner from 'components/AlertBanner'
 import Footer from 'components/Footer'
+import NewsletterPopup from 'components/NewsletterPopup'
 import SidebarBanner from 'components/SidebarBanner'
 import StickyBanner from 'components/StickyBanner'
 
@@ -23,6 +24,7 @@ export default function BlogLayout({
       </main>
       <Footer />
       <StickyBanner />
+      <NewsletterPopup />
     </div>
   )
 }
