@@ -63,7 +63,7 @@ export default function NewsletterPopup() {
 
         {enviado ? (
           <div className="text-center py-4">
-            <span className="text-[#ff44cc] text-3xl font-black block mb-2">ok.</span>
+            <span className="text-[#ff44cc] text-3xl font-black block mb-2">Valeu!</span>
             <p className="text-gray-400 text-sm">Você está dentro. A gente manda novidade em breve.</p>
           </div>
         ) : (
