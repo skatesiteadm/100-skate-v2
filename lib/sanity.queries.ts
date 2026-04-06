@@ -71,11 +71,10 @@ export const todasRevistasQuery = groq`
 `
 
 export const eventosQuery = groq`
-*[_type == "evento"] | order(date asc) {
+*[_type == "evento"] | order(dates[0].date asc) {
   _id,
   title,
-  date,
-  location,
+  dates[]{ date, endDate, cities },
   linkInscricao,
   linkMateria,
   linkAtivo,
@@ -125,11 +124,16 @@ export interface Settings {
   }
 }
 
+export interface EventoDate {
+  date: string
+  endDate?: string
+  cities: string
+}
+
 export interface Evento {
   _id: string
   title: string
-  date: string
-  location: string
+  dates: EventoDate[]
   image: string
   linkInscricao?: string
   linkMateria?: string
