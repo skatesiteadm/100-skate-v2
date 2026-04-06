@@ -49,8 +49,8 @@ export default function NewsletterPopup() {
   return (
     <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60" onClick={dismiss} />
-      <div className="relative bg-black text-white rounded-2xl p-8 w-full max-w-sm z-10">
-        <img src="/logoskate.svg" alt="100% SKATE" className="h-8 mb-6" />
+      <div className="relative bg-black text-white rounded-2xl p-8 w-full max-w-lg z-10">
+        <img src="/logoskate.svg" alt="100% SKATE" className="h-8 mb-6" style={{ filter: 'brightness(0) saturate(100%) invert(39%) sepia(98%) saturate(2055%) hue-rotate(285deg) brightness(101%)' }} />
 
         {enviado ? (
           <div className="text-center py-4">
