@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 
 const STORAGE_KEY = '100skate_newsletter_seen'
+const DISMISS_KEY = '100skate_newsletter_dismissed'
+const MAX_DISMISSALS = 4
 
 export default function NewsletterPopup() {
   const [visible, setVisible] = useState(false)
@@ -9,14 +11,21 @@ export default function NewsletterPopup() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && !localStorage.getItem(STORAGE_KEY)) {
+    if (typeof window === 'undefined') return
+    const done = localStorage.getItem(STORAGE_KEY)
+    const dismissals = parseInt(localStorage.getItem(DISMISS_KEY) || '0', 10)
+    if (!done && dismissals < MAX_DISMISSALS) {
       const timer = setTimeout(() => setVisible(true), 10000)
       return () => clearTimeout(timer)
     }
   }, [])
 
   function dismiss() {
-    localStorage.setItem(STORAGE_KEY, '1')
+    const dismissals = parseInt(localStorage.getItem(DISMISS_KEY) || '0', 10) + 1
+    if (dismissals >= MAX_DISMISSALS) {
+      localStorage.setItem(STORAGE_KEY, '1')
+    }
+    localStorage.setItem(DISMISS_KEY, String(dismissals))
     setVisible(false)
   }
 
@@ -31,7 +40,7 @@ export default function NewsletterPopup() {
       const res = await fetch('https://formspree.io/f/xreornzq', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, _gotcha: '' }),
       })
       if (res.ok) {
         setEnviado(true)
