@@ -4,7 +4,6 @@ import { Analytics } from '@vercel/analytics/next'
 import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
 import { DarkModeProvider } from 'lib/darkMode'
-import CountdownGate from 'components/CountdownGate'
 
 export interface SharedPageProps {
   previewMode: boolean
@@ -21,16 +20,14 @@ export default function App({
   const { previewMode, previewPerspective, token } = pageProps
   return (
     <DarkModeProvider>
-      <CountdownGate>
-        {previewMode ? (
-          <PreviewProvider perspective={previewPerspective} token={token}>
-            <Component {...pageProps} />
-          </PreviewProvider>
-        ) : (
+      {previewMode ? (
+        <PreviewProvider perspective={previewPerspective} token={token}>
           <Component {...pageProps} />
-        )}
-        {previewMode && <VisualEditing />}
-      </CountdownGate>
+        </PreviewProvider>
+      ) : (
+        <Component {...pageProps} />
+      )}
+      {previewMode && <VisualEditing />}
       <Analytics />
     </DarkModeProvider>
   )
