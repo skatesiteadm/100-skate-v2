@@ -9,7 +9,7 @@ const EARLY_ACCESS_END = new Date('2026-04-23T19:00:00Z')
 
 const BYPASS_KEY = 'skatepreview'
 const EMAIL_ACCESS_KEY = 'skate_early_access'
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xykbwbjj'
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mlgaewyz'
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
