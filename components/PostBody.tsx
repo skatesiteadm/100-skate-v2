@@ -2,6 +2,7 @@ import { PortableText, type PortableTextReactComponents } from 'next-sanity'
 import { SanityImage } from './SanityImage'
 import BannerSlot from './BannerSlot'
 import EmbedBlock from './portable-text/EmbedBlock'
+import GalleryBlock from './portable-text/GalleryBlock'
 
 const myPortableTextComponents: Partial<PortableTextReactComponents> = {
   types: {
@@ -10,6 +11,9 @@ const myPortableTextComponents: Partial<PortableTextReactComponents> = {
     },
     embed: ({ value }) => {
       return <EmbedBlock value={value} />
+    },
+    gallery: ({ value }) => {
+      return <GalleryBlock value={value} />
     },
   },
   marks: {

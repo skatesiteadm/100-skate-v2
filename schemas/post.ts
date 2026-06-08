@@ -158,6 +158,57 @@ export default defineType({
           ],
         }),
 
+        // Gallery block: batch photo upload, renders 4-up grid + lightbox
+        defineArrayMember({
+          type: 'object',
+          name: 'gallery',
+          title: 'Galeria de Fotos',
+          fields: [
+            defineField({
+              name: 'images',
+              title: 'Fotos',
+              type: 'array',
+              description: 'Arraste várias fotos de uma vez para fazer upload em lote.',
+              of: [
+                defineArrayMember({
+                  type: 'image',
+                  options: { hotspot: true },
+                  fields: [
+                    defineField({
+                      name: 'alt',
+                      title: 'Texto alternativo',
+                      type: 'string',
+                      description: 'Importante para acessibilidade e SEO.',
+                    }),
+                    defineField({
+                      name: 'caption',
+                      title: 'Legenda',
+                      type: 'string',
+                    }),
+                  ],
+                }),
+              ],
+              options: { layout: 'grid' },
+              validation: (rule) => rule.min(1),
+            }),
+            defineField({
+              name: 'title',
+              title: 'Título da galeria (opcional)',
+              type: 'string',
+            }),
+          ],
+          preview: {
+            select: { images: 'images', title: 'title' },
+            prepare({ images, title }: { images?: unknown[]; title?: string }) {
+              const count = images?.length ?? 0
+              return {
+                title: title || 'Galeria',
+                subtitle: `${count} foto${count !== 1 ? 's' : ''}`,
+              }
+            },
+          },
+        }),
+
         // Embed block: YouTube, Instagram, Twitter/X, generic
         defineArrayMember({
           type: 'object',
