@@ -47,7 +47,6 @@ export default function PostPage(props: PostPageProps) {
                 />
                 <PostBody content={post.content} />
               </article>
-              <SectionSeparator />
               {morePosts?.length > 0 && <MoreStories posts={morePosts} />}
             </>
           )}

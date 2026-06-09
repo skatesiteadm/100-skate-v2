@@ -65,7 +65,7 @@ function Pagination({ page, totalPages }: { page: number; totalPages: number }) 
       {page > 1 ? (
         <Link
           href={page === 2 ? '/fiksperto' : `/fiksperto/${page - 1}`}
-          className="font-black uppercase text-sm tracking-widest hover:text-[#ff44cc] transition-colors"
+          className="font-black uppercase text-sm tracking-widest text-black dark:text-white hover:text-[#ff44cc] dark:hover:text-[#ff44cc] transition-colors"
         >
           ← Anterior
         </Link>
@@ -80,7 +80,7 @@ function Pagination({ page, totalPages }: { page: number; totalPages: number }) 
       {page < totalPages ? (
         <Link
           href={`/fiksperto/${page + 1}`}
-          className="font-black uppercase text-sm tracking-widest hover:text-[#ff44cc] transition-colors"
+          className="font-black uppercase text-sm tracking-widest text-black dark:text-white hover:text-[#ff44cc] dark:hover:text-[#ff44cc] transition-colors"
         >
           Próxima →
         </Link>

@@ -7,8 +7,8 @@ export default function MoreStories({ posts }: { posts: Post[] }) {
   return (
     <div className="mb-16">
       <section>
-        <Link href="/fiksperto" className="block hover:opacity-70 transition-opacity">
-          <h2 className="text-xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-6 tracking-widest cursor-pointer text-black dark:text-white">
+        <Link href="/fiksperto" className="block hover:opacity-70 transition-opacity text-black dark:text-white">
+          <h2 className="text-xl font-black uppercase border-b-2 border-black dark:border-white pb-2 mb-6 tracking-widest cursor-pointer">
             Mais Matérias →
           </h2>
         </Link>
