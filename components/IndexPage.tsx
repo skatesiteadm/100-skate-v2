@@ -34,7 +34,7 @@ export default function IndexPage(props: IndexPageProps) {
     category: 'Skate',
   }))
 
-  const morePosts = posts.slice(3)
+  const morePosts = posts.slice(3, 15)
 
   return (
     <>
