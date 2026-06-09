@@ -30,6 +30,13 @@ export const postAndMoreStoriesQuery = groq`
   }
 }`
 
+export const postCountQuery = groq`count(*[_type == "post"])`
+
+export const fikspertoPageQuery = groq`
+*[_type == "post"] | order(date desc, _updatedAt desc) [$start...$end] {
+  ${postFields}
+}`
+
 export const postSlugsQuery = groq`
 *[_type == "post" && defined(slug.current)][].slug.current
 `

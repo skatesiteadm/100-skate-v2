@@ -6,10 +6,12 @@ import {
   useCdn,
 } from 'lib/sanity.api'
 import {
+  fikspertoPageQuery,
   indexQuery,
   type Post,
   postAndMoreStoriesQuery,
   postBySlugQuery,
+  postCountQuery,
   postSlugsQuery,
   type Settings,
   settingsQuery,
@@ -54,6 +56,18 @@ export async function getSettings(client: SanityClient): Promise<Settings> {
 
 export async function getAllPosts(client: SanityClient): Promise<Post[]> {
   return (await client.fetch(indexQuery)) || []
+}
+
+export async function getPostCount(client: SanityClient): Promise<number> {
+  return (await client.fetch<number>(postCountQuery)) || 0
+}
+
+export async function getPostsPage(
+  client: SanityClient,
+  start: number,
+  end: number,
+): Promise<Post[]> {
+  return (await client.fetch(fikspertoPageQuery, { start, end })) || []
 }
 
 export async function getAllPostsSlugs(): Promise<Pick<Post, 'slug'>[]> {
