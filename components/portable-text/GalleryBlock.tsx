@@ -106,7 +106,7 @@ export default function GalleryBlock({ value }: { value: GalleryValue }) {
             onClick={(e) => { e.stopPropagation(); setActive((i) => Math.max(i! - 1, 0)) }}
             disabled={active === 0}
             aria-label="Foto anterior"
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-5xl leading-none hover:text-[#ff44cc] transition-colors disabled:opacity-20"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-[#ff44cc] hover:bg-white hover:text-[#ff44cc] text-white text-3xl font-black transition-colors disabled:opacity-20 disabled:pointer-events-none"
           >
             ‹
           </button>
@@ -117,7 +117,7 @@ export default function GalleryBlock({ value }: { value: GalleryValue }) {
             onClick={(e) => { e.stopPropagation(); setActive((i) => Math.min(i! + 1, images.length - 1)) }}
             disabled={active === images.length - 1}
             aria-label="Próxima foto"
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-5xl leading-none hover:text-[#ff44cc] transition-colors disabled:opacity-20"
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-[#ff44cc] hover:bg-white hover:text-[#ff44cc] text-white text-3xl font-black transition-colors disabled:opacity-20 disabled:pointer-events-none"
           >
             ›
           </button>
