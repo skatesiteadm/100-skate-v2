@@ -28,7 +28,7 @@ export default function IndexPage(props: IndexPageProps) {
   const gridPosts = posts.slice(0, 3).map((post) => ({
     id: post._id,
     title: post.title,
-    imageUrl: post.coverImage ? urlForImage(post.coverImage).width(800).url() : '',
+    imageUrl: post.coverImage ? urlForImage(post.coverImage).width(1920).height(1080).fit('crop').url() : '',
     slug: post.slug,
     author: post.author?.name,
     category: 'Skate',

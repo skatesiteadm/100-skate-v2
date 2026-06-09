@@ -34,13 +34,13 @@ export function BlogGrid({ posts = [], className }: BlogGridProps) {
       {hero && (
         <Link
           href={`/posts/${hero.slug}`}
-          className="relative overflow-hidden rounded-xl group w-full bg-gray-100 dark:bg-[#111111] h-[260px] md:h-[420px]"
+          className="relative overflow-hidden rounded-xl group w-full bg-gray-100 dark:bg-[#111111] aspect-video"
         >
           <Image
             src={hero.imageUrl}
             alt={hero.title || ''}
             fill
-            sizes="(max-width: 768px) 100vw, 1200px"
+            sizes="(max-width: 768px) 100vw, 1280px"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             placeholder="blur"
             blurDataURL="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
