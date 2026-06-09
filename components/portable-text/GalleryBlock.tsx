@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { useNextSanityImage } from 'next-sanity-image'
 import { getSanityImageConfig } from 'lib/sanity.client'
@@ -55,6 +55,7 @@ export default function GalleryBlock({ value }: { value: GalleryValue }) {
   const [active, setActive] = useState<number | null>(null)
   const [imgLoading, setImgLoading] = useState(false)
   const images = value?.images ?? []
+  const touchStartX = useRef(0)
 
   useEffect(() => {
     if (active !== null) setImgLoading(true)
@@ -63,13 +64,11 @@ export default function GalleryBlock({ value }: { value: GalleryValue }) {
   useEffect(() => {
     if (active === null) return
     const total = images.length
-
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setActive(null)
       if (e.key === 'ArrowRight') setActive((i) => Math.min(i! + 1, total - 1))
       if (e.key === 'ArrowLeft') setActive((i) => Math.max(i! - 1, 0))
     }
-
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
     return () => {
@@ -79,6 +78,18 @@ export default function GalleryBlock({ value }: { value: GalleryValue }) {
   }, [active, images.length])
 
   if (!images.length) return null
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const delta = e.changedTouches[0].clientX - touchStartX.current
+    if (Math.abs(delta) < 10) return
+    e.stopPropagation()
+    if (delta > 50) setActive((i) => Math.max(i! - 1, 0))
+    else if (delta < -50) setActive((i) => Math.min(i! + 1, images.length - 1))
+  }
 
   return (
     <>
@@ -95,12 +106,24 @@ export default function GalleryBlock({ value }: { value: GalleryValue }) {
 
       {active !== null && (
         <div
-          className="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/85 flex items-center justify-center px-16 py-14"
           onClick={() => setActive(null)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
           role="dialog"
           aria-modal="true"
         >
-          {/* Prev — fixed to overlay, never moves */}
+          {/* Close — topo fixo, área 44px */}
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); setActive(null) }}
+            aria-label="Fechar galeria"
+            className="absolute top-3 right-3 w-11 h-11 flex items-center justify-center bg-black/60 text-white text-2xl hover:bg-[#ff44cc] transition-colors"
+          >
+            ×
+          </button>
+
+          {/* Prev */}
           <button
             type="button"
             onClick={(e) => { e.stopPropagation(); setActive((i) => Math.max(i! - 1, 0)) }}
@@ -111,7 +134,7 @@ export default function GalleryBlock({ value }: { value: GalleryValue }) {
             ‹
           </button>
 
-          {/* Next — fixed to overlay, never moves */}
+          {/* Next */}
           <button
             type="button"
             onClick={(e) => { e.stopPropagation(); setActive((i) => Math.min(i! + 1, images.length - 1)) }}
@@ -123,19 +146,9 @@ export default function GalleryBlock({ value }: { value: GalleryValue }) {
           </button>
 
           <div
-            className="relative flex flex-col items-center"
+            className="flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close */}
-            <button
-              type="button"
-              onClick={() => setActive(null)}
-              aria-label="Fechar galeria"
-              className="absolute -top-10 right-0 text-white text-4xl leading-none hover:text-[#ff44cc] transition-colors"
-            >
-              ×
-            </button>
-
             <div className="relative">
               <div className={imgLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}>
                 <LightboxImage
