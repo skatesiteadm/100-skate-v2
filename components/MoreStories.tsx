@@ -17,6 +17,15 @@ export default function MoreStories({ posts }: { posts: Post[] }) {
             <PostCard key={post._id} post={post} />
           ))}
         </div>
+
+        <div className="mt-10 flex justify-center">
+          <Link
+            href="/fiksperto"
+            className="border-2 border-black dark:border-white px-8 py-3 font-black uppercase text-sm tracking-widest hover:bg-[#ff44cc] hover:border-[#ff44cc] hover:text-white transition-colors"
+          >
+            Ver mais matérias →
+          </Link>
+        </div>
       </section>
     </div>
   )
