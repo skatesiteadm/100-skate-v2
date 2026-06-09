@@ -36,7 +36,7 @@ function GalleryThumb({ image, onClick }: { image: GalleryImage; onClick: () => 
   )
 }
 
-function LightboxImage({ image }: { image: GalleryImage }) {
+function LightboxImage({ image, onLoad }: { image: GalleryImage; onLoad: () => void }) {
   const imageProps = useNextSanityImage(getSanityImageConfig(), image.asset)
   if (!imageProps) return null
   return (
@@ -46,13 +46,19 @@ function LightboxImage({ image }: { image: GalleryImage }) {
       sizes="90vw"
       style={{ maxHeight: '75vh', maxWidth: '85vw', width: 'auto', height: 'auto' }}
       className="rounded object-contain"
+      onLoad={onLoad}
     />
   )
 }
 
 export default function GalleryBlock({ value }: { value: GalleryValue }) {
   const [active, setActive] = useState<number | null>(null)
+  const [imgLoading, setImgLoading] = useState(false)
   const images = value?.images ?? []
+
+  useEffect(() => {
+    if (active !== null) setImgLoading(true)
+  }, [active])
 
   useEffect(() => {
     if (active === null) return
@@ -120,7 +126,18 @@ export default function GalleryBlock({ value }: { value: GalleryValue }) {
               </button>
             )}
 
-            <LightboxImage image={images[active]} />
+            <div className="relative">
+              <div className={imgLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}>
+                <LightboxImage
+                  key={active}
+                  image={images[active]}
+                  onLoad={() => setImgLoading(false)}
+                />
+              </div>
+              {imgLoading && (
+                <div className="absolute inset-0 animate-pulse bg-zinc-800 rounded min-w-[240px] min-h-[160px]" />
+              )}
+            </div>
 
             {images[active].caption && (
               <p className="mt-3 text-center text-sm text-zinc-400 italic max-w-lg px-4">
