@@ -100,6 +100,28 @@ export default function GalleryBlock({ value }: { value: GalleryValue }) {
           role="dialog"
           aria-modal="true"
         >
+          {/* Prev — fixed to overlay, never moves */}
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); setActive((i) => Math.max(i! - 1, 0)) }}
+            disabled={active === 0}
+            aria-label="Foto anterior"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-5xl leading-none hover:text-[#ff44cc] transition-colors disabled:opacity-20"
+          >
+            ‹
+          </button>
+
+          {/* Next — fixed to overlay, never moves */}
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); setActive((i) => Math.min(i! + 1, images.length - 1)) }}
+            disabled={active === images.length - 1}
+            aria-label="Próxima foto"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-5xl leading-none hover:text-[#ff44cc] transition-colors disabled:opacity-20"
+          >
+            ›
+          </button>
+
           <div
             className="relative flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
@@ -113,18 +135,6 @@ export default function GalleryBlock({ value }: { value: GalleryValue }) {
             >
               ×
             </button>
-
-            {/* Prev */}
-            {active > 0 && (
-              <button
-                type="button"
-                onClick={() => setActive((i) => i! - 1)}
-                aria-label="Foto anterior"
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 text-white text-5xl leading-none hover:text-[#ff44cc] transition-colors hidden sm:block"
-              >
-                ‹
-              </button>
-            )}
 
             <div className="relative">
               <div className={imgLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}>
@@ -148,40 +158,6 @@ export default function GalleryBlock({ value }: { value: GalleryValue }) {
             <p className="mt-2 text-xs text-zinc-500 tabular-nums">
               {active + 1} / {images.length}
             </p>
-
-            {/* Mobile nav buttons */}
-            <div className="flex gap-8 mt-4 sm:hidden">
-              <button
-                type="button"
-                onClick={() => setActive((i) => Math.max(i! - 1, 0))}
-                disabled={active === 0}
-                className="text-white text-4xl leading-none disabled:opacity-20"
-                aria-label="Foto anterior"
-              >
-                ‹
-              </button>
-              <button
-                type="button"
-                onClick={() => setActive((i) => Math.min(i! + 1, images.length - 1))}
-                disabled={active === images.length - 1}
-                className="text-white text-4xl leading-none disabled:opacity-20"
-                aria-label="Próxima foto"
-              >
-                ›
-              </button>
-            </div>
-
-            {/* Next */}
-            {active < images.length - 1 && (
-              <button
-                type="button"
-                onClick={() => setActive((i) => i! + 1)}
-                aria-label="Próxima foto"
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 text-white text-5xl leading-none hover:text-[#ff44cc] transition-colors hidden sm:block"
-              >
-                ›
-              </button>
-            )}
           </div>
         </div>
       )}
