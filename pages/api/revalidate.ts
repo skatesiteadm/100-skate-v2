@@ -159,7 +159,7 @@ async function queryStaleRoutes(
     case 'settings':
       return await queryAllRoutes(client)
     case 'revista':
-      return ['/revista']
+      return ['/', '/revista']
     default:
       throw new TypeError(`Unknown type: ${body._type}`)
   }

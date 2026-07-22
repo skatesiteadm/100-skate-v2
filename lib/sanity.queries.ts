@@ -48,7 +48,7 @@ export const postBySlugQuery = groq`
 `
 
 export const revistaQuery = groq`
-*[_type == "revista" && ativa == true][0] {
+*[_type == "revista" && ativa == true] | order(_createdAt desc) [0] {
   _id,
   titulo,
   edicao,
